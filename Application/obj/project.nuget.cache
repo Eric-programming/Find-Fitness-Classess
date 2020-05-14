@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "p56/ljdXiO/Ftn/qMWE3qJC58CBd4y8ftDmiPwOCiFrqb2BrPB9fgzvehYjCa24Fb3OpAdwso5y/gMlXxFBdJQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Application\\Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mark8\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\mark8\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

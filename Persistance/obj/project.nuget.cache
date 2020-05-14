@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "+WlVhw5mHKYL5efdFTN8YfLiOZJEKe5wGPdpGk9tjS1KkPxth/xrdcJnHT4w1GEBNL5irqha94Xd+dGe6Duc4Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Persistance\\Persistance.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mark8\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\mark8\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

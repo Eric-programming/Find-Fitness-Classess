@@ -1,0 +1,29 @@
+================================
+Layout: 
+Domain > Application > API > Persistence
+(Ex. Persistence depends on API
+API depends on Application and applications depends on Domain)
+Process:
+API (Receive HTTP request and respond them)
+Applications (Process Business Logic)
+Persistence (Access Database)
+Domain (Business Entitys)
+
+================================
+
+
+1. dotnet new sln
+//Because we will manage many applications
+2. dotnet new classlib -b Domain
+//Because we will need class library file for domain entity
+3. dotnet new classlib -b application
+//Because we will need a application project
+4. dotnet new classlib -b persistance
+//Because we will need this for persistanc 
+5. dotnet new webapi -n API
+
+===========================================
+Add all projects to solution file like
+==> dotnet sln add Domain/
+=========================================
+Add References
