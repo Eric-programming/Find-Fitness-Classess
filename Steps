@@ -3,12 +3,6 @@ Layout:
 Domain > Application > API > Persistence
 (Ex. Persistence depends on API
 API depends on Application and applications depends on Domain)
-Process:
-API (Receive HTTP request and respond them)
-Applications (Process Business Logic)
-Persistence (Access Database)
-Domain (Business Entitys)
-
 ================================
 
 
