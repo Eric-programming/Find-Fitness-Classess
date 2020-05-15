@@ -21,3 +21,4 @@ Add all projects to solution file like
 ==> dotnet sln add Domain/
 =========================================
 Add References
+dotnet add ref ...
