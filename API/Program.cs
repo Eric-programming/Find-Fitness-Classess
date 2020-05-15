@@ -17,14 +17,15 @@ namespace API
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            using(var scope = host.Services.CreateScope()){
-                 var services = scope.ServiceProvider;
-                try 
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
                 {
                     var context = services.GetRequiredService<DataContext>();
                     // var userManager = services.GetRequiredService<UserManager<AppUser>>();
                     context.Database.Migrate();//Create database if not exists
-                    // Seed.SeedData(context, userManager).Wait();
+                    Seed.SeedData(context);
                 }
                 catch (Exception ex)
                 {

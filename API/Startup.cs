@@ -10,7 +10,6 @@ namespace API
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -51,7 +50,6 @@ namespace API
             // app.UseHttpsRedirection();
 
             app.UseRouting();
-
             app.UseAuthorization();
             app.UseCors("AllowAll");
             // app.UseCors (MyAllowSpecificOrigins);
