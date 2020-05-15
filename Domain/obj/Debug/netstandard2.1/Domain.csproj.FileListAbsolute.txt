@@ -1,0 +1,9 @@
+C:\Users\mark8\Desktop\find-trainer\domain\bin\Debug\netstandard2.1\Domain.deps.json
+C:\Users\mark8\Desktop\find-trainer\domain\bin\Debug\netstandard2.1\Domain.dll
+C:\Users\mark8\Desktop\find-trainer\domain\bin\Debug\netstandard2.1\Domain.pdb
+C:\Users\mark8\Desktop\find-trainer\domain\obj\Debug\netstandard2.1\Domain.csprojAssemblyReference.cache
+C:\Users\mark8\Desktop\find-trainer\domain\obj\Debug\netstandard2.1\Domain.csproj.CoreCompileInputs.cache
+C:\Users\mark8\Desktop\find-trainer\domain\obj\Debug\netstandard2.1\Domain.AssemblyInfoInputs.cache
+C:\Users\mark8\Desktop\find-trainer\domain\obj\Debug\netstandard2.1\Domain.AssemblyInfo.cs
+C:\Users\mark8\Desktop\find-trainer\domain\obj\Debug\netstandard2.1\Domain.dll
+C:\Users\mark8\Desktop\find-trainer\domain\obj\Debug\netstandard2.1\Domain.pdb

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj": {}
+    "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj": {
+    "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj",
+        "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj",
+        "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
         "packagesPath": "C:\\Users\\mark8\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\obj\\",
+        "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mark8\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -39,6 +39,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
