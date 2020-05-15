@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <ItemGroup>
-    <ProjectReference Include="..\domain\Domain.csproj" />
-    <ProjectReference Include="..\persistance\Persistance.csproj" />
+    <ProjectReference Include="..\domain\Domain.csproj"/>
+    <ProjectReference Include="..\persistance\Persistance.csproj"/>
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0"/>
+    <PackageReference Include="AutoMapper" Version="8.0.0"/>
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
-
 </Project>

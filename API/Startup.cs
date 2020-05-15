@@ -1,3 +1,5 @@
+using Application.TrainingClasses;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +39,8 @@ namespace API
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
                                                                     .AllowAnyMethod()
                                                                      .AllowAnyHeader()));
+            services.AddMediatR(typeof(List.Handler).Assembly);//Just one handler is good
+            // services.AddAutoMapper(typeof(List.Handler));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
