@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button } from "semantic-ui-react";
 import axios from "axios";
 const http = "http://localhost:4000/api/values";
 function App() {
@@ -13,6 +14,7 @@ function App() {
   return (
     <>
       <h2>{value}</h2>
+      <Button>Click Here</Button>
     </>
   );
 }
