@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistance.Migrations
 {
-    public partial class AddTrainingClass : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace Persistance.Migrations
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Category = table.Column<string>(nullable: true),
-                    Time = table.Column<TimeSpan>(nullable: false),
+                    Hr = table.Column<int>(nullable: false),
+                    Min = table.Column<int>(nullable: false),
                     DayOfWeek = table.Column<int>(nullable: false),
                     City = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),

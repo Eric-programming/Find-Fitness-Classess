@@ -9,8 +9,8 @@ using Persistance;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200515154230_AddTrainingClass")]
-    partial class AddTrainingClass
+    [Migration("20200516130439_initialCreate")]
+    partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,13 +42,16 @@ namespace Persistance.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Hr")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Min")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("PostalCode")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Province")
-                        .HasColumnType("TEXT");
-
-                    b.Property<TimeSpan>("Time")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")

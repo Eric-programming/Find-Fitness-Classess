@@ -8,8 +8,9 @@ namespace Domain
         public string Title { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
-        public TimeSpan Time { get; set; }
-        public DayOfWeek DayOfWeek { get; set; }
+        public int Hr { get; set; }
+        public int Min { get; set; }
+        public int DayOfWeek { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
         public string Country { get; set; }
