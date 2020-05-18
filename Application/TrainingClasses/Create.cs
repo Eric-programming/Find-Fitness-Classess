@@ -13,36 +13,40 @@ namespace Application.TrainingClasses
 
         public class Command : IRequest
         {
+            [Required]
             public Guid Id { get; set; }
+
             [Required]
             public string Title { get; set; }
+
             [Required]
             [StringLength(80)]
             public string Description { get; set; }
+
             [Required]
             public string Category { get; set; }
+
             [Required]
-            [Range(0, 24,
-            ErrorMessage = "Hours for {0} must be between {1} and {2}.")]
-            public int Hr { get; set; }
+
+            public string Time { get; set; }
             [Required]
-            [Range(0, 60,
-            ErrorMessage = "Minutes for {0} must be between {1} and {2}.")]
-            public int Min { get; set; }
-            [Required]
-            [Range(0, 6,
-            ErrorMessage = "Day of the week for {0} must be between {1} and {2}.")]
             public int DayOfWeek { get; set; }
+
             [Required]
             public string City { get; set; }
+
             [Required]
             public string Address { get; set; }
+
             [Required]
             public string Country { get; set; }
+
             [Required]
             public string PostalCode { get; set; }
+
             [Required]
             public string Province { get; set; }
+
             [Required]
             public int TotalSpots { get; set; }
         }
@@ -63,8 +67,7 @@ namespace Application.TrainingClasses
                     Title = request.Title,
                     Description = request.Description,
                     Category = request.Category,
-                    Hr = request.Hr,
-                    Min = request.Min,
+                    Time = request.Time,
                     DayOfWeek = request.DayOfWeek,
                     City = request.City,
                     Address = request.Address,

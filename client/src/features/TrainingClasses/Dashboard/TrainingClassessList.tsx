@@ -21,7 +21,7 @@ const TrainingClassessList: React.FC<IProps> = ({
                 <Item.Content>
                   <Item.Header as="a">{e.title}</Item.Header>
                   <Item.Meta>
-                    Every {e.dayOfWeek} at {e.hr}:{e.min}
+                    Every {e.dayOfWeek} at {e.time}
                   </Item.Meta>
                   <Item.Description>
                     <div>{e.description}</div>

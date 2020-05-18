@@ -26,8 +26,7 @@ const ClassDetail: React.FC<IProps> = ({
             <Card.Header>{selectedClass.title}</Card.Header>
             <Card.Meta>
               <span className="date">
-                Every {selectedClass.dayOfWeek} at {selectedClass.hr} :{" "}
-                {selectedClass.min}
+                Every {selectedClass.dayOfWeek} at {selectedClass.time}
               </span>
             </Card.Meta>
             <Card.Description>{selectedClass.description}</Card.Description>

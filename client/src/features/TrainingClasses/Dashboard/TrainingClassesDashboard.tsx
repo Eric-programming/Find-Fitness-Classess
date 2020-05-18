@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Grid } from "semantic-ui-react";
 import { ITrainingClass } from "../../../Interfaces/ITrainingClasses";
 import TrainingClassessList from "./TrainingClassessList";

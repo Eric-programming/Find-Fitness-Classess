@@ -5,9 +5,8 @@ export interface ITrainingClass {
   country: string;
   dayOfWeek: number;
   description: string;
-  hr: number;
+  time: string;
   id: string;
-  min: number;
   postalCode: string;
   province: string;
   title: string;

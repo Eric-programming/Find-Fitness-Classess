@@ -17,12 +17,7 @@ namespace Application.TrainingClasses
             [StringLength(80)]
             public string Description { get; set; }
             public string Category { get; set; }
-            [Range(0, 24,
-            ErrorMessage = "Hours for {0} must be between {1} and {2}.")]
-            public int? Hr { get; set; }
-            [Range(0, 60,
-            ErrorMessage = "Minutes for {0} must be between {1} and {2}.")]
-            public int? Min { get; set; }
+            public string Time { get; set; }
             [Range(0, 6,
             ErrorMessage = "Day of the week for {0} must be between {1} and {2}.")]
             public int? DayOfWeek { get; set; }
@@ -50,8 +45,7 @@ namespace Application.TrainingClasses
                 TrainingClass.Title = request.Title ?? TrainingClass.Title;
                 TrainingClass.Category = request.Category ?? TrainingClass.Category;
                 TrainingClass.Description = request.Description ?? TrainingClass.Description;
-                TrainingClass.Hr = request.Hr ?? TrainingClass.Hr;
-                TrainingClass.Min = request.Min ?? TrainingClass.Min;
+                TrainingClass.Time = request.Time ?? TrainingClass.Time;
                 TrainingClass.DayOfWeek = request.DayOfWeek ?? TrainingClass.DayOfWeek;
                 TrainingClass.City = request.City ?? TrainingClass.City;
                 TrainingClass.Address = request.Address ?? TrainingClass.Address;

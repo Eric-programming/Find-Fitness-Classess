@@ -22,28 +22,31 @@ const ClassForm: React.FC<IProps> = ({
     } else {
       return {
         id: "",
-        address: "",
-        category: "",
-        city: "",
-        country: "",
-        dayOfWeek: 0,
-        description: "",
-        hr: 0,
-        min: 0,
-        postalCode: "",
-        province: "",
-        title: "",
+        address: "16932 71 ave",
+        category: "bodybuilding",
+        city: "surrey",
+        country: "Canada",
+        dayOfWeek: 2,
+        description: "Hello this is a group training class",
+        time: "12:00AM",
+        postalCode: "V4NDL3",
+        province: "BC",
+        title: "TITLE",
         totalSpots: 0,
       };
     }
   };
   const [form, setForm] = useState<ITrainingClass>(initialForm);
+
   const onChangeInput = (
     e: FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.currentTarget;
-    const data = { ...form, [name]: value };
-    setForm(data);
+    let { name, value, type } = e.currentTarget;
+    if (type == "number") {
+      setForm({ ...form, [name]: parseInt(value) });
+    } else {
+      setForm({ ...form, [name]: value });
+    }
   };
   const onSubmit = () => {
     if (form.id.length === 0) {
@@ -54,6 +57,7 @@ const ClassForm: React.FC<IProps> = ({
     } else {
       handleEditClass(form);
     }
+    console.log("form", form);
   };
   return (
     <Segment clearing>
@@ -103,8 +107,9 @@ const ClassForm: React.FC<IProps> = ({
         <Form.Input
           placeholder="Day of Week"
           name="dayOfWeek"
+          type="number"
           onChange={onChangeInput}
-          value={form?.dayOfWeek}
+          value={form.dayOfWeek}
         />
         <Form.TextArea
           rows={2}
@@ -115,22 +120,18 @@ const ClassForm: React.FC<IProps> = ({
         />
         <Form.Input
           type="time"
-          placeholder="Hour"
-          name="hr"
-          value={form?.hr}
+          placeholder="time"
+          name="time"
+          value={form?.time}
           onChange={onChangeInput}
         />
-        <Form.Input
-          placeholder="Min"
-          name="min"
-          value={form?.min}
-          onChange={onChangeInput}
-        />
+
         <Form.Input
           placeholder="Total Spots"
           name="totalSpots"
           onChange={onChangeInput}
-          value={form?.totalSpots}
+          value={form.totalSpots}
+          type="number"
         />
         <Button floated="right" positive type="submit" content="Submit" />
         <Button

@@ -1,15 +1,12 @@
 using System;
 
-namespace Domain
-{
-    public class TrainingClass
-    {
+namespace Domain {
+    public class TrainingClass {
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
-        public int Hr { get; set; }
-        public int Min { get; set; }
+        public string Time { get; set; }
         public int DayOfWeek { get; set; }
         public string City { get; set; }
         public string Address { get; set; }

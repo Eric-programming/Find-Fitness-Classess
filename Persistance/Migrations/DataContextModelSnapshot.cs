@@ -40,16 +40,13 @@ namespace Persistance.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Hr")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Min")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("PostalCode")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Province")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Time")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
