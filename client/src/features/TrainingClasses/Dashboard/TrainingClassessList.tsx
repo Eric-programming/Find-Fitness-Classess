@@ -3,8 +3,14 @@ import { Item, Button, Label, Segment } from "semantic-ui-react";
 import { ITrainingClass } from "../../../Interfaces/ITrainingClasses";
 interface IProps {
   trainingClassess: ITrainingClass[];
+  handleSelectClass: (id: string) => void;
+  handleDeleteClass: (id: string) => void;
 }
-const TrainingClassessList: React.FC<IProps> = ({ trainingClassess }) => {
+const TrainingClassessList: React.FC<IProps> = ({
+  trainingClassess,
+  handleSelectClass,
+  handleDeleteClass,
+}) => {
   return (
     <Segment clearing>
       <Item.Group divided>
@@ -25,7 +31,19 @@ const TrainingClassessList: React.FC<IProps> = ({ trainingClassess }) => {
                     {/* <Image src='../../../../public/assets/user.png' /> */}
                   </Item.Description>
                   <Item.Extra>
-                    <Button floated="right" content="View" color="blue" />
+                    <Button
+                      floated="right"
+                      content="Delete"
+                      color="red"
+                      onClick={() => handleDeleteClass(e.id)}
+                    />
+                    <Button
+                      floated="right"
+                      content="View"
+                      color="blue"
+                      onClick={() => handleSelectClass(e.id)}
+                    />
+
                     <Label basic content={e.category} />
                   </Item.Extra>
                 </Item.Content>

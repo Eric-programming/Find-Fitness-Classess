@@ -8,18 +8,58 @@ import TrainingClassesDashboard from "../features/TrainingClasses/Dashboard/Trai
 const http = "http://localhost:4000/api/trainingclass";
 
 function App() {
-  const [value, setValue] = useState<ITrainingClass[]>([]);
+  const [Classess, setClassess] = useState<ITrainingClass[]>([]);
+  const [selectedClass, setSelectedClass] = useState<ITrainingClass | null>(
+    null
+  );
+  const [editMode, setEditMode] = useState<boolean>(false);
+  //////////////////////////////////////////////////
+  const handleSelectClass = (id: string) => {
+    reset();
+    setSelectedClass(Classess.filter((x) => x.id == id)[0]);
+  };
+  const handleEditMode = (editMode: boolean) => {
+    setEditMode(editMode);
+  };
+  const reset = () => {
+    setEditMode(false);
+    setSelectedClass(null);
+  };
+  const handleCreateClass = (trainingclass: ITrainingClass) => {
+    setClassess([...Classess, trainingclass]);
+    setEditMode(false);
+  };
+  const handleEditClass = (trainingclass: ITrainingClass) => {
+    setClassess([
+      ...Classess.filter((x) => x.id != trainingclass.id),
+      trainingclass,
+    ]);
+    setEditMode(false);
+  };
+  const handleDeleteClass = (id: string) => {
+    setClassess([...Classess.filter((x) => x.id !== id)]);
+  };
+  ////////////////////////////////////////////////////
   useEffect(() => {
     axios.get(http).then((res) => {
-      setValue(res.data);
-      console.log("res.data", res.data);
+      setClassess(res.data);
     });
   }, []);
   return (
     <>
-      <Navbar />
+      <Navbar reset={reset} handleEditMode={handleEditMode} />
       <Container style={{ marginTop: "7em" }}>
-        <TrainingClassesDashboard trainingClassess={value} />
+        <TrainingClassesDashboard
+          trainingClassess={Classess}
+          handleSelectClass={handleSelectClass}
+          selectedClass={selectedClass}
+          editMode={editMode}
+          handleEditMode={handleEditMode}
+          reset={reset}
+          handleEditClass={handleEditClass}
+          handleCreateClass={handleCreateClass}
+          handleDeleteClass={handleDeleteClass}
+        />
       </Container>
     </>
   );

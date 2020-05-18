@@ -1,7 +1,10 @@
 import React from "react";
 import { Menu, Container, Button } from "semantic-ui-react";
-
-const Navbar = () => {
+interface IProps {
+  handleEditMode: (editMode: boolean) => void;
+  reset: () => void;
+}
+const Navbar: React.FC<IProps> = ({ handleEditMode, reset }) => {
   return (
     <Menu fixed="top" inverted>
       <Container>
@@ -13,7 +16,14 @@ const Navbar = () => {
         <Menu.Item name="Trainers" />
         <Menu.Item name="Classes" />
         <Menu.Item>
-          <Button positive content="Create a Class" />
+          <Button
+            positive
+            content="Create a Class"
+            onClick={() => {
+              reset();
+              handleEditMode(true);
+            }}
+          />
         </Menu.Item>
       </Container>
     </Menu>
