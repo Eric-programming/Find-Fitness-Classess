@@ -1,18 +1,12 @@
-import React from "react";
-import { Card, Icon, Image, Button } from "semantic-ui-react";
-import { ITrainingClass } from "../../../Interfaces/ITrainingClasses";
-interface IProps {
-  selectedClass: ITrainingClass | null;
-  handleEditMode: (editMode: boolean) => void;
-  editMode: boolean;
-  reset: () => void;
-}
-const ClassDetail: React.FC<IProps> = ({
-  selectedClass,
-  handleEditMode,
-  editMode,
-  reset,
-}) => {
+import React, { useContext } from "react";
+import { Card, Image, Button } from "semantic-ui-react";
+import TrainingClassStore from "../../../app/stores/TrainingClassStore";
+import { observer } from "mobx-react-lite";
+
+const ClassDetail = () => {
+  const { selectedClass, editEditMode, reset, editMode } = useContext(
+    TrainingClassStore
+  );
   return (
     <>
       {selectedClass != null ? (
@@ -38,7 +32,7 @@ const ClassDetail: React.FC<IProps> = ({
                 color="blue"
                 content="Edit"
                 onClick={() => {
-                  handleEditMode(!editMode);
+                  editEditMode(!editMode);
                 }}
               />
               <Button
@@ -55,4 +49,4 @@ const ClassDetail: React.FC<IProps> = ({
   );
 };
 
-export default ClassDetail;
+export default observer(ClassDetail);

@@ -14,6 +14,8 @@
     "@types/uuid": "^7.0.3",
     "axios": "^0.19.2",
     "concurrently": "^5.2.0",
+    "mobx": "^5.15.4",
+    "mobx-react-lite": "^2.0.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",

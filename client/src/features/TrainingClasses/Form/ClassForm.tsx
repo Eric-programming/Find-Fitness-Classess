@@ -1,21 +1,16 @@
-import React, { useState, useEffect, FormEvent } from "react";
+import React, { useState, FormEvent, useContext } from "react";
 import { Segment, Form, Button } from "semantic-ui-react";
 import { v4 as uuidv4 } from "uuid";
 import { ITrainingClass } from "../../../Interfaces/ITrainingClasses";
-interface IProps {
-  handleEditMode: (editMode: boolean) => void;
-  editMode: boolean;
-  selectedClass: ITrainingClass | null;
-  handleEditClass: (trainingClass: ITrainingClass) => void;
-  handleCreateClass: (trainingClass: ITrainingClass) => void;
-}
-const ClassForm: React.FC<IProps> = ({
-  handleEditMode,
-  editMode,
-  selectedClass: initialFormState,
-  handleCreateClass,
-  handleEditClass,
-}) => {
+import TrainingClassStore from "../../../app/stores/TrainingClassStore";
+import { observer } from "mobx-react-lite";
+const ClassForm = () => {
+  const {
+    selectedClass: initialFormState,
+    createTrainingClass,
+    editTrainingClass,
+    editEditMode,
+  } = useContext(TrainingClassStore);
   const initialForm = () => {
     if (initialFormState) {
       return initialFormState;
@@ -42,7 +37,7 @@ const ClassForm: React.FC<IProps> = ({
     e: FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     let { name, value, type } = e.currentTarget;
-    if (type == "number") {
+    if (type === "number") {
       setForm({ ...form, [name]: parseInt(value) });
     } else {
       setForm({ ...form, [name]: value });
@@ -50,12 +45,12 @@ const ClassForm: React.FC<IProps> = ({
   };
   const onSubmit = () => {
     if (form.id.length === 0) {
-      handleCreateClass({
+      createTrainingClass({
         ...form,
         id: uuidv4(),
       });
     } else {
-      handleEditClass(form);
+      editTrainingClass(form);
     }
     console.log("form", form);
   };
@@ -138,11 +133,11 @@ const ClassForm: React.FC<IProps> = ({
           floated="right"
           type="button"
           content="Cancel"
-          onClick={() => handleEditMode(!editMode)}
+          onClick={() => editEditMode(false)}
         />
       </Form>
     </Segment>
   );
 };
 
-export default ClassForm;
+export default observer(ClassForm);

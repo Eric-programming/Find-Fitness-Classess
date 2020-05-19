@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Menu, Container, Button } from "semantic-ui-react";
-interface IProps {
-  handleEditMode: (editMode: boolean) => void;
-  reset: () => void;
-}
-const Navbar: React.FC<IProps> = ({ handleEditMode, reset }) => {
+import TrainingClassStore from "../../app/stores/TrainingClassStore";
+import { observer } from "mobx-react-lite";
+
+const Navbar = () => {
+  const trainingClassStore = useContext(TrainingClassStore);
   return (
     <Menu fixed="top" inverted>
       <Container>
@@ -20,8 +20,8 @@ const Navbar: React.FC<IProps> = ({ handleEditMode, reset }) => {
             positive
             content="Create a Class"
             onClick={() => {
-              reset();
-              handleEditMode(true);
+              trainingClassStore.reset();
+              trainingClassStore.editEditMode(true);
             }}
           />
         </Menu.Item>
@@ -30,4 +30,4 @@ const Navbar: React.FC<IProps> = ({ handleEditMode, reset }) => {
   );
 };
 
-export default Navbar;
+export default observer(Navbar);
