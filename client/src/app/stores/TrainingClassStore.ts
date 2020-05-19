@@ -1,7 +1,9 @@
-import { observable, action } from "mobx";
+import { observable, action, computed } from "mobx";
 import { createContext } from "react";
 import { ITrainingClass } from "../../Interfaces/ITrainingClasses";
 import agent from "../api/agent";
+import _getTime from "../_helper/_getTimes";
+import _getSeconds from "../_helper/_getSeconds";
 
 class TrainingClassStore {
   @observable trainingClassess: ITrainingClass[] = [];
@@ -9,39 +11,60 @@ class TrainingClassStore {
   @observable selectedClass: ITrainingClass | null = null;
   @observable editMode: boolean = false;
 
-  @action loadingTrainingClassess = () => {
+  @action loadingTrainingClassess = async () => {
     this.loading = true;
-    agent.TrainingClass.list()
-      .then((res) => {
-        this.trainingClassess = res;
-      })
-      .then(() => (this.loading = false));
+    try {
+      const trainingClassess = await agent.TrainingClass.list();
+      this.trainingClassess = trainingClassess;
+    } catch (error) {
+      console.log("Error loading training classes::::", error);
+    }
+    this.loading = false;
   };
-  @action deleteTrainingClass = (id: string) => {
+  @computed get SortActivity() {
+    return this.trainingClassess.sort((a, b) => {
+      const ahms = _getSeconds(_getTime(a.time).hr, _getTime(a.time).min);
+      const bhms = _getSeconds(_getTime(b.time).hr, _getTime(b.time).min);
+      return ahms - bhms;
+    });
+  }
+  @action deleteTrainingClass = async (id: string) => {
     this.loading = true;
-    agent.TrainingClass.deleteClass(id)
-      .then(() => {
-        this.trainingClassess = this.trainingClassess.filter(
-          (x) => x.id !== id
-        );
-      })
-      .then(() => (this.loading = false));
+    try {
+      await agent.TrainingClass.deleteClass(id);
+      this.trainingClassess = this.trainingClassess.filter((x) => x.id !== id);
+      this.selectedClass = null;
+    } catch (error) {
+      console.log("error for deleting training class", error);
+    }
+    this.loading = false;
   };
-  @action editTrainingClass = (trainingclass: ITrainingClass) => {
+  @action editTrainingClass = async (trainingclass: ITrainingClass) => {
     this.loading = true;
-    agent.TrainingClass.updateClass(trainingclass)
-      .then(() => {
-        this.trainingClassess.filter((x) => x.id !== trainingclass.id);
-      })
-      .then(() => (this.loading = false));
+    try {
+      await agent.TrainingClass.updateClass(trainingclass);
+      this.trainingClassess = this.trainingClassess.filter(
+        (x) => x.id !== trainingclass.id
+      );
+      this.trainingClassess.unshift(trainingclass);
+      this.editEditMode(false);
+      this.editSelectClass(trainingclass.id);
+    } catch (error) {
+      console.log("error", error);
+    }
+    this.loading = false;
   };
-  @action createTrainingClass = (trainingclass: ITrainingClass) => {
+  @action createTrainingClass = async (trainingclass: ITrainingClass) => {
     this.loading = true;
-    agent.TrainingClass.createClass(trainingclass)
-      .then(() => {
-        this.trainingClassess.push(trainingclass);
-      })
-      .then(() => (this.loading = false));
+    try {
+      await agent.TrainingClass.createClass(trainingclass);
+      this.trainingClassess.unshift(trainingclass);
+      this.editEditMode(false);
+      this.editSelectClass(trainingclass.id);
+    } catch (error) {
+      console.log("error for creating training class", error);
+    }
+    this.loading = false;
   };
   @action reset = () => {
     this.editMode = false;
