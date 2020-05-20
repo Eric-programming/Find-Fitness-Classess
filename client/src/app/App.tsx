@@ -5,6 +5,10 @@ import TrainingClassesDashboard from "../features/TrainingClasses/Dashboard/Trai
 import LoadingComponent from "../components/LoadingComponent";
 import TrainingClassStore from "./stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
+import { Route } from "react-router-dom";
+import HomeComponent from "../features/Home/HomeComponent";
+import ClassForm from "../features/TrainingClasses/Form/ClassForm";
+import ClassDetail from "../features/TrainingClasses/ClassDetail/ClassDetail";
 function App() {
   const TrainingClassess = useContext(TrainingClassStore);
   const { loadingTrainingClassess, loading } = TrainingClassess;
@@ -19,7 +23,17 @@ function App() {
         <>
           <Navbar />
           <Container style={{ marginTop: "7em" }}>
-            <TrainingClassesDashboard />
+            <Route exact={true} path="/" component={HomeComponent} />
+            <Route
+              exact={true}
+              path="/trainingClassess"
+              component={TrainingClassesDashboard}
+            />
+            <Route path="/trainingClassess/:id" component={ClassDetail} />
+            <Route
+              path={["/create-class", "/edit-class/:id"]}
+              component={ClassForm}
+            />
           </Container>
         </>
       )}

@@ -1,12 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Card, Image, Button } from "semantic-ui-react";
 import TrainingClassStore from "../../../app/stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
+import { RouteComponentProps, Link } from "react-router-dom";
+import { DetailParams } from "../../../app/_models/_IDetailParams";
 
-const ClassDetail = () => {
-  const { selectedClass, editEditMode, reset, editMode } = useContext(
-    TrainingClassStore
-  );
+const ClassDetail: React.FC<RouteComponentProps<DetailParams>> = ({
+  match,
+  history,
+}) => {
+  const {
+    selectedClass,
+    editEditMode,
+    editMode,
+    getTrainingClass,
+  } = useContext(TrainingClassStore);
+  useEffect(() => {
+    if (!selectedClass) {
+      getTrainingClass(match.params.id);
+    }
+  }, [getTrainingClass]);
   return (
     <>
       {selectedClass != null ? (
@@ -31,15 +44,14 @@ const ClassDetail = () => {
                 basic
                 color="blue"
                 content="Edit"
-                onClick={() => {
-                  editEditMode(!editMode);
-                }}
+                as={Link}
+                to={`/edit-class/${selectedClass.id}`}
               />
               <Button
                 basic
                 color="grey"
                 content="Cancel"
-                onClick={() => reset()}
+                onClick={() => history.push("/trainingClassess")}
               />
             </Button.Group>
           </Card.Content>

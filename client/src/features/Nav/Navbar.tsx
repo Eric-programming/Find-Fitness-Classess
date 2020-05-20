@@ -1,28 +1,26 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Menu, Container, Button } from "semantic-ui-react";
-import TrainingClassStore from "../../app/stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const trainingClassStore = useContext(TrainingClassStore);
   return (
     <Menu fixed="top" inverted>
       <Container>
-        <Menu.Item header>
+        <Menu.Item header as={Link} exact={true} to="/">
           <h1>
             <i className="fas fa-hands-helping"></i>Find Trainer
           </h1>
         </Menu.Item>
         <Menu.Item name="Trainers" />
-        <Menu.Item name="Classes" />
+        <Menu.Item name="Classes" as={NavLink} to="/trainingClassess" />
+
         <Menu.Item>
           <Button
             positive
             content="Create a Class"
-            onClick={() => {
-              trainingClassStore.reset();
-              trainingClassStore.editEditMode(true);
-            }}
+            as={NavLink}
+            to="/create-class"
           />
         </Menu.Item>
       </Container>

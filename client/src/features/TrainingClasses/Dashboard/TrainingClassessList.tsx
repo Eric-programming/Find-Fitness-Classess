@@ -3,6 +3,7 @@ import { Item, Button, Label, Segment } from "semantic-ui-react";
 import { ITrainingClass } from "../../../Interfaces/ITrainingClasses";
 import TrainingClassStore from "../../../app/stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
+import { Link } from "react-router-dom";
 
 const TrainingClassessList = () => {
   const { trainingClassess, editSelectClass, deleteTrainingClass } = useContext(
@@ -28,7 +29,6 @@ const TrainingClassessList = () => {
                       <div>
                         {e.address} {e.city}, {e.country} {e.postalCode}
                       </div>
-                      {/* <Image src='../../../../public/assets/user.png' /> */}
                     </Item.Description>
                     <Item.Extra>
                       <Button
@@ -41,6 +41,8 @@ const TrainingClassessList = () => {
                         floated="right"
                         content="View"
                         color="blue"
+                        as={Link}
+                        to={`/trainingClassess/${e.id}`}
                         onClick={() => editSelectClass(e.id)}
                       />
 

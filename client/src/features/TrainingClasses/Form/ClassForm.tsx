@@ -1,37 +1,45 @@
-import React, { useState, FormEvent, useContext } from "react";
+import React, { useState, FormEvent, useContext, useEffect } from "react";
 import { Segment, Form, Button } from "semantic-ui-react";
 import { v4 as uuidv4 } from "uuid";
 import { ITrainingClass } from "../../../Interfaces/ITrainingClasses";
 import TrainingClassStore from "../../../app/stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
-const ClassForm = () => {
+import { RouteComponentProps } from "react-router-dom";
+import { DetailParams } from "../../../app/_models/_IDetailParams";
+const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({
+  match,
+  history,
+}) => {
   const {
     selectedClass: initialFormState,
     createTrainingClass,
     editTrainingClass,
-    editEditMode,
+    getTrainingClass,
+    reset,
   } = useContext(TrainingClassStore);
-  const initialForm = () => {
-    if (initialFormState) {
-      return initialFormState;
-    } else {
-      return {
-        id: "",
-        address: "16932 71 ave",
-        category: "bodybuilding",
-        city: "surrey",
-        country: "Canada",
-        dayOfWeek: 2,
-        description: "Hello this is a group training class",
-        time: "12:00AM",
-        postalCode: "V4NDL3",
-        province: "BC",
-        title: "TITLE",
-        totalSpots: 0,
-      };
+  const initialSetUp = () => {
+    if (initialFormState) return initialFormState;
+    else if (match.params.id) {
+      getTrainingClass(match.params.id).then(() => {
+        return initialFormState;
+      });
     }
+    return {
+      id: "",
+      address: "16932 71 ave",
+      category: "bodybuilding",
+      city: "surrey",
+      country: "Canada",
+      dayOfWeek: 2,
+      description: "Hello this is a group training class",
+      time: "12:00AM",
+      postalCode: "V4NDL3",
+      province: "BC",
+      title: "TITLE",
+      totalSpots: 0,
+    };
   };
-  const [form, setForm] = useState<ITrainingClass>(initialForm);
+  const [form, setForm] = useState<ITrainingClass>(initialSetUp);
 
   const onChangeInput = (
     e: FormEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -52,8 +60,15 @@ const ClassForm = () => {
     } else {
       editTrainingClass(form);
     }
-    console.log("form", form);
   };
+  useEffect(() => {
+    console.log("hi");
+    return () => {
+      reset();
+      console.log("bye", initialFormState);
+    };
+  }, [reset, match.params.id, initialFormState]);
+
   return (
     <Segment clearing>
       <Form onSubmit={onSubmit}>
@@ -133,7 +148,7 @@ const ClassForm = () => {
           floated="right"
           type="button"
           content="Cancel"
-          onClick={() => editEditMode(false)}
+          onClick={() => history.push("/trainingClassess")}
         />
       </Form>
     </Segment>

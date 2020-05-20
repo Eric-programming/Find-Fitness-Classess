@@ -28,6 +28,16 @@ class TrainingClassStore {
       return ahms - bhms;
     });
   }
+  @action getTrainingClass = async (id: string) => {
+    this.loading = true;
+    try {
+      const tc = await agent.TrainingClass.details(id);
+      this.selectedClass = tc;
+    } catch (error) {
+      this.selectedClass = null;
+    }
+    this.loading = false;
+  };
   @action deleteTrainingClass = async (id: string) => {
     this.loading = true;
     try {
@@ -69,6 +79,7 @@ class TrainingClassStore {
   @action reset = () => {
     this.editMode = false;
     this.selectedClass = null;
+    console.log("this.selectedClass", this.selectedClass);
   };
   @action editSelectClass = (id: string) =>
     (this.selectedClass = this.trainingClassess.filter((x) => x.id === id)[0]);
