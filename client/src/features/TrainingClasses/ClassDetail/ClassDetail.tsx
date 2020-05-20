@@ -9,17 +9,12 @@ const ClassDetail: React.FC<RouteComponentProps<DetailParams>> = ({
   match,
   history,
 }) => {
-  const {
-    selectedClass,
-    editEditMode,
-    editMode,
-    getTrainingClass,
-  } = useContext(TrainingClassStore);
+  const { selectedClass, getTrainingClass } = useContext(TrainingClassStore);
   useEffect(() => {
     if (!selectedClass) {
       getTrainingClass(match.params.id);
     }
-  }, [getTrainingClass]);
+  }, [getTrainingClass, match.params.id, selectedClass]);
   return (
     <>
       {selectedClass != null ? (

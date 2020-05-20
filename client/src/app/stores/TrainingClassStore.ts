@@ -9,7 +9,6 @@ class TrainingClassStore {
   @observable trainingClassess: ITrainingClass[] = [];
   @observable loading: boolean = false;
   @observable selectedClass: ITrainingClass | null = null;
-  @observable editMode: boolean = false;
 
   @action loadingTrainingClassess = async () => {
     this.loading = true;
@@ -57,7 +56,6 @@ class TrainingClassStore {
         (x) => x.id !== trainingclass.id
       );
       this.trainingClassess.unshift(trainingclass);
-      this.editEditMode(false);
       this.editSelectClass(trainingclass.id);
     } catch (error) {
       console.log("error", error);
@@ -69,7 +67,6 @@ class TrainingClassStore {
     try {
       await agent.TrainingClass.createClass(trainingclass);
       this.trainingClassess.unshift(trainingclass);
-      this.editEditMode(false);
       this.editSelectClass(trainingclass.id);
     } catch (error) {
       console.log("error for creating training class", error);
@@ -77,12 +74,9 @@ class TrainingClassStore {
     this.loading = false;
   };
   @action reset = () => {
-    this.editMode = false;
     this.selectedClass = null;
-    console.log("this.selectedClass", this.selectedClass);
   };
   @action editSelectClass = (id: string) =>
     (this.selectedClass = this.trainingClassess.filter((x) => x.id === id)[0]);
-  @action editEditMode = (editMode: boolean) => (this.editMode = editMode);
 }
 export default createContext(new TrainingClassStore());

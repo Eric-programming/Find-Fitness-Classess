@@ -5,16 +5,16 @@ import TrainingClassesDashboard from "../features/TrainingClasses/Dashboard/Trai
 import LoadingComponent from "../components/LoadingComponent";
 import TrainingClassStore from "./stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
-import { Route } from "react-router-dom";
+import { Route, withRouter, RouteComponentProps } from "react-router-dom";
 import HomeComponent from "../features/Home/HomeComponent";
 import ClassForm from "../features/TrainingClasses/Form/ClassForm";
 import ClassDetail from "../features/TrainingClasses/ClassDetail/ClassDetail";
-function App() {
+const App: React.FC<RouteComponentProps> = ({ location }) => {
   const TrainingClassess = useContext(TrainingClassStore);
   const { loadingTrainingClassess, loading } = TrainingClassess;
   useEffect(() => {
     loadingTrainingClassess();
-  }, [TrainingClassess]);
+  }, [TrainingClassess, loadingTrainingClassess]);
   return (
     <>
       {loading ? (
@@ -31,6 +31,7 @@ function App() {
             />
             <Route path="/trainingClassess/:id" component={ClassDetail} />
             <Route
+              key={location.key}
               path={["/create-class", "/edit-class/:id"]}
               component={ClassForm}
             />
@@ -39,6 +40,6 @@ function App() {
       )}
     </>
   );
-}
+};
 
-export default observer(App);
+export default withRouter(observer(App));

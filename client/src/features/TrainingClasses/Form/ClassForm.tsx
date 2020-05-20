@@ -6,6 +6,20 @@ import TrainingClassStore from "../../../app/stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
 import { RouteComponentProps } from "react-router-dom";
 import { DetailParams } from "../../../app/_models/_IDetailParams";
+const defaultInput = {
+  id: "",
+  address: "16932 71 ave",
+  category: "bodybuilding",
+  city: "surrey",
+  country: "Canada",
+  dayOfWeek: 2,
+  description: "Hello this is a group training class",
+  time: "12:00AM",
+  postalCode: "V4NDL3",
+  province: "BC",
+  title: "TITLE",
+  totalSpots: 0,
+};
 const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({
   match,
   history,
@@ -24,20 +38,7 @@ const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({
         return initialFormState;
       });
     }
-    return {
-      id: "",
-      address: "16932 71 ave",
-      category: "bodybuilding",
-      city: "surrey",
-      country: "Canada",
-      dayOfWeek: 2,
-      description: "Hello this is a group training class",
-      time: "12:00AM",
-      postalCode: "V4NDL3",
-      province: "BC",
-      title: "TITLE",
-      totalSpots: 0,
-    };
+    return defaultInput;
   };
   const [form, setForm] = useState<ITrainingClass>(initialSetUp);
 
@@ -62,12 +63,10 @@ const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({
     }
   };
   useEffect(() => {
-    console.log("hi");
     return () => {
       reset();
-      console.log("bye", initialFormState);
     };
-  }, [reset, match.params.id, initialFormState]);
+  }, [reset]);
 
   return (
     <Segment clearing>
