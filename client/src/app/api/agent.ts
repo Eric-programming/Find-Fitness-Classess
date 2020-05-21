@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { TrainingClassURL } from "./ConstVariables";
-import { ITrainingClass } from "../../Interfaces/ITrainingClasses";
+import { ITrainingClass } from "../_models/ITrainingClasses";
 axios.defaults.baseURL = "http://localhost:4000/api";
 const responseBody = (res: AxiosResponse) => res.data;
 const requests = {

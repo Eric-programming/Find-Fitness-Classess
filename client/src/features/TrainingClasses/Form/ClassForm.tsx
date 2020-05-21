@@ -1,11 +1,12 @@
 import React, { useState, FormEvent, useContext, useEffect } from "react";
 import { Segment, Form, Button } from "semantic-ui-react";
 import { v4 as uuidv4 } from "uuid";
-import { ITrainingClass } from "../../../Interfaces/ITrainingClasses";
+import { ITrainingClass } from "../../../app/_models/ITrainingClasses";
 import TrainingClassStore from "../../../app/stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
 import { RouteComponentProps } from "react-router-dom";
 import { DetailParams } from "../../../app/_models/_IDetailParams";
+import { trainingClassessLink } from "../../../app/_constantVariables/_Links";
 const defaultInput = {
   id: "",
   address: "16932 71 ave",
@@ -25,22 +26,13 @@ const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({
   history,
 }) => {
   const {
-    selectedClass: initialFormState,
     createTrainingClass,
     editTrainingClass,
     getTrainingClass,
     reset,
   } = useContext(TrainingClassStore);
-  const initialSetUp = () => {
-    if (initialFormState) return initialFormState;
-    else if (match.params.id) {
-      getTrainingClass(match.params.id).then(() => {
-        return initialFormState;
-      });
-    }
-    return defaultInput;
-  };
-  const [form, setForm] = useState<ITrainingClass>(initialSetUp);
+
+  const [form, setForm] = useState<ITrainingClass>(defaultInput);
 
   const onChangeInput = (
     e: FormEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -54,19 +46,29 @@ const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({
   };
   const onSubmit = () => {
     if (form.id.length === 0) {
+      const newId = uuidv4();
       createTrainingClass({
         ...form,
-        id: uuidv4(),
+        id: newId,
+      }).then(() => {
+        history.push(trainingClassessLink + `/${newId}`);
       });
     } else {
-      editTrainingClass(form);
+      editTrainingClass(form).then(() => {
+        history.push(trainingClassessLink + `/${form.id}`);
+      });
     }
   };
   useEffect(() => {
+    if (match.params.id && form.id.length === 0) {
+      getTrainingClass(match.params.id).then((res) => {
+        setForm(res ? res : defaultInput);
+      });
+    }
     return () => {
       reset();
     };
-  }, [reset]);
+  }, [reset, getTrainingClass, match.params.id, form.id]);
 
   return (
     <Segment clearing>
@@ -147,7 +149,7 @@ const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({
           floated="right"
           type="button"
           content="Cancel"
-          onClick={() => history.push("/trainingClassess")}
+          onClick={() => history.push(trainingClassessLink)}
         />
       </Form>
     </Segment>

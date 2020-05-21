@@ -1,6 +1,6 @@
 import { observable, action, computed } from "mobx";
 import { createContext } from "react";
-import { ITrainingClass } from "../../Interfaces/ITrainingClasses";
+import { ITrainingClass } from "../_models/ITrainingClasses";
 import agent from "../api/agent";
 import _getTime from "../_helper/_getTimes";
 import _getSeconds from "../_helper/_getSeconds";
@@ -13,29 +13,59 @@ class TrainingClassStore {
   @action loadingTrainingClassess = async () => {
     this.loading = true;
     try {
-      const trainingClassess = await agent.TrainingClass.list();
-      this.trainingClassess = trainingClassess;
+      this.trainingClassess = await agent.TrainingClass.list();
     } catch (error) {
       console.log("Error loading training classes::::", error);
     }
     this.loading = false;
   };
-  @computed get SortActivity() {
-    return this.trainingClassess.sort((a, b) => {
-      const ahms = _getSeconds(_getTime(a.time).hr, _getTime(a.time).min);
-      const bhms = _getSeconds(_getTime(b.time).hr, _getTime(b.time).min);
-      return ahms - bhms;
-    });
+
+  @action GroupClassess(
+    trainingClassess: ITrainingClass[],
+    isDescending: boolean
+  ) {
+    trainingClassess = trainingClassess.sort(
+      (a: ITrainingClass, b: ITrainingClass) => {
+        const ahms = _getSeconds(_getTime(a.time).hr, _getTime(a.time).min);
+        const bhms = _getSeconds(_getTime(b.time).hr, _getTime(b.time).min);
+        return isDescending ? bhms - ahms : ahms - bhms;
+      }
+    );
+    let finalArr = [];
+    let tempArr = [];
+    for (let index = 0; index < trainingClassess.length; index++) {
+      if (
+        tempArr.length !== 0 &&
+        _getTime(tempArr[tempArr.length - 1].time).hr !==
+          _getTime(trainingClassess[index].time).hr
+      ) {
+        finalArr.push(tempArr);
+        tempArr = [];
+      }
+      tempArr.push(trainingClassess[index]);
+      if (index === trainingClassess.length - 1) {
+        finalArr.push(tempArr);
+      }
+    }
+    return finalArr;
   }
   @action getTrainingClass = async (id: string) => {
-    this.loading = true;
-    try {
-      const tc = await agent.TrainingClass.details(id);
-      this.selectedClass = tc;
-    } catch (error) {
-      this.selectedClass = null;
+    let trainingclass = this.trainingClassess.filter((x) => x.id === id)[0];
+    if (trainingclass) {
+      this.selectedClass = trainingclass;
+      return trainingclass;
+    } else {
+      this.loading = true;
+      try {
+        trainingclass = await agent.TrainingClass.details(id);
+        this.selectedClass = trainingclass;
+      } catch (error) {
+        console.log(error);
+        this.selectedClass = null;
+      }
+      this.loading = false;
+      return this.selectedClass;
     }
-    this.loading = false;
   };
   @action deleteTrainingClass = async (id: string) => {
     this.loading = true;

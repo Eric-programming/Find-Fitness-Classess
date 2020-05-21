@@ -9,35 +9,50 @@ import { Route, withRouter, RouteComponentProps } from "react-router-dom";
 import HomeComponent from "../features/Home/HomeComponent";
 import ClassForm from "../features/TrainingClasses/Form/ClassForm";
 import ClassDetail from "../features/TrainingClasses/ClassDetail/ClassDetail";
+import {
+  homeLink,
+  trainingClassessLink,
+  withIdLink,
+  createTrainingClassLink,
+  editTrainingClassLink,
+} from "./_constantVariables/_Links";
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const TrainingClassess = useContext(TrainingClassStore);
   const { loadingTrainingClassess, loading } = TrainingClassess;
   useEffect(() => {
     loadingTrainingClassess();
   }, [TrainingClassess, loadingTrainingClassess]);
+  if (loading) return <LoadingComponent />;
   return (
     <>
-      {loading ? (
-        <LoadingComponent />
-      ) : (
-        <>
-          <Navbar />
-          <Container style={{ marginTop: "7em" }}>
-            <Route exact={true} path="/" component={HomeComponent} />
-            <Route
-              exact={true}
-              path="/trainingClassess"
-              component={TrainingClassesDashboard}
-            />
-            <Route path="/trainingClassess/:id" component={ClassDetail} />
-            <Route
-              key={location.key}
-              path={["/create-class", "/edit-class/:id"]}
-              component={ClassForm}
-            />
-          </Container>
-        </>
-      )}
+      <Route exact={true} path={homeLink} component={HomeComponent} />
+      <Route
+        path={"/(.+)"}
+        render={() => (
+          <>
+            <Navbar />
+            <Container style={{ marginTop: "7em" }}>
+              <Route
+                exact={true}
+                path={trainingClassessLink}
+                component={TrainingClassesDashboard}
+              />
+              <Route
+                path={trainingClassessLink + withIdLink}
+                component={ClassDetail}
+              />
+              <Route
+                key={location.key}
+                path={[
+                  createTrainingClassLink,
+                  editTrainingClassLink + withIdLink,
+                ]}
+                component={ClassForm}
+              />
+            </Container>
+          </>
+        )}
+      />
     </>
   );
 };

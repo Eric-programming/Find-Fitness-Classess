@@ -4,6 +4,10 @@ import TrainingClassStore from "../../../app/stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
 import { RouteComponentProps, Link } from "react-router-dom";
 import { DetailParams } from "../../../app/_models/_IDetailParams";
+import {
+  trainingClassessLink,
+  editTrainingClassLink,
+} from "../../../app/_constantVariables/_Links";
 
 const ClassDetail: React.FC<RouteComponentProps<DetailParams>> = ({
   match,
@@ -40,13 +44,13 @@ const ClassDetail: React.FC<RouteComponentProps<DetailParams>> = ({
                 color="blue"
                 content="Edit"
                 as={Link}
-                to={`/edit-class/${selectedClass.id}`}
+                to={editTrainingClassLink + `/${selectedClass.id}`}
               />
               <Button
                 basic
                 color="grey"
                 content="Cancel"
-                onClick={() => history.push("/trainingClassess")}
+                onClick={() => history.push(trainingClassessLink)}
               />
             </Button.Group>
           </Card.Content>
