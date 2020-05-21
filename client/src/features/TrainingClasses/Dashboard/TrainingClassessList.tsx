@@ -23,16 +23,14 @@ const TrainingClassessList = () => {
                 <Label size="large" color="blue">
                   {hr} {meridiem}
                 </Label>
-                <Segment clearing>
-                  <Item.Group divided>
-                    {trainingClassess &&
-                      trainingClassess.map((e: ITrainingClass) => {
-                        return (
-                          <TrainingClassessItem TrainingClass={e} key={e.id} />
-                        );
-                      })}
-                  </Item.Group>
-                </Segment>
+                <Item.Group divided>
+                  {trainingClassess &&
+                    trainingClassess.map((e: ITrainingClass) => {
+                      return (
+                        <TrainingClassessItem TrainingClass={e} key={e.id} />
+                      );
+                    })}
+                </Item.Group>
               </Fragment>
             );
           }
