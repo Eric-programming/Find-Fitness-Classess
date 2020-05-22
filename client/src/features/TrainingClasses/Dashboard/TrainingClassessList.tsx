@@ -1,10 +1,8 @@
 import React, { useContext, Fragment } from "react";
-import { Item, Button, Label, Segment } from "semantic-ui-react";
+import { Item, Label } from "semantic-ui-react";
 import { ITrainingClass } from "../../../app/_models/ITrainingClasses";
 import TrainingClassStore from "../../../app/stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
-import { Link } from "react-router-dom";
-import { trainingClassessLink } from "../../../app/_constantVariables/_Links";
 import TrainingClassessItem from "./TrainingClassessItem";
 import _getTime from "../../../app/_helper/_getTimes";
 

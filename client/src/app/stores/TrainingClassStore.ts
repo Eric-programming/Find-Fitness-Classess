@@ -1,4 +1,4 @@
-import { observable, action, computed } from "mobx";
+import { observable, action } from "mobx";
 import { createContext } from "react";
 import { ITrainingClass } from "../_models/ITrainingClasses";
 import agent from "../api/agent";

@@ -1,15 +1,8 @@
 import React, { useContext } from "react";
-import { RouteComponentProps, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import TrainingClassStore from "../../../app/stores/TrainingClassStore";
 import { ITrainingClass } from "../../../app/_models/ITrainingClasses";
-import {
-  Item,
-  Button,
-  Label,
-  Segment,
-  Icon,
-  ItemGroup,
-} from "semantic-ui-react";
+import { Item, Button, Segment, Icon, ItemGroup } from "semantic-ui-react";
 import { trainingClassessLink } from "../../../app/_constantVariables/_Links";
 
 const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
@@ -60,6 +53,3 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
 };
 
 export default TrainingClassessItem;
-{
-  /* <Label basic content={TrainingClass.category} /> */
-}

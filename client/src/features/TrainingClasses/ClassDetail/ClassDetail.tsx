@@ -1,13 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import { Card, Image, Button, Grid } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import TrainingClassStore from "../../../app/stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
-import { RouteComponentProps, Link } from "react-router-dom";
+import { RouteComponentProps } from "react-router-dom";
 import { DetailParams } from "../../../app/_models/_IDetailParams";
-import {
-  trainingClassessLink,
-  editTrainingClassLink,
-} from "../../../app/_constantVariables/_Links";
 import ClassDetailHeader from "./ClassDetailHeader";
 import ClassDetailInfo from "./ClassDetailInfo";
 import ClassDetailChat from "./ClassDetailChat";

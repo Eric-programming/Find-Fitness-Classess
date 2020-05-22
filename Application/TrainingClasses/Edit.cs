@@ -1,7 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Errors;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistance;
@@ -41,7 +43,7 @@ namespace Application.TrainingClasses
             {
                 var TrainingClass = await _context.TrainingClasses.FirstOrDefaultAsync(x => x.Id == request.Id);
                 if (TrainingClass == null)
-                    throw new Exception("Class not found");
+                    throw new ErrorException(HttpStatusCode.NotFound, new { TrainingClasses = "Not found" });
                 TrainingClass.Title = request.Title ?? TrainingClass.Title;
                 TrainingClass.Category = request.Category ?? TrainingClass.Category;
                 TrainingClass.Description = request.Description ?? TrainingClass.Description;

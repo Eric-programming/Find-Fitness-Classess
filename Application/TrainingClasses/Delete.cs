@@ -1,6 +1,8 @@
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Errors;
 using MediatR;
 using Persistance;
 
@@ -23,12 +25,12 @@ namespace Application.TrainingClasses
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var activity = await _context.TrainingClasses.FindAsync(request.Id);
+                var trainingClass = await _context.TrainingClasses.FindAsync(request.Id);
 
-                if (activity == null)
-                    throw new Exception("Not Found");
+                if (trainingClass == null)
+                    throw new ErrorException(HttpStatusCode.NotFound, new { TrainingClasses = "Not found" });
 
-                _context.Remove(activity);
+                _context.Remove(trainingClass);
 
                 if (await _context.SaveChangesAsync() > 0) return Unit.Value;
 

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Container, Segment, Image, Header, Button } from "semantic-ui-react";
+import { Container, Segment, Header, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { trainingClassessLink } from "../../app/_constantVariables/_Links";
 
