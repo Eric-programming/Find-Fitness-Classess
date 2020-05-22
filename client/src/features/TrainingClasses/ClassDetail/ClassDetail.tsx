@@ -11,15 +11,15 @@ import ClassDetailSidebar from "./ClassDetailSidebar";
 
 const ClassDetail: React.FC<RouteComponentProps<DetailParams>> = ({
   match,
+  history,
 }) => {
   const { selectedClass, getTrainingClass } = useContext(TrainingClassStore);
-  useEffect(() => {
-    if (!selectedClass) {
-      getTrainingClass(match.params.id);
-    }
-  }, [getTrainingClass, match.params.id, selectedClass]);
+  getTrainingClass(match.params.id);
+  // useEffect(() => {
+
+  // }, [match, getTrainingClass]);
   if (selectedClass === null) {
-    return null;
+    return <h2>Class not found</h2>;
   }
   return (
     <Grid>

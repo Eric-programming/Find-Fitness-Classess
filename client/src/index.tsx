@@ -3,14 +3,17 @@ import ReactDOM from "react-dom";
 import "./style/index.css";
 import App from "./app/App";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Router } from "react-router-dom";
 import ScrollToTop from "./app/layout/ScrollToTop";
+import { createBrowserHistory } from "history";
+export const history = createBrowserHistory();
+
 ReactDOM.render(
-  <BrowserRouter>
+  <Router history={history}>
     <ScrollToTop>
       <App />
     </ScrollToTop>
-  </BrowserRouter>,
+  </Router>,
   document.getElementById("root")
 );
 

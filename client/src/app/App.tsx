@@ -5,7 +5,12 @@ import TrainingClassesDashboard from "../features/TrainingClasses/Dashboard/Trai
 import LoadingComponent from "../components/LoadingComponent";
 import TrainingClassStore from "./stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
-import { Route, withRouter, RouteComponentProps } from "react-router-dom";
+import {
+  Route,
+  withRouter,
+  RouteComponentProps,
+  Switch,
+} from "react-router-dom";
 import HomeComponent from "../features/Home/HomeComponent";
 import ClassForm from "../features/TrainingClasses/Form/ClassForm";
 import ClassDetail from "../features/TrainingClasses/ClassDetail/ClassDetail";
@@ -16,12 +21,13 @@ import {
   createTrainingClassLink,
   editTrainingClassLink,
 } from "./_constantVariables/_Links";
+import NotFound from "../features/NotFound";
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const TrainingClassess = useContext(TrainingClassStore);
   const { loadingTrainingClassess, loading } = TrainingClassess;
   useEffect(() => {
     loadingTrainingClassess();
-  }, [TrainingClassess, loadingTrainingClassess]);
+  }, [loadingTrainingClassess]);
   if (loading) return <LoadingComponent />;
   return (
     <>
@@ -32,23 +38,26 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
           <>
             <Navbar />
             <Container style={{ marginTop: "7em" }}>
-              <Route
-                exact={true}
-                path={trainingClassessLink}
-                component={TrainingClassesDashboard}
-              />
-              <Route
-                path={trainingClassessLink + withIdLink}
-                component={ClassDetail}
-              />
-              <Route
-                key={location.key}
-                path={[
-                  createTrainingClassLink,
-                  editTrainingClassLink + withIdLink,
-                ]}
-                component={ClassForm}
-              />
+              <Switch>
+                <Route
+                  exact={true}
+                  path={trainingClassessLink}
+                  component={TrainingClassesDashboard}
+                />
+                <Route
+                  path={trainingClassessLink + withIdLink}
+                  component={ClassDetail}
+                />
+                <Route
+                  key={location.key}
+                  path={[
+                    createTrainingClassLink,
+                    editTrainingClassLink + withIdLink,
+                  ]}
+                  component={ClassForm}
+                />
+                <Route component={NotFound} />
+              </Switch>
             </Container>
           </>
         )}
