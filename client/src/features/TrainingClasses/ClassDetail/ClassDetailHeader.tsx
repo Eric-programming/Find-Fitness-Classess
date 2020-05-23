@@ -2,6 +2,7 @@ import React from "react";
 import { Segment, Item, Header, Button, Image } from "semantic-ui-react";
 import { ITrainingClass } from "../../../app/_models/ITrainingClasses";
 import { Link } from "react-router-dom";
+import _addHypthen from "../../../app/_helper/_addHypthen";
 const trainingClassImageStyle = {
   filter: "brightness(30%)",
 };
@@ -21,8 +22,9 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
     <>
       <Segment.Group>
         <Segment basic attached="top" style={{ padding: "0" }}>
+          {console.log(trainingClass.category)}
           <Image
-            src={`/assets/${trainingClass.category}.jpeg`}
+            src={`/assets/${_addHypthen(trainingClass.category)}.jpeg`}
             fluid
             style={trainingClassImageStyle}
           />
@@ -50,7 +52,7 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
         <Segment clearing attached="bottom">
           <Button
             as={Link}
-            to={`/manage/${trainingClass.id}`}
+            to={`/edit-class/${trainingClass.id}`}
             color="orange"
             floated="right"
           >
