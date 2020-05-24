@@ -1,0 +1,17 @@
+export const categoryOptions = [
+  { value: "bodybuilding", key: 0, text: "BodyBuilding" },
+  { value: "body-weight", key: 1, text: "Body Weight" },
+  { value: "boxing", key: 2, text: "Boxing" },
+  { value: "cross-fit", key: 3, text: "Cross Fit" },
+  { value: "general", key: 4, text: "General" },
+  { value: "hiit", key: 7, text: "HIIT" },
+  { value: "kids", key: 8, text: "Kids" },
+  { value: "martial-arts", key: 9, text: "Martial Arts" },
+  { value: "rock-climbing", key: 10, text: "Rock Climbing" },
+  { value: "running", key: 11, text: "Running" },
+  { value: "strength", key: 12, text: "Strength" },
+  { value: "trx", key: 13, text: "TRX" },
+  { value: "weight-loss", key: 14, text: "Weight Loss" },
+  { value: "yoga", key: 15, text: "Yoga" },
+  { value: "zumba", key: 16, text: "Zumba" },
+];

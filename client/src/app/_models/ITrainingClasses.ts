@@ -3,7 +3,7 @@ export interface ITrainingClass {
   category: string;
   city: string;
   country: string;
-  dayOfWeek: number;
+  dayOfWeek: string;
   description: string;
   time: string;
   id: string;

@@ -14,10 +14,9 @@ const ClassDetail: React.FC<RouteComponentProps<DetailParams>> = ({
   history,
 }) => {
   const { selectedClass, getTrainingClass } = useContext(TrainingClassStore);
-  getTrainingClass(match.params.id);
-  // useEffect(() => {
-
-  // }, [match, getTrainingClass]);
+  useEffect(() => {
+    getTrainingClass(match.params.id);
+  }, [match, getTrainingClass]);
   if (selectedClass === null) {
     return <h2>Class not found</h2>;
   }

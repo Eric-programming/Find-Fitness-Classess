@@ -59,12 +59,13 @@ class TrainingClassStore {
       try {
         trainingclass = await agent.TrainingClass.details(id);
         this.selectedClass = trainingclass;
+        this.loading = false;
+        return trainingclass;
       } catch (error) {
+        this.loading = false;
         console.log(error);
         this.selectedClass = null;
       }
-      this.loading = false;
-      return this.selectedClass;
     }
   };
   @action deleteTrainingClass = async (id: string) => {

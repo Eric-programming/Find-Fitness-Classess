@@ -22,7 +22,6 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
     <>
       <Segment.Group>
         <Segment basic attached="top" style={{ padding: "0" }}>
-          {console.log(trainingClass.category)}
           <Image
             src={`/assets/${_addHypthen(trainingClass.category)}.jpeg`}
             fluid
