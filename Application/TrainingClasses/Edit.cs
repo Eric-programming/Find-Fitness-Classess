@@ -57,7 +57,7 @@ namespace Application.TrainingClasses
 
                 if (await _context.SaveChangesAsync() > 0) return Unit.Value;
 
-                throw new Exception("Problem saving changes");
+                throw new ErrorException(HttpStatusCode.BadRequest);
             }
         }
     }

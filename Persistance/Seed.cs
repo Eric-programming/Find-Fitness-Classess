@@ -31,7 +31,7 @@ namespace Persistance
                 };
                 foreach (var item in users)
                 {
-                    await userManager.CreateAsync(item, "1234");
+                    await userManager.CreateAsync(item, "Password123@");
                 }
                 context.SaveChanges();
             }
