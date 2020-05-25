@@ -66,3 +66,8 @@ C:\Users\mark8\Desktop\find-trainer\API\bin\Debug\netcoreapp3.1\Microsoft.Entity
 C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\MediatR.dll
 C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\MediatR.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\mark8\Desktop\find-trainer\API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\mark8\Desktop\find-trainer\API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\mark8\Desktop\find-trainer\API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\mark8\Desktop\find-trainer\API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\mark8\Desktop\find-trainer\API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
