@@ -1,13 +1,40 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Domain;
+using Microsoft.AspNetCore.Identity;
 
 namespace Persistance
 {
     public class Seed
     {
-        public static void SeedData(DataContext context)
+        public static async Task SeedData(DataContext context, UserManager<User> userManager)
         {
+            if (!userManager.Users.Any())
+            {
+                var users = new List<User>{
+                    new User{
+                        FullName="Eric Wu",
+                        UserName = "ericwu",
+                        Email="eric@email.com"
+                    },
+                     new User{
+                        FullName="Kevin Wu",
+                        UserName = "kevinwu",
+                        Email="kevin@email.com"
+                    },
+                    new User{
+                        FullName="Oliver Wu",
+                        UserName = "oliverwu",
+                        Email="oliver@email.com"
+                    }
+                };
+                foreach (var item in users)
+                {
+                    await userManager.CreateAsync(item, "1234");
+                }
+                context.SaveChanges();
+            }
             if (!context.TrainingClasses.Any())
             {
                 var trainingClasses = new List<TrainingClass> {
@@ -41,6 +68,7 @@ namespace Persistance
                 context.TrainingClasses.AddRange(trainingClasses);
                 context.SaveChanges(); //no need for async because there is no request when starts up
             }
+
         }
     }
 }
