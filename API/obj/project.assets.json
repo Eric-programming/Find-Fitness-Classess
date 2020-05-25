@@ -1958,11 +1958,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj",
+      "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj",
+      "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
       "packagesPath": "C:\\Users\\mark8\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\obj\\",
+      "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mark8\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -2014,7 +2014,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
