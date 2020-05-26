@@ -24,10 +24,10 @@ namespace API.Controllers
             return await Mediator.Send(command);
         }
 
-        // [HttpGet]
-        // public async Task<ActionResult<User>> CurrentUser()
-        // {
-        //     return await Mediator.Send(new CurrentUser.Query());
-        // }
+        [HttpGet]
+        public async Task<ActionResult<OutputUser>> CurrentUser()
+        {
+            return await Mediator.Send(new CurrentUser.Query());
+        }
     }
 }

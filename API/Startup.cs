@@ -4,6 +4,7 @@ using Application.Interfaces;
 using Application.TrainingClasses;
 using Domain;
 using infrastructure.Security;
+using Infrastructure.Security;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -64,6 +65,8 @@ namespace API
                 ValidateIssuer = false
             });
             services.AddScoped<IJWTGen, JWTGen>();//Injectiable
+            services.AddScoped<IUserAccessor, UserAccessor>();//Injectiable
+
             // services.AddAutoMapper(typeof(List.Handler));
         }
 

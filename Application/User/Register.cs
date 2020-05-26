@@ -19,6 +19,7 @@ namespace Application.User
         public class Command : IRequest<OutputUser>
         {
             [Required]
+            [EmailAddress]
             public string Email { get; set; }
             [Required]
             public string Password { get; set; }
