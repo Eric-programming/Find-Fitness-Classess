@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.DTO;
 using Application.Errors;
+using Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
@@ -22,9 +23,11 @@ namespace Application.User
         public class Handler : IRequestHandler<Query, OutputUser>
         {
             private readonly UserManager<Domain.User> _userManager;
+            private readonly IJWTGen _jwtGen;
             // private readonly SignInManager<Domain.User> _signInManager;
-            public Handler(UserManager<Domain.User> userManager)
+            public Handler(UserManager<Domain.User> userManager, IJWTGen jWTGen)
             {
+                _jwtGen = jWTGen;
                 // _signInManager = signInManager;
                 _userManager = userManager;
             }
@@ -44,7 +47,7 @@ namespace Application.User
                     return new OutputUser
                     {
                         fullName = user.FullName,
-                        token = "token",
+                        token = _jwtGen.CreateToken(user),
                         userName = user.UserName,
                         image = "user Image"
                     };

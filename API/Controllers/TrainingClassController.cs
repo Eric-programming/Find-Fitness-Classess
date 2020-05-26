@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Application.TrainingClasses;
 using Domain;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -21,6 +22,7 @@ namespace API.Controllers
 
             return Ok(trainingclasses);
         }
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<TrainingClass>> GetTrainingClass(Guid id)
         {

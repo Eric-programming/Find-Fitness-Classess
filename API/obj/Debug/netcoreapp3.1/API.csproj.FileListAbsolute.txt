@@ -79,3 +79,12 @@ C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\Microsoft.Extens
 C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\mark8\Desktop\find-trainer\api\obj\Debug\netcoreapp3.1\API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\infrastructure.dll
+C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\infrastructure.pdb
+C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

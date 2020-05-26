@@ -27,6 +27,9 @@
             "projectReferences": {
               "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj": {
                 "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj"
+              },
+              "C:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj": {
+                "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj"
               }
             }
           }
@@ -40,6 +43,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[3.1.2, )"
@@ -173,6 +180,66 @@
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj",
+        "projectName": "infrastructure",
+        "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj",
+        "packagesPath": "C:\\Users\\mark8\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mark8\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {
+              "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj": {
+                "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "dependencies": {
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[5.5.0, )"
             }
           },
           "imports": [
