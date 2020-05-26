@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { Grid } from "semantic-ui-react";
-import TrainingClassStore from "../../../app/stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
 import { RouteComponentProps } from "react-router-dom";
 import { DetailParams } from "../../../app/_models/_IDetailParams";
@@ -8,12 +7,14 @@ import ClassDetailHeader from "./ClassDetailHeader";
 import ClassDetailInfo from "./ClassDetailInfo";
 import ClassDetailChat from "./ClassDetailChat";
 import ClassDetailSidebar from "./ClassDetailSidebar";
+import { RootStoreContext } from "../../../app/stores/RootStore";
 
 const ClassDetail: React.FC<RouteComponentProps<DetailParams>> = ({
   match,
   history,
 }) => {
-  const { selectedClass, getTrainingClass } = useContext(TrainingClassStore);
+  const TrainingClassess = useContext(RootStoreContext).trainingClassessStore;
+  const { selectedClass, getTrainingClass } = TrainingClassess;
   useEffect(() => {
     getTrainingClass(match.params.id);
   }, [match, getTrainingClass]);

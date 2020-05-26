@@ -3,7 +3,6 @@ import { Container } from "semantic-ui-react";
 import Navbar from "../features/Nav/Navbar";
 import TrainingClassesDashboard from "../features/TrainingClasses/Dashboard/TrainingClassesDashboard";
 import LoadingComponent from "../components/LoadingComponent";
-import TrainingClassStore from "./stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
 import {
   Route,
@@ -22,8 +21,9 @@ import {
   editTrainingClassLink,
 } from "./_constantVariables/_Links";
 import NotFound from "../features/NotFound";
+import { RootStoreContext } from "./stores/RootStore";
 const App: React.FC<RouteComponentProps> = ({ location }) => {
-  const TrainingClassess = useContext(TrainingClassStore);
+  const TrainingClassess = useContext(RootStoreContext).trainingClassessStore;
   const { loadingTrainingClassess, loading } = TrainingClassess;
   useEffect(() => {
     loadingTrainingClassess();

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+b6Are1FBJAi+58BBYfVr2bpqFLZQzR/b8gPPjeQNZXA9nOhCS0muZluaJXK9OxHbZrMvEfSaXMYDizTc2savw==",
+  "dgSpecHash": "V+K8inzLPVxQMlvTkroccfMW45JK4hwwiI2QvCloTGE8bS0cT7KYY03Av2W34UZkNyz6Ww29oAFH3m8t9A7JIg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj",
+  "projectFilePath": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mark8\\.nuget\\packages\\automapper\\8.0.0\\automapper.8.0.0.nupkg.sha512",
     "C:\\Users\\mark8\\.nuget\\packages\\mediatr\\7.0.0\\mediatr.7.0.0.nupkg.sha512",

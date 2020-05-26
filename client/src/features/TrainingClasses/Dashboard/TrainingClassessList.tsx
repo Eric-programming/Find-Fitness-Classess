@@ -1,13 +1,14 @@
 import React, { useContext, Fragment } from "react";
 import { Item, Label } from "semantic-ui-react";
 import { ITrainingClass } from "../../../app/_models/ITrainingClasses";
-import TrainingClassStore from "../../../app/stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
 import TrainingClassessItem from "./TrainingClassessItem";
 import _getTime from "../../../app/_helper/_getTimes";
+import { RootStoreContext } from "../../../app/stores/RootStore";
 
 const TrainingClassessList = () => {
-  const { trainingClassess, GroupClassess } = useContext(TrainingClassStore);
+  const TrainingClassess = useContext(RootStoreContext).trainingClassessStore;
+  const { trainingClassess, GroupClassess } = TrainingClassess;
   if (trainingClassess.length === 0) {
     return null;
   } else {

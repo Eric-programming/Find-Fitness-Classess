@@ -1,7 +1,10 @@
+import { IUserFormValues } from "./../_models/IUser";
+import { _api_user } from "./../_constantVariables/_apiLinks";
 import axios, { AxiosResponse } from "axios";
 import { _api_trainingClassess } from "../_constantVariables/_apiLinks";
 import { ITrainingClass } from "../_models/ITrainingClasses";
 import { history } from "../..";
+import { IUser } from "../_models/IUser";
 axios.defaults.baseURL = "http://localhost:4000/api";
 
 axios.interceptors.response.use(undefined, (err) => {
@@ -45,7 +48,14 @@ const TrainingClass = {
     requests.put(`${_api_trainingClassess}/${TrainingClass.id}`, TrainingClass),
   deleteClass: (id: string) => requests.del(`${_api_trainingClassess}/${id}`),
 };
-
+const User = {
+  current: (): Promise<IUser> => requests.get(_api_user),
+  login: (user: IUserFormValues): Promise<IUser> =>
+    requests.post(_api_user, user),
+  register: (user: IUserFormValues): Promise<IUser> =>
+    requests.post(_api_user, user),
+};
 export default {
   TrainingClass,
+  User,
 };

@@ -1,23 +1,27 @@
 import { observable, action } from "mobx";
-import { createContext } from "react";
 import { ITrainingClass } from "../_models/ITrainingClasses";
 import agent from "../api/agent";
 import _getTime from "../_helper/_getTimes";
 import _getSeconds from "../_helper/_getSeconds";
+import { RootStore } from "./RootStore";
 
-class TrainingClassStore {
+export default class TrainingClassStore {
+  rootStore: RootStore;
+  constructor(rootStore: RootStore) {
+    this.rootStore = rootStore;
+  }
   @observable trainingClassess: ITrainingClass[] = [];
   @observable loading: boolean = false;
   @observable selectedClass: ITrainingClass | null = null;
-
   @action loadingTrainingClassess = async () => {
     this.loading = true;
     try {
       this.trainingClassess = await agent.TrainingClass.list();
+      this.loading = false;
     } catch (error) {
       console.log("Error loading training classes::::", error);
+      this.loading = false;
     }
-    this.loading = false;
   };
 
   @action GroupClassess(
@@ -110,4 +114,3 @@ class TrainingClassStore {
   @action editSelectClass = (id: string) =>
     (this.selectedClass = this.trainingClassess.filter((x) => x.id === id)[0]);
 }
-export default createContext(new TrainingClassStore());

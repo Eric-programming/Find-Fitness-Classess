@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { Segment, Form, Button, Grid } from "semantic-ui-react";
 import { v4 as uuidv4 } from "uuid";
 import { ITrainingClass } from "../../../app/_models/ITrainingClasses";
-import TrainingClassStore from "../../../app/stores/TrainingClassStore";
 import { observer } from "mobx-react-lite";
 import { RouteComponentProps } from "react-router-dom";
 import { DetailParams } from "../../../app/_models/_IDetailParams";
@@ -19,6 +18,7 @@ import {
   composeValidators,
   hasLengthGreaterThan,
 } from "revalidate";
+import { RootStoreContext } from "../../../app/stores/RootStore";
 const validate = combineValidators({
   title: isRequired({ message: "The event title is required" }),
   category: isRequired("Category"),
@@ -55,12 +55,13 @@ const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({
   match,
   history,
 }) => {
+  const TrainingClassess = useContext(RootStoreContext).trainingClassessStore;
   const {
     getTrainingClass,
     reset,
     createTrainingClass,
     editTrainingClass,
-  } = useContext(TrainingClassStore);
+  } = TrainingClassess;
 
   const [form, setForm] = useState<ITrainingClass>(defaultInput);
   useEffect(() => {

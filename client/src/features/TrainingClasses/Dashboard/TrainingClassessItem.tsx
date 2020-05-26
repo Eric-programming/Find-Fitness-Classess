@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import TrainingClassStore from "../../../app/stores/TrainingClassStore";
 import { ITrainingClass } from "../../../app/_models/ITrainingClasses";
 import { Item, Button, Segment, Icon, ItemGroup } from "semantic-ui-react";
 import { trainingClassessLink } from "../../../app/_constantVariables/_Links";
+import { RootStoreContext } from "../../../app/stores/RootStore";
 
 const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
   TrainingClass,
 }) => {
-  const { editSelectClass, deleteTrainingClass } = useContext(
-    TrainingClassStore
-  );
+  const TrainingClassess = useContext(RootStoreContext).trainingClassessStore;
+  const { editSelectClass, deleteTrainingClass } = TrainingClassess;
+
   return (
     <Segment.Group>
       <Segment>
