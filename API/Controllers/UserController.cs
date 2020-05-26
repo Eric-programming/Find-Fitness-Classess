@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class UserController : BaseController
     {
         [AllowAnonymous]
@@ -16,12 +17,12 @@ namespace API.Controllers
             return await Mediator.Send(query);
         }
 
-        // [AllowAnonymous]
-        // [HttpPost("register")]
-        // public async Task<ActionResult<User>> Register(Register.Command command)
-        // {
-        //     return await Mediator.Send(command);
-        // }
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public async Task<ActionResult<OutputUser>> Register(Register.Command command)
+        {
+            return await Mediator.Send(command);
+        }
 
         // [HttpGet]
         // public async Task<ActionResult<User>> CurrentUser()

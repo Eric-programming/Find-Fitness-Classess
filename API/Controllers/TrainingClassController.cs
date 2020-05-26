@@ -9,8 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Authorize]
     public class TrainingClassController : BaseController
     //Use ControllerBase if no view
     {
@@ -22,7 +21,7 @@ namespace API.Controllers
 
             return Ok(trainingclasses);
         }
-        [Authorize]
+
         [HttpGet("{id}")]
         public async Task<ActionResult<TrainingClass>> GetTrainingClass(Guid id)
         {

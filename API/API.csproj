@@ -1,14 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <ItemGroup>
-    <ProjectReference Include="..\application\Application.csproj"/>
-    <ProjectReference Include="..\Infrastructure\infrastructure.csproj"/>
+    <ProjectReference Include="..\application\Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2"/>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.2"/>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.2"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.2" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>740b6a8c-90b8-439f-83d0-ec66fd37ac30</UserSecretsId>
   </PropertyGroup>
 </Project>
+<!-- Set Token key -->
+<!-- dotnet user-secrets set "TokenKey" "super-secret-key" -p API/ -->

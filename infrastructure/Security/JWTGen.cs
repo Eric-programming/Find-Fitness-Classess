@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Application.Interfaces;
+using Microsoft.Extensions.Configuration;
 using Domain;
 using Microsoft.IdentityModel.Tokens;
 
@@ -12,9 +13,10 @@ namespace infrastructure.Security
     public class JWTGen : IJWTGen
     {
         private readonly SymmetricSecurityKey _key;
-        public JWTGen()
+        public JWTGen(IConfiguration configuration)
         {
-            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("super-secret-key"));
+            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["TokenKey"]));
+
         }
 
         public string CreateToken(User user)
