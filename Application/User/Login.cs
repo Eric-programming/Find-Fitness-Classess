@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.DTO;
 using Application.Errors;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +11,7 @@ namespace Application.User
 {
     public class Login
     {
-        public class Query : IRequest<Domain.User>
+        public class Query : IRequest<OutputUser>
         {
             [Required]
             public string Email { get; set; }
@@ -18,7 +19,7 @@ namespace Application.User
             public string Password { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Domain.User>
+        public class Handler : IRequestHandler<Query, OutputUser>
         {
             private readonly UserManager<Domain.User> _userManager;
             // private readonly SignInManager<Domain.User> _signInManager;
@@ -28,7 +29,7 @@ namespace Application.User
                 _userManager = userManager;
             }
 
-            public async Task<Domain.User> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<OutputUser> Handle(Query request, CancellationToken cancellationToken)
             {
                 var user = await _userManager.FindByEmailAsync(request.Email);
 
@@ -40,7 +41,13 @@ namespace Application.User
                 if (result)
                 {
                     // TODO: generate token
-                    return user;
+                    return new OutputUser
+                    {
+                        fullName = user.FullName,
+                        token = "token",
+                        userName = user.UserName,
+                        image = "user Image"
+                    };
                 }
 
                 throw new ErrorException(HttpStatusCode.Unauthorized);

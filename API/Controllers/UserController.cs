@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Application.DTO;
 using Application.User;
 using Domain;
 using Microsoft.AspNetCore.Authorization;
@@ -10,9 +11,8 @@ namespace API.Controllers
     {
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ActionResult<User>> Login(Login.Query query)
+        public async Task<ActionResult<OutputUser>> Login(Login.Query query)
         {
-            System.Console.WriteLine("Hello");
             return await Mediator.Send(query);
         }
 
