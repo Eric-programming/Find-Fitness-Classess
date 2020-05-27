@@ -1,3 +1,4 @@
+import { trainingClassessLink, homeLink } from "./../_constantVariables/_Links";
 import { observable, computed, action, runInAction } from "mobx";
 import agent from "../api/agent";
 import { history } from "../..";
@@ -20,24 +21,29 @@ export default class UserStore {
     try {
       const user = await agent.User.login(values);
       this.user = user;
+      if (user) {
+        history.push(trainingClassessLink);
+      }
       //   this.rootStore.commonStore.setToken(user.token);
       //   this.rootStore.modalStore.closeModal();
-      history.push("/activities");
     } catch (error) {
-      throw error;
+      console.log("error", error);
+
+      // alert(error);
     }
   };
 
   @action register = async (values: IUserFormValues) => {
-    try {
-      const user = await agent.User.register(values);
-      this.user = user;
-      //   this.rootStore.commonStore.setToken(user.token);
-      //   this.rootStore.modalStore.closeModal();
-      history.push("/activities");
-    } catch (error) {
-      throw error;
-    }
+    console.log("values", values);
+    // try {
+    //   const user = await agent.User.register(values);
+    //   this.user = user;
+    //   //   this.rootStore.commonStore.setToken(user.token);
+    //   //   this.rootStore.modalStore.closeModal();
+    //   history.push("/activities");
+    // } catch (error) {
+    //   throw error;
+    // }
   };
 
   @action getUser = async () => {

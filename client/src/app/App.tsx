@@ -56,6 +56,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                   ]}
                   component={ClassForm}
                 />
+                {/* <Route path={u}/> */}
                 <Route component={NotFound} />
               </Switch>
             </Container>

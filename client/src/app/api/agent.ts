@@ -1,5 +1,9 @@
 import { IUserFormValues } from "./../_models/IUser";
-import { _api_user } from "./../_constantVariables/_apiLinks";
+import {
+  _api_user,
+  _api_login,
+  _api_signup,
+} from "./../_constantVariables/_apiLinks";
 import axios, { AxiosResponse } from "axios";
 import { _api_trainingClassess } from "../_constantVariables/_apiLinks";
 import { ITrainingClass } from "../_models/ITrainingClasses";
@@ -8,7 +12,7 @@ import { IUser } from "../_models/IUser";
 axios.defaults.baseURL = "http://localhost:4000/api";
 
 axios.interceptors.response.use(undefined, (err) => {
-  console.log("err.response", err);
+  console.log("err.response", err.response);
   const { response, message } = err;
   if (message === "Network Error" && !response) {
     alert(
@@ -29,9 +33,13 @@ axios.interceptors.response.use(undefined, (err) => {
       "Something wrong with our server, please come back to this later. Thanks!"
     );
   }
+  if (status === 401) {
+    alert("You are unauthorized");
+  }
+  return err.response;
 });
 
-const responseBody = (res: AxiosResponse) => res.data;
+const responseBody = (res: AxiosResponse) => res?.data;
 
 const requests = {
   get: (url: string) => axios.get(url).then(responseBody),
@@ -51,9 +59,9 @@ const TrainingClass = {
 const User = {
   current: (): Promise<IUser> => requests.get(_api_user),
   login: (user: IUserFormValues): Promise<IUser> =>
-    requests.post(_api_user, user),
+    requests.post(_api_user + _api_login, user),
   register: (user: IUserFormValues): Promise<IUser> =>
-    requests.post(_api_user, user),
+    requests.post(_api_user + _api_signup, user),
 };
 export default {
   TrainingClass,
