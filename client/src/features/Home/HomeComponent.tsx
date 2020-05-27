@@ -38,7 +38,11 @@ const HomeComponent = () => {
         ) : (
           <Card centered style={{ width: "40rem", height: "38rem" }}>
             <Card.Content style={{ padding: "3rem" }}>
-              {toLogin ? <LoginForm /> : <RegisterForm />}
+              {toLogin ? (
+                <LoginForm key="login" />
+              ) : (
+                <RegisterForm key="signup" />
+              )}
             </Card.Content>
             <Card.Content extra onClick={() => setToLogin(!toLogin)}>
               <b>{toLogin ? "Sign up here!" : "Sign in here!"}</b>

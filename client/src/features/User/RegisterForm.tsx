@@ -7,8 +7,8 @@ import { IUserFormValues } from "../../app/_models/IUser";
 import TextInput from "../../components/Form/TextInput";
 
 const validate = combineValidators({
-  username: isRequired("Username"),
-  displayName: isRequired("DisplayName"),
+  userName: isRequired("userName"),
+  fullName: isRequired("fullName"),
   email: isRequired("Email"),
   password: isRequired("Password"),
 });
@@ -43,8 +43,9 @@ const RegisterForm = () => {
             placeholder="Password"
             type="password"
           />
+          {console.log(submitError)}
           <Button
-            // disabled={(invalid && !dirtySinceLastSubmit) || pristine}
+            disabled={(invalid && !dirtySinceLastSubmit) || pristine}
             loading={submitting}
             color="teal"
             content="Register"

@@ -32,16 +32,16 @@ export default class UserStore {
   };
 
   @action register = async (values: IUserFormValues) => {
-    console.log("values", values);
-    // try {
-    //   const user = await agent.User.register(values);
-    //   this.user = user;
-    //   //   this.rootStore.commonStore.setToken(user.token);
-    //   //   this.rootStore.modalStore.closeModal();
-    //   history.push("/activities");
-    // } catch (error) {
-    //   throw error;
-    // }
+    try {
+      const user = await agent.User.register(values);
+      this.user = user;
+      this.rootStore.utilStore.setToken(user.token);
+      // if (user) {
+      //   history.push(trainingClassessLink);
+      // }
+    } catch (error) {
+      throw error;
+    }
   };
 
   @action getUser = async () => {

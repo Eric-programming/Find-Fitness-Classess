@@ -23,7 +23,6 @@ const LoginForm = () => {
       render={({
         handleSubmit,
         submitting,
-        submitError,
         invalid,
         pristine,
         dirtySinceLastSubmit,
