@@ -22,13 +22,19 @@ import {
 } from "./_constantVariables/_Links";
 import NotFound from "../features/NotFound";
 import { RootStoreContext } from "./stores/RootStore";
+import { _name_tokenName } from "./_constantVariables/_names";
 const App: React.FC<RouteComponentProps> = ({ location }) => {
-  const TrainingClassess = useContext(RootStoreContext).trainingClassessStore;
-  const { loadingTrainingClassess, loading } = TrainingClassess;
+  const RootStore = useContext(RootStoreContext);
+  const { AccountLoaded, setAccountLoaded, token } = RootStore.utilStore;
+  const { getUser } = RootStore.userStore;
   useEffect(() => {
-    loadingTrainingClassess();
-  }, [loadingTrainingClassess]);
-  if (loading) return <LoadingComponent />;
+    if (token) {
+      getUser().finally(() => setAccountLoaded(true));
+    } else {
+      setAccountLoaded(true);
+    }
+  }, [AccountLoaded, setAccountLoaded, getUser]);
+  if (!AccountLoaded) return <LoadingComponent />;
   return (
     <>
       <Route exact={true} path={homeLink} component={HomeComponent} />

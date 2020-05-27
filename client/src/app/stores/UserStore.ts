@@ -20,16 +20,14 @@ export default class UserStore {
   @action login = async (values: IUserFormValues) => {
     try {
       const user = await agent.User.login(values);
+      console.log("user", user);
       this.user = user;
       if (user) {
         history.push(trainingClassessLink);
+        this.rootStore.utilStore.setToken(user.token);
       }
-      //   this.rootStore.commonStore.setToken(user.token);
-      //   this.rootStore.modalStore.closeModal();
     } catch (error) {
       console.log("error", error);
-
-      // alert(error);
     }
   };
 
@@ -48,17 +46,14 @@ export default class UserStore {
 
   @action getUser = async () => {
     try {
-      const user = await agent.User.current();
-      runInAction(() => {
-        this.user = user;
-      });
+      this.user = await agent.User.current();
     } catch (error) {
       console.log(error);
     }
   };
 
   @action logout = () => {
-    // this.rootStore.commonStore.setToken(null);
+    this.rootStore.utilStore.setToken(null);
     this.user = null;
     history.push("/");
   };

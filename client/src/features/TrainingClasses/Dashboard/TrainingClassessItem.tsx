@@ -16,9 +16,12 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
       <Segment>
         <ItemGroup>
           <Item key={TrainingClass.id}>
-            <Item.Image size="tiny" circular src="/assets/user.png" />
+            <Item.Image size="tiny" circular src="/assets/user.jpg" />
             <Item.Content>
-              <Item.Header>{TrainingClass.title}</Item.Header>
+              <Item.Header>
+                <br />
+                {TrainingClass.title}
+              </Item.Header>
               <Item.Description>Hosted By Bob</Item.Description>
             </Item.Content>
           </Item>

@@ -1,3 +1,4 @@
+import { _name_tokenName } from "./../_constantVariables/_names";
 import { IUserFormValues } from "./../_models/IUser";
 import {
   _api_user,
@@ -10,6 +11,17 @@ import { ITrainingClass } from "../_models/ITrainingClasses";
 import { history } from "../..";
 import { IUser } from "../_models/IUser";
 axios.defaults.baseURL = "http://localhost:4000/api";
+
+axios.interceptors.request.use(
+  (config) => {
+    const token = window.localStorage.getItem(_name_tokenName);
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 axios.interceptors.response.use(undefined, (err) => {
   console.log("err.response", err.response);

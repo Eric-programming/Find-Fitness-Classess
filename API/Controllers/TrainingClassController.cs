@@ -14,7 +14,7 @@ namespace API.Controllers {
     {
         // GET api/trainingclass
         [HttpGet]
-        [AllowAnonymous]
+        // [AllowAnonymous]
         public async Task<ActionResult<List<TrainingClass>>> GetTrainingClassess () {
             var trainingclasses = await Mediator.Send (new List.Query ());
 
