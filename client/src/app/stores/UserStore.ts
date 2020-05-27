@@ -34,13 +34,13 @@ export default class UserStore {
   @action register = async (values: IUserFormValues) => {
     try {
       const user = await agent.User.register(values);
-      this.user = user;
-      this.rootStore.utilStore.setToken(user.token);
-      // if (user) {
-      //   history.push(trainingClassessLink);
-      // }
+      console.log("user", user);
+      if (user.token) {
+        this.user = user;
+        this.rootStore.utilStore.setToken(user.token);
+      }
     } catch (error) {
-      throw error;
+      console.log(error);
     }
   };
 

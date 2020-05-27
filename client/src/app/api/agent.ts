@@ -24,14 +24,13 @@ axios.interceptors.request.use(
 );
 
 axios.interceptors.response.use(undefined, (err) => {
-  console.log("err.response", err.response);
   const { response, message } = err;
   if (message === "Network Error" && !response) {
     alert(
       "Sorry! Our server is down. Don't worry, your data won't be lost. Eric is currently working to resolve this issue."
     );
   }
-  const { status, data, config } = response;
+  const { status, data, config, errors } = response;
   if (
     status === 404 ||
     (status === 400 &&
@@ -47,6 +46,11 @@ axios.interceptors.response.use(undefined, (err) => {
   }
   if (status === 401) {
     alert("You are unauthorized");
+  }
+  if (config.url === _api_user + _api_signup && status === 400) {
+    for (let [key, value] of Object.entries(data.errors)) {
+      alert(`${key}: ${value}`);
+    }
   }
   return err.response;
 });
