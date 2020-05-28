@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.DTO;
 using Application.TrainingClasses;
 using Domain;
 using MediatR;
@@ -15,14 +16,14 @@ namespace API.Controllers {
         // GET api/trainingclass
         [HttpGet]
         // [AllowAnonymous]
-        public async Task<ActionResult<List<TrainingClass>>> GetTrainingClassess () {
+        public async Task<ActionResult<List<OutputTrainingClass>>> GetTrainingClassess () {
             var trainingclasses = await Mediator.Send (new List.Query ());
 
             return Ok (trainingclasses);
         }
 
         [HttpGet ("{id}")]
-        public async Task<ActionResult<TrainingClass>> GetTrainingClass (Guid id) {
+        public async Task<ActionResult<OutputTrainingClass>> GetTrainingClass (Guid id) {
             var trainingclass = await Mediator.Send (new ListDetail.Query { Id = id });
             if (trainingclass == null)
                 return NotFound ();

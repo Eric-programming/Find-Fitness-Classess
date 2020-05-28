@@ -188,6 +188,32 @@ namespace Persistance.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "UserTrainingClasses",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    TrainingClassId = table.Column<Guid>(nullable: false),
+                    DateJoined = table.Column<DateTime>(nullable: false),
+                    IsHost = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserTrainingClasses", x => new { x.UserId, x.TrainingClassId });
+                    table.ForeignKey(
+                        name: "FK_UserTrainingClasses_TrainingClasses_TrainingClassId",
+                        column: x => x.TrainingClassId,
+                        principalTable: "TrainingClasses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserTrainingClasses_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Values",
                 columns: new[] { "Id", "Name" },
@@ -239,6 +265,11 @@ namespace Persistance.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserTrainingClasses_TrainingClassId",
+                table: "UserTrainingClasses",
+                column: "TrainingClassId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -259,13 +290,16 @@ namespace Persistance.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "TrainingClasses");
+                name: "UserTrainingClasses");
 
             migrationBuilder.DropTable(
                 name: "Values");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "TrainingClasses");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

@@ -1,7 +1,8 @@
 using System.Text;
-using API.Middleware;
 using Application.Interfaces;
 using Application.TrainingClasses;
+using API.Middleware;
+using AutoMapper;
 using Domain;
 using infrastructure.Security;
 using Infrastructure.Security;
@@ -46,11 +47,11 @@ namespace API
             //         });
             // });
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-                                                                    .AllowAnyMethod()
-                                                                     .AllowAnyHeader()));
+              .AllowAnyMethod()
+              .AllowAnyHeader()));
 
-            services.AddMediatR(typeof(List.Handler).Assembly);//Just one handler is good
-
+            services.AddMediatR(typeof(List.Handler).Assembly); //Just one handler is good
+            services.AddAutoMapper(typeof(List.Handler).Assembly); //It will take a look at the application folder
             var builder = services.AddIdentityCore<User>();
             var identityBuilder = new IdentityBuilder(builder.UserType, builder.Services);
             identityBuilder.AddEntityFrameworkStores<DataContext>();
@@ -64,8 +65,9 @@ namespace API
                 ValidateAudience = false,
                 ValidateIssuer = false
             });
-            services.AddScoped<IJWTGen, JWTGen>();//Injectiable
-            services.AddScoped<IUserAccessor, UserAccessor>();//Injectiable
+
+            services.AddScoped<IJWTGen, JWTGen>(); //Injectiable
+            services.AddScoped<IUserAccessor, UserAccessor>(); //Injectiable
 
             // services.AddAutoMapper(typeof(List.Handler));
         }

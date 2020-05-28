@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -69,7 +68,6 @@ namespace Application.TrainingClasses {
                 if (user == null) {
                     throw new ErrorException (HttpStatusCode.Unauthorized);
                 }
-
                 var TrainingClass = new TrainingClass {
                     Id = request.Id,
                     Title = request.Title,

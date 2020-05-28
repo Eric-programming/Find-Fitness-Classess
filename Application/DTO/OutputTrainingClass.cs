@@ -1,7 +1,7 @@
-namespace Application.DTO
-{
-    public class OutputTrainingClass
-    {
+using System.Collections.Generic;
+
+namespace Application.DTO {
+    public class OutputTrainingClass {
         public string Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -14,5 +14,6 @@ namespace Application.DTO
         public string PostalCode { get; set; }
         public string Province { get; set; }
         public int TotalSpots { get; set; }
+        public ICollection<OutputUserTrainingClass> UserTrainingClasses { get; set; }
     }
 }

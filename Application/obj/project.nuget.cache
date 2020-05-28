@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "+qKveSkgWzJ10Xr6ZgJ0cPzj1LHDEWr9X5XHUEiXjSygw7pnb2mH9p0HxDYmVbx+UXTEtSROsGHbUQ8L1GGBBw==",
+  "dgSpecHash": "oa7B1c2hwJT0NuqaZh7iGszRvXYuxSUlq70adG41rXUlxhN1T8R580afhn97fxA4WhzQ+8VF2lvFPDSFPaBLqA==",
   "success": true,
   "projectFilePath": "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\mark8\\.nuget\\packages\\automapper\\8.0.0\\automapper.8.0.0.nupkg.sha512",
+    "C:\\Users\\mark8\\.nuget\\packages\\automapper\\8.1.1\\automapper.8.1.1.nupkg.sha512",
+    "C:\\Users\\mark8\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.1\\automapper.extensions.microsoft.dependencyinjection.6.1.1.nupkg.sha512",
     "C:\\Users\\mark8\\.nuget\\packages\\mediatr\\7.0.0\\mediatr.7.0.0.nupkg.sha512",
     "C:\\Users\\mark8\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\7.0.0\\mediatr.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\mark8\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.2\\microsoft.aspnetcore.cryptography.internal.3.1.2.nupkg.sha512",

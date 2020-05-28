@@ -1,8 +1,11 @@
+using System.Linq;
 using System;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.DTO;
 using Application.Errors;
+using AutoMapper;
 using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -13,26 +16,28 @@ namespace Application.TrainingClasses
     public class ListDetail
     {
 
-        public class Query : IRequest<TrainingClass>
+        public class Query : IRequest<OutputTrainingClass>
         {
             public Guid Id { get; set; }
         }
-        public class Handler : IRequestHandler<Query, TrainingClass>
+        public class Handler : IRequestHandler<Query, OutputTrainingClass>
         {
             private readonly DataContext _context;
+            private readonly IMapper _mapper;
 
-            public Handler(DataContext context)
+            public Handler(DataContext context, IMapper mapper)
             {
+                _mapper = mapper;
                 _context = context;
             }
 
-            public async Task<TrainingClass> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<OutputTrainingClass> Handle(Query request, CancellationToken cancellationToken)
             {
-                var TrainingClass = await _context.TrainingClasses.FirstOrDefaultAsync(x => x.Id == request.Id);
+                var TrainingClass = await _context.TrainingClasses.Include(x => x.UserTrainingClasses).FirstOrDefaultAsync(x => x.Id == request.Id);
 
                 if (TrainingClass == null)
                     throw new ErrorException(HttpStatusCode.NotFound, new { TrainingClasses = "Not found" });
-                return TrainingClass;
+                return _mapper.Map<TrainingClass, OutputTrainingClass>(TrainingClass);
             }
         }
     }
