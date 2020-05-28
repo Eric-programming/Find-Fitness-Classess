@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 
-namespace Domain {
-    public class TrainingClass {
+namespace Domain
+{
+    public class TrainingClass
+    {
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -14,6 +17,7 @@ namespace Domain {
         public string PostalCode { get; set; }
         public string Province { get; set; }
         public int TotalSpots { get; set; }
+        public ICollection<UserTrainingClass> UserTrainingClasses { get; set; }
         // public virtual ICollection<UserActivity> UserActivities { get; set; }
         // public virtual ICollection<Comment> Comments { get; set; }
     }

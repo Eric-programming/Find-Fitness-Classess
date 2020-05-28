@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj": {}
+    "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj": {
+    "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
+        "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj",
         "packagesPath": "C:\\Users\\mark8\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\obj\\",
+        "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mark8\\AppData\\Roaming\\NuGet\\NuGet.Config"
