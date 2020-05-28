@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,16 +15,19 @@ namespace Persistance
             {
                 var users = new List<User>{
                     new User{
+                        Id="a",
                         FullName="Eric Wu",
                         UserName = "ericwu",
                         Email="eric@email.com"
                     },
                      new User{
+                         Id="b",
                         FullName="Kevin Wu",
                         UserName = "kevinwu",
                         Email="kevin@email.com"
                     },
                     new User{
+                        Id="c",
                         FullName="Oliver Wu",
                         UserName = "oliverwu",
                         Email="oliver@email.com"
@@ -49,7 +53,16 @@ namespace Persistance
                             PostalCode = "V4A 4N6",
                             Province = "BC",
                             Country = "Canada",
-                            TotalSpots = 3
+                            TotalSpots = 3,
+                            UserTrainingClasses = new List<UserTrainingClass>
+                        {
+                            new UserTrainingClass
+                            {
+                                UserId = "a",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(-2)
+                            }
+                        }
                     },
                     new TrainingClass {
                         Title = "Cross Fit",
@@ -62,7 +75,16 @@ namespace Persistance
                             PostalCode = "V4A 4N6",
                             Province = "BC",
                             Country = "Canada",
-                            TotalSpots = 3
+                            TotalSpots = 3,
+                            UserTrainingClasses = new List<UserTrainingClass>
+                        {
+                            new UserTrainingClass
+                            {
+                                UserId = "a",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(-4)
+                            }
+                        }
                     },
                 };
                 context.TrainingClasses.AddRange(trainingClasses);
