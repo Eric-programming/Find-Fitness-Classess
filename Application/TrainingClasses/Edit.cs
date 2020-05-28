@@ -4,6 +4,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Errors;
+using Application.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistance;
@@ -33,9 +34,11 @@ namespace Application.TrainingClasses
         public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext _context;
+            private readonly IUserAccessor _userAccessor;
 
-            public Handler(DataContext context)
+            public Handler(DataContext context, IUserAccessor userAccessor)
             {
+                _userAccessor = userAccessor;
                 _context = context;
             }
 
@@ -54,7 +57,10 @@ namespace Application.TrainingClasses
                 TrainingClass.Country = request.Country ?? TrainingClass.Country;
                 TrainingClass.PostalCode = request.PostalCode ?? TrainingClass.PostalCode;
                 TrainingClass.TotalSpots = request.TotalSpots ?? TrainingClass.TotalSpots;
-
+                //CHECK IF HOST
+                var checkUserIsHost = await _context.UserTrainingClasses.FirstOrDefaultAsync(x => x.User.UserName == _userAccessor.GetCurrentUsername() && x.TrainingClassId == request.Id && x.IsHost == true);
+                if (checkUserIsHost == null)
+                    throw new ErrorException(HttpStatusCode.Unauthorized, new { TrainingClasses = "You are not the host" });
                 if (await _context.SaveChangesAsync() > 0) return Unit.Value;
 
                 throw new ErrorException(HttpStatusCode.BadRequest);
