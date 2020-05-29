@@ -1,12 +1,13 @@
 import React, { Fragment } from "react";
 import { Segment, List, Item, Label, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-// interface IProps {
-//   attendees: IAttendee[];
-// }
-const ClassDetailSidebar = () => {
+import { IUserTrainingClass } from "../../../app/_models/IUserTrainingClasses";
+interface IProps {
+  attendees: IUserTrainingClass[];
+}
+const ClassDetailSidebar: React.FC<IProps> = ({ attendees }) => {
   return (
-    <Fragment>
+    <>
       <Segment
         textAlign="center"
         style={{ border: "none" }}
@@ -15,29 +16,34 @@ const ClassDetailSidebar = () => {
         inverted
         color="teal"
       >
-        asdasdasd going
+        {attendees.length} people are going
       </Segment>
       <Segment attached>
         <List relaxed divided>
-          <Item key={1} style={{ position: "relative" }}>
-            <Label
-              style={{ position: "absolute" }}
-              color="orange"
-              ribbon="right"
-            >
-              Host
-            </Label>
-            <Image size="tiny" />
-            <Item.Content verticalAlign="middle">
-              <Item.Header as="h3">
-                <Link to="/">name</Link>
-              </Item.Header>
-              <Item.Extra style={{ color: "orange" }}>Following</Item.Extra>
-            </Item.Content>
-          </Item>
+          {attendees &&
+            attendees.map((e) => (
+              <Item key={e.userName} style={{ position: "relative" }}>
+                {e.isHost && (
+                  <Label
+                    style={{ position: "absolute" }}
+                    color="orange"
+                    ribbon="right"
+                  >
+                    Host
+                  </Label>
+                )}
+                <Image size="tiny" src={e.image || "/assets/user.jpg"} />
+                <Item.Content verticalAlign="middle">
+                  <Item.Header as="h3">
+                    <Link to="/">{e.fullName}</Link>
+                  </Item.Header>
+                  <Item.Extra style={{ color: "orange" }}>Following</Item.Extra>
+                </Item.Content>
+              </Item>
+            ))}
         </List>
       </Segment>
-    </Fragment>
+    </>
   );
 };
 

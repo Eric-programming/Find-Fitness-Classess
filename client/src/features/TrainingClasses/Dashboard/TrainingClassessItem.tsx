@@ -1,9 +1,17 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ITrainingClass } from "../../../app/_models/ITrainingClasses";
-import { Item, Button, Segment, Icon, ItemGroup } from "semantic-ui-react";
+import {
+  Item,
+  Button,
+  Segment,
+  Icon,
+  ItemGroup,
+  Label,
+} from "semantic-ui-react";
 import { trainingClassessLink } from "../../../app/_constantVariables/_Links";
 import { RootStoreContext } from "../../../app/stores/RootStore";
+import ListAttendee from "./ListAttendees";
 
 const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
   TrainingClass,
@@ -22,7 +30,27 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
                 <br />
                 {TrainingClass.title}
               </Item.Header>
-              <Item.Description>Hosted By Bob</Item.Description>
+              <Item.Description>
+                Hosted By {TrainingClass.hostName}
+              </Item.Description>
+              {TrainingClass.isHost && (
+                <Item.Description>
+                  <Label
+                    basic
+                    color="orange"
+                    content="You are hosting this activity"
+                  />
+                </Item.Description>
+              )}
+              {TrainingClass.isGoing && !TrainingClass.isHost && (
+                <Item.Description>
+                  <Label
+                    basic
+                    color="green"
+                    content="You are going to this activity"
+                  />
+                </Item.Description>
+              )}
             </Item.Content>
           </Item>
         </ItemGroup>
@@ -33,7 +61,12 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
         <Icon name="marker" /> {TrainingClass.address} {TrainingClass.city},{" "}
         {TrainingClass.country} {TrainingClass.postalCode}
       </Segment>
-      <Segment secondary>Attendees will go here</Segment>
+      {TrainingClass.userTrainingClasses.length > 0 ? (
+        <Segment secondary>
+          <ListAttendee attendees={TrainingClass.userTrainingClasses} />
+        </Segment>
+      ) : null}
+
       <Segment clearing>
         <span>{TrainingClass.description}</span>
         <Button

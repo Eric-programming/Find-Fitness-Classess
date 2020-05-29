@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qkF6q7jYhEKQdLFmQfmks+ax9F7KFQmKsnR5ElRDzE1MpnyVEz+ozH7JoqbYFLCYn1w7RuDr3XADXMykuamC0Q==",
+  "dgSpecHash": "/S7cqppQOt/Y9avuXA8Squm0aplIIyQfeXvLnWNLkWO28r8eo+aJCfu0sdhGa55Bs8tk8HAGoPMKjh9K85V5PQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj",
+  "projectFilePath": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mark8\\.nuget\\packages\\automapper\\8.1.1\\automapper.8.1.1.nupkg.sha512",
     "C:\\Users\\mark8\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.1\\automapper.extensions.microsoft.dependencyinjection.6.1.1.nupkg.sha512",

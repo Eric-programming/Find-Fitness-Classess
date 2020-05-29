@@ -29,7 +29,7 @@ const ClassDetail: React.FC<RouteComponentProps<DetailParams>> = ({
         <ClassDetailChat />
       </Grid.Column>
       <Grid.Column width={6}>
-        <ClassDetailSidebar />
+        <ClassDetailSidebar attendees={selectedClass.userTrainingClasses} />
       </Grid.Column>
     </Grid>
   );

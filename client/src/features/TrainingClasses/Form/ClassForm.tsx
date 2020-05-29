@@ -63,7 +63,7 @@ const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({
     editTrainingClass,
   } = TrainingClassess;
 
-  const [form, setForm] = useState<ITrainingClass>(defaultInput);
+  const [form, setForm] = useState<any>(defaultInput);
   useEffect(() => {
     if (match.params.id && form.id.length === 0) {
       getTrainingClass(match.params.id).then(

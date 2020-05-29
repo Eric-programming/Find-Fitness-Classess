@@ -1,3 +1,4 @@
+import { IUserTrainingClass } from "./IUserTrainingClasses";
 export interface ITrainingClass {
   address: string;
   category: string;
@@ -11,4 +12,8 @@ export interface ITrainingClass {
   province: string;
   title: string;
   totalSpots: number;
+  userTrainingClasses: IUserTrainingClass[];
+  isGoing: boolean;
+  isHost: boolean;
+  hostName: string;
 }

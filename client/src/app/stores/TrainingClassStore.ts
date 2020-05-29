@@ -1,3 +1,4 @@
+import { _setTrainingClass } from "./../_helper/_setTrainingClass";
 import { observable, action } from "mobx";
 import { ITrainingClass } from "../_models/ITrainingClasses";
 import agent from "../api/agent";
@@ -15,8 +16,14 @@ export default class TrainingClassStore {
   @observable selectedClass: ITrainingClass | null = null;
   @action loadingTrainingClassess = async () => {
     this.loading = true;
+    const { user } = this.rootStore.userStore;
     try {
-      this.trainingClassess = await agent.TrainingClass.list();
+      const tc = await agent.TrainingClass.list();
+      this.trainingClassess = tc.map((e) => _setTrainingClass(e, user!));
+      console.log(
+        "tc.map((e) => _setTrainingClass(e, user!))",
+        tc.map((e) => _setTrainingClass(e, user!))
+      );
       this.loading = false;
     } catch (error) {
       console.log("Error loading training classes::::", error);
