@@ -23,7 +23,7 @@ namespace Application.TrainingClasses {
             }
 
             public async Task<List<OutputTrainingClass>> Handle (Query request, CancellationToken cancellationToken) {
-                var TrainingClasses = await _context.TrainingClasses.Include (x => x.UserTrainingClasses).ToListAsync ();
+                var TrainingClasses = await _context.TrainingClasses.Include (x => x.UserTrainingClasses).Include("UserTrainingClasses.User").ToListAsync ();
                 return _mapper.Map<List<TrainingClass>, List<OutputTrainingClass>> (TrainingClasses);
             }
         }
