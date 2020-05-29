@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Segment, Item, Header, Button, Image } from "semantic-ui-react";
 import { ITrainingClass } from "../../../app/_models/ITrainingClasses";
 import { Link } from "react-router-dom";
 import _addHypthen from "../../../app/_helper/_addHypthen";
+import { observer } from "mobx-react-lite";
+import { RootStoreContext } from "../../../app/stores/RootStore";
 const trainingClassImageStyle = {
   filter: "brightness(30%)",
 };
@@ -18,6 +20,8 @@ const trainingClassImageTextStyle = {
 const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
   trainingClass,
 }) => {
+  const RootStore = useContext(RootStoreContext);
+  const { attendActivity, cancelAttendance } = RootStore.trainingClassessStore;
   return (
     <>
       <Segment.Group>
@@ -59,9 +63,13 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
               Manage Event
             </Button>
           ) : trainingClass.isGoing ? (
-            <Button>Cancel attendance</Button>
+            <Button onClick={() => cancelAttendance()}>
+              Cancel attendance
+            </Button>
           ) : (
-            <Button color="teal">Join trainingClass</Button>
+            <Button color="teal" onClick={() => attendActivity()}>
+              Join trainingClass
+            </Button>
           )}
         </Segment>
       </Segment.Group>
@@ -69,4 +77,4 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
   );
 };
 
-export default ClassDetailHeader;
+export default observer(ClassDetailHeader);

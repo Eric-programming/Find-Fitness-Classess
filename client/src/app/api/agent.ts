@@ -4,6 +4,7 @@ import {
   _api_user,
   _api_login,
   _api_signup,
+  _api_attend,
 } from "./../_constantVariables/_apiLinks";
 import axios, { AxiosResponse } from "axios";
 import { _api_trainingClassess } from "../_constantVariables/_apiLinks";
@@ -71,6 +72,10 @@ const TrainingClass = {
   updateClass: (TrainingClass: ITrainingClass) =>
     requests.put(`${_api_trainingClassess}/${TrainingClass.id}`, TrainingClass),
   deleteClass: (id: string) => requests.del(`${_api_trainingClassess}/${id}`),
+  attend: (id: string) =>
+    requests.post(`${_api_trainingClassess}/${id}${_api_attend}`, {}),
+  unAttend: (id: string) =>
+    requests.del(`${_api_trainingClassess}/${id}${_api_attend}`),
 };
 const User = {
   current: (): Promise<IUser> => requests.get(_api_user),

@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Segment, List, Item, Label, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { IUserTrainingClass } from "../../../app/_models/IUserTrainingClasses";
+import { observer } from "mobx-react-lite";
 interface IProps {
   attendees: IUserTrainingClass[];
 }
@@ -47,4 +48,4 @@ const ClassDetailSidebar: React.FC<IProps> = ({ attendees }) => {
   );
 };
 
-export default ClassDetailSidebar;
+export default observer(ClassDetailSidebar);

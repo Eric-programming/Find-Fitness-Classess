@@ -1,3 +1,4 @@
+import { _createAttendee } from "./../_helper/_createAttendee";
 import { _setTrainingClass } from "./../_helper/_setTrainingClass";
 import { observable, action } from "mobx";
 import { ITrainingClass } from "../_models/ITrainingClasses";
@@ -108,6 +109,13 @@ export default class TrainingClassStore {
     this.loading = true;
     try {
       await agent.TrainingClass.createClass(trainingclass);
+      const attendee = _createAttendee(this.rootStore.userStore.user!);
+      attendee.isHost = true;
+      let attendees = [];
+      attendees.push(attendee);
+      trainingclass.userTrainingClasses = attendees;
+      trainingclass.isHost = true;
+
       this.trainingClassess.unshift(trainingclass);
       this.editSelectClass(trainingclass.id);
     } catch (error) {
@@ -120,4 +128,38 @@ export default class TrainingClassStore {
   };
   @action editSelectClass = (id: string) =>
     (this.selectedClass = this.trainingClassess.filter((x) => x.id === id)[0]);
+
+  @action attendActivity = async () => {
+    this.loading = true;
+
+    try {
+      await agent.TrainingClass.attend(this.selectedClass!.id);
+      if (this.selectedClass) {
+        const attendee = _createAttendee(this.rootStore.userStore.user!);
+        this.selectedClass.userTrainingClasses.push(attendee);
+        this.selectedClass.isGoing = true;
+        this.loading = false;
+      }
+    } catch (error) {
+      this.loading = false;
+      alert("Problem signing up to activity");
+    }
+  };
+
+  @action cancelAttendance = async () => {
+    this.loading = true;
+    try {
+      await agent.TrainingClass.unAttend(this.selectedClass!.id);
+      if (this.selectedClass) {
+        this.selectedClass.userTrainingClasses = this.selectedClass.userTrainingClasses.filter(
+          (a) => a.userName !== this.rootStore.userStore.user!.userName
+        );
+        this.selectedClass.isGoing = false;
+        this.loading = false;
+      }
+    } catch (error) {
+      this.loading = false;
+      alert("Problem cancelling attendance");
+    }
+  };
 }
