@@ -49,16 +49,20 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
           </Segment>
         </Segment>
         <Segment clearing attached="bottom">
-          <Button
-            as={Link}
-            to={`/edit-class/${trainingClass.id}`}
-            color="orange"
-            floated="right"
-          >
-            Manage Event
-          </Button>
-          <Button>Cancel attendance</Button>
-          <Button color="teal">Join trainingClass</Button>
+          {trainingClass.isHost ? (
+            <Button
+              as={Link}
+              to={`/edit-class/${trainingClass.id}`}
+              color="orange"
+              floated="right"
+            >
+              Manage Event
+            </Button>
+          ) : trainingClass.isGoing ? (
+            <Button>Cancel attendance</Button>
+          ) : (
+            <Button color="teal">Join trainingClass</Button>
+          )}
         </Segment>
       </Segment.Group>
     </>
