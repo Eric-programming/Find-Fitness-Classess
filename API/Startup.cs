@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Persistance;
+using infrastructure;
 
 namespace API
 {
@@ -69,7 +70,9 @@ namespace API
             services.AddScoped<IJWTGen, JWTGen>(); //Injectiable
             services.AddScoped<IUserAccessor, UserAccessor>(); //Injectiable
 
-            // services.AddAutoMapper(typeof(List.Handler));
+            //Cloudary ⬇️
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
+            //Cloundary⬆️
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

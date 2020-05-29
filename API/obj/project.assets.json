@@ -28,6 +28,18 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "CloudinaryDotNet/1.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/CloudinaryDotNet.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/CloudinaryDotNet.dll": {}
+        }
+      },
       "MediatR/7.0.0": {
         "type": "package",
         "compile": {
@@ -1003,6 +1015,7 @@
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
           "Application": "1.0.0",
+          "CloudinaryDotNet": "1.8.0",
           "Microsoft.AspNetCore.Http": "2.2.0",
           "System.IdentityModel.Tokens.Jwt": "5.5.0"
         },
@@ -1059,6 +1072,23 @@
         "automapper.extensions.microsoft.dependencyinjection.nuspec",
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll",
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.pdb"
+      ]
+    },
+    "CloudinaryDotNet/1.8.0": {
+      "sha512": "jrxUPvVmdGL+8wDGQn4rBrRh7jKPDTqUW1kBj+fwmGdiMW5aBArQ3P2ErnYA84AQgvJnb2JwP3WTlwD2Yc/kdA==",
+      "type": "package",
+      "path": "cloudinarydotnet/1.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "cloudinarydotnet.1.8.0.nupkg.sha512",
+        "cloudinarydotnet.nuspec",
+        "lib/net40/CloudinaryDotNet.dll",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/netcore/CloudinaryDotNet.deps.json",
+        "lib/netcore/CloudinaryDotNet.dll",
+        "lib/netstandard1.3/CloudinaryDotNet.deps.json",
+        "lib/netstandard1.3/CloudinaryDotNet.dll"
       ]
     },
     "MediatR/7.0.0": {
@@ -3001,11 +3031,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj",
+      "projectUniqueName": "c:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\API.csproj",
+      "projectPath": "c:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
       "packagesPath": "C:\\Users\\mark8\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\api\\obj\\",
+      "outputPath": "c:\\Users\\mark8\\Desktop\\find-trainer\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mark8\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3019,11 +3049,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj": {
-              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj"
+            "c:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj": {
+              "projectPath": "c:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj"
             },
-            "C:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj": {
-              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj"
+            "c:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj": {
+              "projectPath": "c:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj"
             }
           }
         }

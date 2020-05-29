@@ -1,0 +1,4 @@
+All Keys are in dotnet user-secrets.
+Please do:
+1. cd api
+2. dotnet user-secrets list
