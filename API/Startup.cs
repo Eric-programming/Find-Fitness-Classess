@@ -4,8 +4,6 @@ using Application.TrainingClasses;
 using API.Middleware;
 using AutoMapper;
 using Domain;
-using infrastructure.Security;
-using Infrastructure.Security;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -17,7 +15,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Persistance;
-using infrastructure;
+using Infrastructure.Security;
+using infrastructure.Security;
 
 namespace API
 {

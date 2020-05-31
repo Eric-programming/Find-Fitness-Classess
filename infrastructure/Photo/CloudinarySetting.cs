@@ -1,6 +1,6 @@
-namespace infrastructure
+namespace Infrastructure.Photo
 {
-    public class CloudinarySettings
+    public class CloudinarySetting
     {
         public string CloudName { get; set; }
         public string ApiKey { get; set; }
