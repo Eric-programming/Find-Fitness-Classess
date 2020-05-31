@@ -98,7 +98,7 @@
           "lib/netcoreapp3.1/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Http/2.2.2": {
+      "Microsoft.AspNetCore.Http/2.2.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
@@ -988,7 +988,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "6.1.1",
           "Domain": "1.0.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "7.0.0",
-          "Microsoft.AspNetCore.Http": "2.2.2",
+          "Microsoft.AspNetCore.Http": "2.2.0",
           "Persistance": "1.0.0"
         },
         "compile": {
@@ -1165,16 +1165,16 @@
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Http/2.2.2": {
-      "sha512": "BAibpoItxI5puk7YJbIGj95arZueM8B8M5xT1fXBn3hb3L2G3ucrZcYXv1gXdaroLbntUs8qeV8iuBrpjQsrKw==",
+    "Microsoft.AspNetCore.Http/2.2.0": {
+      "sha512": "YogBSMotWPAS/X5967pZ+yyWPQkThxhmzAwyCHCSSldzYBkW5W5d6oPfBaPqQOnSHYTpSOSOkpZoAce0vwb6+A==",
       "type": "package",
-      "path": "microsoft.aspnetcore.http/2.2.2",
+      "path": "microsoft.aspnetcore.http/2.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.xml",
-        "microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
+        "microsoft.aspnetcore.http.2.2.0.nupkg.sha512",
         "microsoft.aspnetcore.http.nuspec"
       ]
     },
@@ -2997,13 +2997,13 @@
     },
     "Application/1.0.0": {
       "type": "project",
-      "path": "../application/Application.csproj",
-      "msbuildProject": "../application/Application.csproj"
+      "path": "../Application/Application.csproj",
+      "msbuildProject": "../Application/Application.csproj"
     },
     "Domain/1.0.0": {
       "type": "project",
-      "path": "../domain/Domain.csproj",
-      "msbuildProject": "../domain/Domain.csproj"
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     },
     "infrastructure/1.0.0": {
       "type": "project",
@@ -3012,8 +3012,8 @@
     },
     "Persistance/1.0.0": {
       "type": "project",
-      "path": "../persistance/Persistance.csproj",
-      "msbuildProject": "../persistance/Persistance.csproj"
+      "path": "../Persistance/Persistance.csproj",
+      "msbuildProject": "../Persistance/Persistance.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3050,8 +3050,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj": {
-              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj"
+            "C:\\Users\\mark8\\Desktop\\find-trainer\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Application\\Application.csproj"
             },
             "C:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj": {
               "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj"

@@ -71,7 +71,7 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Http/2.2.2": {
+      "Microsoft.AspNetCore.Http/2.2.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
@@ -912,16 +912,16 @@
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Http/2.2.2": {
-      "sha512": "BAibpoItxI5puk7YJbIGj95arZueM8B8M5xT1fXBn3hb3L2G3ucrZcYXv1gXdaroLbntUs8qeV8iuBrpjQsrKw==",
+    "Microsoft.AspNetCore.Http/2.2.0": {
+      "sha512": "YogBSMotWPAS/X5967pZ+yyWPQkThxhmzAwyCHCSSldzYBkW5W5d6oPfBaPqQOnSHYTpSOSOkpZoAce0vwb6+A==",
       "type": "package",
-      "path": "microsoft.aspnetcore.http/2.2.2",
+      "path": "microsoft.aspnetcore.http/2.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.xml",
-        "microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
+        "microsoft.aspnetcore.http.2.2.0.nupkg.sha512",
         "microsoft.aspnetcore.http.nuspec"
       ]
     },
@@ -2442,13 +2442,13 @@
     },
     "Domain/1.0.0": {
       "type": "project",
-      "path": "../domain/Domain.csproj",
-      "msbuildProject": "../domain/Domain.csproj"
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     },
     "Persistance/1.0.0": {
       "type": "project",
-      "path": "../persistance/Persistance.csproj",
-      "msbuildProject": "../persistance/Persistance.csproj"
+      "path": "../Persistance/Persistance.csproj",
+      "msbuildProject": "../Persistance/Persistance.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2456,7 +2456,7 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 6.1.1",
       "Domain >= 1.0.0",
       "MediatR.Extensions.Microsoft.DependencyInjection >= 7.0.0",
-      "Microsoft.AspNetCore.Http >= 2.2.2",
+      "Microsoft.AspNetCore.Http >= 2.2.0",
       "Persistance >= 1.0.0"
     ]
   },
@@ -2466,11 +2466,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj",
+      "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\mark8\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\obj\\",
+      "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mark8\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -2484,11 +2484,11 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "C:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj"
+            "C:\\Users\\mark8\\Desktop\\find-trainer\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\mark8\\Desktop\\find-trainer\\persistance\\Persistance.csproj": {
-              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\persistance\\Persistance.csproj"
+            "C:\\Users\\mark8\\Desktop\\find-trainer\\Persistance\\Persistance.csproj": {
+              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Persistance\\Persistance.csproj"
             }
           }
         }
@@ -2512,7 +2512,7 @@
           },
           "Microsoft.AspNetCore.Http": {
             "target": "Package",
-            "version": "[2.2.2, )"
+            "version": "[2.2.0, )"
           }
         },
         "imports": [
