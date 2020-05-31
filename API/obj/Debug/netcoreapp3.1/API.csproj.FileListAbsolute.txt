@@ -92,3 +92,4 @@ C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\AutoMapper.Exten
 C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\mark8\Desktop\find-trainer\api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\mark8\Desktop\find-trainer\API\bin\Debug\netcoreapp3.1\CloudinaryDotNet.dll

@@ -1418,8 +1418,8 @@
     },
     "Domain/1.0.0": {
       "type": "project",
-      "path": "../Domain/Domain.csproj",
-      "msbuildProject": "../Domain/Domain.csproj"
+      "path": "../domain/Domain.csproj",
+      "msbuildProject": "../domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1435,11 +1435,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\Persistance\\Persistance.csproj",
+      "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\persistance\\Persistance.csproj",
       "projectName": "Persistance",
-      "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Persistance\\Persistance.csproj",
+      "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\persistance\\Persistance.csproj",
       "packagesPath": "C:\\Users\\mark8\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Persistance\\obj\\",
+      "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\persistance\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mark8\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1453,8 +1453,8 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "C:\\Users\\mark8\\Desktop\\find-trainer\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Domain\\Domain.csproj"
+            "C:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj"
             }
           }
         }

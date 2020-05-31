@@ -115,6 +115,12 @@ namespace Persistance.Migrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(256);
 
+                    b.Property<string>("photoId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("photoUrl")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")

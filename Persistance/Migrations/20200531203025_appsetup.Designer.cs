@@ -9,8 +9,8 @@ using Persistance;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200528051022_initialCreate")]
-    partial class initialCreate
+    [Migration("20200531203025_appsetup")]
+    partial class appsetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -116,6 +116,12 @@ namespace Persistance.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("TEXT")
                         .HasMaxLength(256);
+
+                    b.Property<string>("photoId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("photoUrl")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

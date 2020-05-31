@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistance.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class appsetup : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,6 +40,8 @@ namespace Persistance.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
+                    photoUrl = table.Column<string>(nullable: true),
+                    photoId = table.Column<string>(nullable: true),
                     FullName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

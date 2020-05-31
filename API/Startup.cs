@@ -4,6 +4,7 @@ using Application.TrainingClasses;
 using API.Middleware;
 using AutoMapper;
 using Domain;
+using infrastructure.Photo;
 using infrastructure.Security;
 using Infrastructure.Photo;
 using MediatR;
@@ -62,6 +63,7 @@ namespace API {
 
             services.AddScoped<IJWTGen, JWTGen> (); //Injectiable
             services.AddScoped<IUserAccessor, UserAccessor> (); //Injectiable
+            services.AddScoped<IPhotoAccessor, PhotoAccessor> ();
 
             //Cloudary ⬇️
             services.Configure<CloudinarySetting> (Configuration.GetSection ("CloudinarySettings"));

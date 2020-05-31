@@ -2442,13 +2442,13 @@
     },
     "Domain/1.0.0": {
       "type": "project",
-      "path": "../Domain/Domain.csproj",
-      "msbuildProject": "../Domain/Domain.csproj"
+      "path": "../domain/Domain.csproj",
+      "msbuildProject": "../domain/Domain.csproj"
     },
     "Persistance/1.0.0": {
       "type": "project",
-      "path": "../Persistance/Persistance.csproj",
-      "msbuildProject": "../Persistance/Persistance.csproj"
+      "path": "../persistance/Persistance.csproj",
+      "msbuildProject": "../persistance/Persistance.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2466,11 +2466,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Application\\Application.csproj",
+      "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj",
       "packagesPath": "C:\\Users\\mark8\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Application\\obj\\",
+      "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mark8\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -2484,11 +2484,11 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "C:\\Users\\mark8\\Desktop\\find-trainer\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Domain\\Domain.csproj"
+            "C:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj"
             },
-            "C:\\Users\\mark8\\Desktop\\find-trainer\\Persistance\\Persistance.csproj": {
-              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Persistance\\Persistance.csproj"
+            "C:\\Users\\mark8\\Desktop\\find-trainer\\persistance\\Persistance.csproj": {
+              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\persistance\\Persistance.csproj"
             }
           }
         }
