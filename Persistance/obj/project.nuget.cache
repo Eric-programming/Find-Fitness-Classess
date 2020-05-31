@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FzLKq07iOW1a+D9GgzE78QXYrRICg/yBj1V/UgldPIdR1hcAdS4STZBfcTM8wwnvCrqKL9lb9Zrlew1aIOgHSg==",
+  "dgSpecHash": "AjfHVpmd0oHIkpbcAKqb+z6pKgQ/fjvsdxmRSNGbKwOfAKsNxdb6+7quRSHZRHSFITAEO34Vi6iCIdvtC8rYdg==",
   "success": true,
-  "projectFilePath": "c:\\Users\\mark8\\Desktop\\find-trainer\\Persistance\\Persistance.csproj",
+  "projectFilePath": "C:\\Users\\mark8\\Desktop\\find-trainer\\persistance\\Persistance.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mark8\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.2\\microsoft.aspnetcore.cryptography.internal.3.1.2.nupkg.sha512",
     "C:\\Users\\mark8\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.2\\microsoft.aspnetcore.cryptography.keyderivation.3.1.2.nupkg.sha512",

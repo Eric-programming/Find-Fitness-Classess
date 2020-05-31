@@ -98,7 +98,7 @@
           "lib/netcoreapp3.1/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Http/2.2.0": {
+      "Microsoft.AspNetCore.Http/2.2.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
@@ -988,6 +988,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "6.1.1",
           "Domain": "1.0.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "7.0.0",
+          "Microsoft.AspNetCore.Http": "2.2.2",
           "Persistance": "1.0.0"
         },
         "compile": {
@@ -1164,16 +1165,16 @@
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Http/2.2.0": {
-      "sha512": "YogBSMotWPAS/X5967pZ+yyWPQkThxhmzAwyCHCSSldzYBkW5W5d6oPfBaPqQOnSHYTpSOSOkpZoAce0vwb6+A==",
+    "Microsoft.AspNetCore.Http/2.2.2": {
+      "sha512": "BAibpoItxI5puk7YJbIGj95arZueM8B8M5xT1fXBn3hb3L2G3ucrZcYXv1gXdaroLbntUs8qeV8iuBrpjQsrKw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.http/2.2.0",
+      "path": "microsoft.aspnetcore.http/2.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.xml",
-        "microsoft.aspnetcore.http.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
         "microsoft.aspnetcore.http.nuspec"
       ]
     },
@@ -3031,11 +3032,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "c:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
+      "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\API.csproj",
       "packagesPath": "C:\\Users\\mark8\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\mark8\\Desktop\\find-trainer\\API\\obj\\",
+      "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mark8\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3049,11 +3050,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "c:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj": {
-              "projectPath": "c:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj"
+            "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj": {
+              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\application\\Application.csproj"
             },
-            "c:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj": {
-              "projectPath": "c:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj"
+            "C:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj": {
+              "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\Infrastructure\\infrastructure.csproj"
             }
           }
         }

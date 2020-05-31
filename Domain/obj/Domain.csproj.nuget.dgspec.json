@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj": {}
+    "C:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj": {}
   },
   "projects": {
-    "c:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj": {
+    "C:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "c:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\mark8\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\mark8\\Desktop\\find-trainer\\domain\\obj\\",
+        "outputPath": "C:\\Users\\mark8\\Desktop\\find-trainer\\domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mark8\\AppData\\Roaming\\NuGet\\NuGet.Config"
