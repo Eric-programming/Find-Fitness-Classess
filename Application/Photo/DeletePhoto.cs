@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 using Application.Errors;
 using Application.Interfaces;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Persistance;
 
 namespace Application.Photo
 {
-    public class AddPhoto
+    public class DeletePhoto
     {
         public class Command : IRequest<PhotoUploadResult>
         {
             [Required]
-            public IFormFile File { get; set; }
+            public string UserName { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, PhotoUploadResult>
@@ -33,28 +32,24 @@ namespace Application.Photo
             }
             public async Task<PhotoUploadResult> Handle(Command request, CancellationToken cancellationToken)
             {
-                var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
+                var userName = _userAccessor.GetCurrentUsername();
+                if (userName != request.UserName)
+                    throw new ErrorException(HttpStatusCode.Unauthorized);
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == userName);
                 if (user == null)
                     throw new ErrorException(HttpStatusCode.NotFound, new { User = "Not found" });
-
-                var photoUploadResult = _photoAccessor.AddPhoto(request.File);
-                if (user.photoId != null)
+                if (_photoAccessor.DeletePhoto(user.photoId) == "ok")
                 {
-                    if (_photoAccessor.DeletePhoto(user.photoId) == "ok")
-                    {
-                        System.Console.WriteLine("Profile Image is deleted");
-                    }
-                    else
-                    {
-                        System.Console.WriteLine("Fail Destroy Profile Image");
-                    }
+                    System.Console.WriteLine("Profile Image is deleted");
+                    user.photoUrl = null;
+                    user.photoId = null;
                 }
-                user.photoUrl = photoUploadResult.Url;
-                user.photoId = photoUploadResult.PublicId;
                 var success = await _context.SaveChangesAsync() > 0;
-
-                if (success) return photoUploadResult;
-
+                if (success) return new PhotoUploadResult
+                {
+                    PublicId = user.photoId,
+                    Url = user.photoUrl
+                };
                 throw new Exception("Problem saving changes");
             }
         }
