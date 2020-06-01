@@ -70,7 +70,7 @@ namespace Application.User
                         fullName = user.FullName,
                         token = _jwtGenerator.CreateToken(user),
                         userName = user.UserName,
-                        image = "Nope"
+                        image = user.photoUrl
                     };
                 }
 
