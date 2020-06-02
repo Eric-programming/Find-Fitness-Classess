@@ -4,3 +4,7 @@ export interface IProfile {
   bio: string;
   image: string | null;
 }
+export interface IProfileEdit {
+  fullName: string;
+  bio: string;
+}

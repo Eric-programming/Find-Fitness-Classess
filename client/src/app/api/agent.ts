@@ -14,7 +14,7 @@ import { _api_trainingClassess } from "../_constantVariables/_apiLinks";
 import { ITrainingClass } from "../_models/ITrainingClasses";
 import { history } from "../..";
 import { IUser } from "../_models/IUser";
-import { IProfile } from "../_models/IProfile";
+import { IProfile, IProfileEdit } from "../_models/IProfile";
 import { IPhoto } from "../_models/IPhoto";
 axios.defaults.baseURL = "http://localhost:4000/api";
 
@@ -106,6 +106,8 @@ const Profile = {
     requests.postForm(_api_user + _api_add_photo, photo),
   deletePhoto: (userName: string): Promise<IPhoto> =>
     requests.del(_api_user + _api_remove_photo + "/" + userName),
+  editProfile: (editUser: IProfileEdit): Promise<IProfileEdit> =>
+    requests.put(_api_user, editUser),
 };
 export default {
   TrainingClass,

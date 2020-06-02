@@ -1,3 +1,4 @@
+import { IProfileEdit } from "./../_models/IProfile";
 import { RootStore } from "./RootStore";
 import { observable, action, computed } from "mobx";
 import agent from "../api/agent";
@@ -125,21 +126,18 @@ export default class ProfileStore {
   //     }
   //   };
 
-  // //   @action updateProfile = async (profile: Partial<IProfile>) => {
-  // //     try {
-  // //       await agent.Profiles.updateProfile(profile);
-  // //       runInAction(() => {
-  // //         if (
-  // //           profile.displayName !== this.rootStore.userStore.user!.displayName
-  // //         ) {
-  // //           this.rootStore.userStore.user!.displayName = profile.displayName!;
-  // //         }
-  // //         this.profile = { ...this.profile!, ...profile };
-  // //       });
-  // //     } catch (error) {
-  // //       toast.error("Problem updating profile");
-  // //     }
-  // //   };
+  @action updateProfile = async (profile: IProfileEdit) => {
+    console.log("profile", profile);
+    try {
+      const updatedProfile = await agent.Profile.editProfile(profile);
+      if (this.rootStore.userStore.user!.userName) {
+        this.rootStore.userStore.user!.fullName = profile.fullName!;
+      }
+      this.profile = { ...this.profile!, ...updatedProfile };
+    } catch (error) {
+      alert("Problem updating profile");
+    }
+  };
 
   //   @action follow = async (username: string) => {
   //     this.loading = true;
