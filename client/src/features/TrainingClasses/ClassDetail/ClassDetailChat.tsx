@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
 import {
   Segment,
   Header,
@@ -7,8 +7,24 @@ import {
   TextArea,
   Button,
 } from "semantic-ui-react";
+import { observer } from "mobx-react-lite";
+import { RootStoreContext } from "../../../app/stores/RootStore";
 
 const ClassDetailChat = () => {
+  const rootStore = useContext(RootStoreContext);
+  const {
+    createHubConnection,
+    stopHubConnection,
+    addComment,
+    selectedClass,
+  } = rootStore.trainingClassessStore;
+
+  useEffect(() => {
+    createHubConnection();
+    return () => {
+      stopHubConnection();
+    };
+  }, [createHubConnection, stopHubConnection]);
   return (
     <Fragment>
       <Segment
@@ -48,4 +64,4 @@ const ClassDetailChat = () => {
   );
 };
 
-export default ClassDetailChat;
+export default observer(ClassDetailChat);

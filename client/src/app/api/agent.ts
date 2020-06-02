@@ -16,7 +16,8 @@ import { history } from "../..";
 import { IUser } from "../_models/IUser";
 import { IProfile, IProfileEdit } from "../_models/IProfile";
 import { IPhoto } from "../_models/IPhoto";
-axios.defaults.baseURL = "http://localhost:4000/api";
+import { baseUrl } from "../_constantVariables/_base";
+axios.defaults.baseURL = baseUrl;
 
 axios.interceptors.request.use(
   (config) => {

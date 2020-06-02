@@ -17,4 +17,14 @@ export interface ITrainingClass {
   isHost: boolean;
   hostName: string;
   hostUserName: string;
+  comments: IComment[];
+}
+
+export interface IComment {
+  id: string;
+  createdAt: Date;
+  body: string;
+  userName: string;
+  fullName: string;
+  image: string;
 }
