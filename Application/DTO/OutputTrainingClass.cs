@@ -13,6 +13,8 @@ namespace Application.DTO {
         public string Country { get; set; }
         public string PostalCode { get; set; }
         public string Province { get; set; }
+        public ICollection<OutputComment> Comments { get; set; }
+
         public int TotalSpots { get; set; }
         public ICollection<OutputUserTrainingClass> UserTrainingClasses { get; set; }
     }

@@ -10,6 +10,8 @@ namespace Persistance {
         public DbSet<Values> Values { get; set; }
         public DbSet<TrainingClass> TrainingClasses { get; set; }
         public DbSet<UserTrainingClass> UserTrainingClasses { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
         protected override void OnModelCreating (ModelBuilder builder) {
             base.OnModelCreating (builder); //Add a primary key for the User Data Model
             builder.Entity<Values> ()
@@ -31,7 +33,6 @@ namespace Persistance {
                 .HasOne (a => a.TrainingClass)
                 .WithMany (u => u.UserTrainingClasses)
                 .HasForeignKey (a => a.TrainingClassId);
-
         }
     }
 }
