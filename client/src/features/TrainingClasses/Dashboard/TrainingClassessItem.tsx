@@ -23,15 +23,23 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
     <Segment.Group>
       <Segment>
         <ItemGroup>
-          <Item key={TrainingClass.id}>
-            <Item.Image size="tiny" circular src="/assets/user.jpg" />
+          <Item>
+            <Item.Image
+              size="tiny"
+              circular
+              src="/assets/user.jpg"
+              style={{ marginBottom: "5%" }}
+            />
             <Item.Content>
               <Item.Header>
                 <br />
                 {TrainingClass.title}
               </Item.Header>
               <Item.Description>
-                Hosted By {TrainingClass.hostName}
+                Hosted by{" "}
+                <Link to={`/profile/${TrainingClass.hostUserName}`}>
+                  {TrainingClass.hostName}
+                </Link>
               </Item.Description>
               {TrainingClass.isHost && (
                 <Item.Description>
@@ -56,9 +64,9 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
         </ItemGroup>
       </Segment>
       <Segment>
-        <Icon name="clock" /> Every {TrainingClass.dayOfWeek} at{" "}
+        <Icon name="clock" /> Every {TrainingClass.dayOfWeek} at
         {TrainingClass.time}
-        <Icon name="marker" /> {TrainingClass.address} {TrainingClass.city},{" "}
+        <Icon name="marker" /> {TrainingClass.address} {TrainingClass.city},
         {TrainingClass.country} {TrainingClass.postalCode}
       </Segment>
       {TrainingClass.userTrainingClasses.length > 0 ? (

@@ -11,7 +11,6 @@ import { RootStoreContext } from "../../../app/stores/RootStore";
 
 const ClassDetail: React.FC<RouteComponentProps<DetailParams>> = ({
   match,
-  history,
 }) => {
   const TrainingClassess = useContext(RootStoreContext).trainingClassessStore;
   const { selectedClass, getTrainingClass } = TrainingClassess;

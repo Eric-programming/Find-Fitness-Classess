@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Segment, List, Item, Label, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { IUserTrainingClass } from "../../../app/_models/IUserTrainingClasses";
@@ -21,27 +21,26 @@ const ClassDetailSidebar: React.FC<IProps> = ({ attendees }) => {
       </Segment>
       <Segment attached>
         <List relaxed divided>
-          {attendees &&
-            attendees.map((e) => (
-              <Item key={e.userName} style={{ position: "relative" }}>
-                {e.isHost && (
-                  <Label
-                    style={{ position: "absolute" }}
-                    color="orange"
-                    ribbon="right"
-                  >
-                    Host
-                  </Label>
-                )}
-                <Image size="tiny" src={e.image || "/assets/user.jpg"} />
-                <Item.Content verticalAlign="middle">
-                  <Item.Header as="h3">
-                    <Link to="/">{e.fullName}</Link>
-                  </Item.Header>
-                  <Item.Extra style={{ color: "orange" }}>Following</Item.Extra>
-                </Item.Content>
-              </Item>
-            ))}
+          {attendees.map((e) => (
+            <Item key={e.userName} style={{ position: "relative" }}>
+              {e.isHost && (
+                <Label
+                  style={{ position: "absolute" }}
+                  color="orange"
+                  ribbon="right"
+                >
+                  Host
+                </Label>
+              )}
+              <Image size="tiny" src={e.image || "/assets/user.jpg"} />
+              <Item.Content verticalAlign="middle">
+                <Item.Header as="h3">
+                  <Link to={`/profile/${e.userName}`}>{e.fullName}</Link>
+                </Item.Header>
+                <Item.Extra style={{ color: "orange" }}>Following</Item.Extra>
+              </Item.Content>
+            </Item>
+          ))}
         </List>
       </Segment>
     </>

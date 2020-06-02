@@ -21,10 +21,6 @@ export default class TrainingClassStore {
     try {
       const tc = await agent.TrainingClass.list();
       this.trainingClassess = tc.map((e) => _setTrainingClass(e, user!));
-      console.log(
-        "tc.map((e) => _setTrainingClass(e, user!))",
-        tc.map((e) => _setTrainingClass(e, user!))
-      );
       this.loading = false;
     } catch (error) {
       console.log("Error loading training classes::::", error);
@@ -63,14 +59,16 @@ export default class TrainingClassStore {
   }
   @action getTrainingClass = async (id: string) => {
     let trainingclass = this.trainingClassess.filter((x) => x.id === id)[0];
+
     if (trainingclass) {
       this.selectedClass = trainingclass;
       return trainingclass;
     } else {
       this.loading = true;
       try {
+        const { user } = this.rootStore.userStore;
         trainingclass = await agent.TrainingClass.details(id);
-        this.selectedClass = trainingclass;
+        this.selectedClass = _setTrainingClass(trainingclass, user!);
         this.loading = false;
         return trainingclass;
       } catch (error) {

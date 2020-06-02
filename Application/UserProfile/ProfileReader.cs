@@ -28,7 +28,7 @@ namespace Application.UserProfile
 
             var profile = new ProfileModel
             {
-                DisplayName = user.FullName,
+                FullName = user.FullName,
                 Username = user.UserName,
                 Image = user.photoUrl,
                 Bio = user.Bio,

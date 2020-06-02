@@ -16,4 +16,5 @@ export interface ITrainingClass {
   isGoing: boolean;
   isHost: boolean;
   hostName: string;
+  hostUserName: string;
 }

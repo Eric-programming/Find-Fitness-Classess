@@ -5,12 +5,17 @@ import {
   _api_login,
   _api_signup,
   _api_attend,
+  _api_profile,
+  _api_add_photo,
+  _api_remove_photo,
 } from "./../_constantVariables/_apiLinks";
 import axios, { AxiosResponse } from "axios";
 import { _api_trainingClassess } from "../_constantVariables/_apiLinks";
 import { ITrainingClass } from "../_models/ITrainingClasses";
 import { history } from "../..";
 import { IUser } from "../_models/IUser";
+import { IProfile } from "../_models/IProfile";
+import { IPhoto } from "../_models/IPhoto";
 axios.defaults.baseURL = "http://localhost:4000/api";
 
 axios.interceptors.request.use(
@@ -31,7 +36,7 @@ axios.interceptors.response.use(undefined, (err) => {
       "Sorry! Our server is down. Don't worry, your data won't be lost. Eric is currently working to resolve this issue."
     );
   }
-  const { status, data, config, errors } = response;
+  const { status, data, config } = response;
   if (
     status === 404 ||
     (status === 400 &&
@@ -63,6 +68,16 @@ const requests = {
   post: (url: string, body: {}) => axios.post(url, body).then(responseBody),
   put: (url: string, body: {}) => axios.put(url, body).then(responseBody),
   del: (url: string) => axios.delete(url).then(responseBody),
+  postForm: (url: string, file: Blob) => {
+    let formData = new FormData();
+    formData.append("File", file);
+    console.log("formData", formData);
+    return axios
+      .post(url, formData, {
+        headers: { "Content-type": "multipart/form-data" },
+      })
+      .then(responseBody);
+  },
 };
 const TrainingClass = {
   list: (): Promise<ITrainingClass[]> => requests.get(_api_trainingClassess),
@@ -84,7 +99,16 @@ const User = {
   register: (user: IUserFormValues): Promise<IUser> =>
     requests.post(_api_user + _api_signup, user),
 };
+const Profile = {
+  getProfile: (username: string): Promise<IProfile> =>
+    requests.get(`${_api_profile}/${username}`),
+  addPhoto: (photo: Blob): Promise<IPhoto> =>
+    requests.postForm(_api_user + _api_add_photo, photo),
+  deletePhoto: (userName: string): Promise<IPhoto> =>
+    requests.del(_api_user + _api_remove_photo + "/" + userName),
+};
 export default {
   TrainingClass,
   User,
+  Profile,
 };

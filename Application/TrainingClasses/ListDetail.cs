@@ -33,7 +33,7 @@ namespace Application.TrainingClasses
 
             public async Task<OutputTrainingClass> Handle(Query request, CancellationToken cancellationToken)
             {
-                var TrainingClass = await _context.TrainingClasses.Include(x => x.UserTrainingClasses).FirstOrDefaultAsync(x => x.Id == request.Id);
+                var TrainingClass = await _context.TrainingClasses.Include(x => x.UserTrainingClasses).Include("UserTrainingClasses.User").FirstOrDefaultAsync(x => x.Id == request.Id);
 
                 if (TrainingClass == null)
                     throw new ErrorException(HttpStatusCode.NotFound, new { TrainingClasses = "Not found" });

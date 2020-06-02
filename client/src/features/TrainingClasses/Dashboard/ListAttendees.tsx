@@ -6,10 +6,10 @@ interface IProps {
   attendees: IUserTrainingClass[];
 }
 
-const styles = {
-  borderColor: "orange",
-  borderWidth: 2,
-};
+// const styles = {
+//   borderColor: "orange",
+//   borderWidth: 2,
+// };
 
 const ListAttendee: React.FC<IProps> = ({ attendees }) => {
   return (

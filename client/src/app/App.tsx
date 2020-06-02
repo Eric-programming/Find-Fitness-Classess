@@ -19,10 +19,12 @@ import {
   withIdLink,
   createTrainingClassLink,
   editTrainingClassLink,
+  profileLink,
+  withUserNameLink,
 } from "./_constantVariables/_Links";
 import NotFound from "../features/NotFound";
 import { RootStoreContext } from "./stores/RootStore";
-import { _name_tokenName } from "./_constantVariables/_names";
+import Profile from "../features/Profile/Profile";
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const RootStore = useContext(RootStoreContext);
   const { AccountLoaded, setAccountLoaded, token } = RootStore.utilStore;
@@ -33,7 +35,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
     } else {
       setAccountLoaded(true);
     }
-  }, [AccountLoaded, setAccountLoaded, getUser]);
+  }, [AccountLoaded, setAccountLoaded, getUser, token]);
   if (!AccountLoaded) return <LoadingComponent />;
   return (
     <>
@@ -53,6 +55,10 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 <Route
                   path={trainingClassessLink + withIdLink}
                   component={ClassDetail}
+                />
+                <Route
+                  path={profileLink + withUserNameLink}
+                  component={Profile}
                 />
                 <Route
                   key={location.key}

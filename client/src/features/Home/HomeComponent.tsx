@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState, useEffect } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import {
   Container,
   Segment,
@@ -7,17 +7,14 @@ import {
   Card,
   Icon,
 } from "semantic-ui-react";
-import { Link, RouteComponentProps } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { trainingClassessLink } from "../../app/_constantVariables/_Links";
 import { RootStoreContext } from "../../app/stores/RootStore";
 import LoginForm from "../User/loginForm";
 import RegisterForm from "../User/RegisterForm";
-import { observer } from "mobx-react-lite";
-import { history } from "../..";
 import { _api_trainingClassess } from "../../app/_constantVariables/_apiLinks";
 
 const HomeComponent = () => {
-  const token = window.localStorage.getItem("jwt");
   const rootStore = useContext(RootStoreContext);
   const { user, isLoggedIn } = rootStore.userStore;
   const [toLogin, setToLogin] = useState(true);

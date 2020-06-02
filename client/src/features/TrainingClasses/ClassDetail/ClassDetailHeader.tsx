@@ -42,10 +42,10 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
                   />
                   <p>{trainingClass.time}</p>
                   <p>
-                    Hosted by Bob
-                    {/* <Link to={`/profile/${host.username}`}>
-                      <strong>{host.displayName}</strong>
-                    </Link> */}
+                    Hosted By{" "}
+                    <Link to={`/profile/${trainingClass.hostUserName}`}>
+                      <strong>{trainingClass.hostName}</strong>
+                    </Link>
                   </p>
                 </Item.Content>
               </Item>
