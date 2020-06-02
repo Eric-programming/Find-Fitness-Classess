@@ -66,7 +66,10 @@ const responseBody = (res: AxiosResponse) => res?.data;
 
 const requests = {
   get: (url: string) => axios.get(url).then(responseBody),
-  post: (url: string, body: {}) => axios.post(url, body).then(responseBody),
+  post: (url: string, data: {}) => axios.post(url, JSON.stringify(data),
+    {
+      headers: { "Content-type": "application/json" },
+    }).then(responseBody),
   put: (url: string, body: {}) => axios.put(url, body).then(responseBody),
   del: (url: string) => axios.delete(url).then(responseBody),
   postForm: (url: string, file: Blob) => {
