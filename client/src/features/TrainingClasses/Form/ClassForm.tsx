@@ -43,7 +43,7 @@ const defaultInput = {
   category: "bodybuilding",
   city: "surrey",
   country: "Canada",
-  dayOfWeek: "",
+  dayOfWeek: 0,
   description: "Hello this is a group training class",
   time: "",
   postalCode: "V4NDL3",
@@ -68,6 +68,7 @@ const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({
     if (match.params.id && form.id.length === 0) {
       getTrainingClass(match.params.id).then(
         (res: ITrainingClass | undefined) => {
+          console.log("res", res);
           setForm(res ? res : defaultInput);
         }
       );

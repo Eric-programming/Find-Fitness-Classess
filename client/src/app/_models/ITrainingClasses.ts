@@ -4,7 +4,7 @@ export interface ITrainingClass {
   category: string;
   city: string;
   country: string;
-  dayOfWeek: string;
+  dayOfWeek: number;
   description: string;
   time: string;
   id: string;

@@ -8,6 +8,7 @@ import {
   _api_profile,
   _api_add_photo,
   _api_remove_photo,
+  _api_follow,
 } from "./../_constantVariables/_apiLinks";
 import axios, { AxiosResponse } from "axios";
 import { _api_trainingClassess } from "../_constantVariables/_apiLinks";
@@ -109,6 +110,10 @@ const Profile = {
     requests.del(_api_user + _api_remove_photo + "/" + userName),
   editProfile: (editUser: IProfileEdit): Promise<IProfileEdit> =>
     requests.put(_api_user, editUser),
+  follow: (username: string) => requests.post(`${_api_follow}/${username}`, {}),
+  unfollow: (username: string) => requests.del(`${_api_follow}/${username}`),
+  listFollowings: (username: string, predicate: boolean) =>
+    requests.get(`${_api_follow}/${username}/${predicate}`),
 };
 export default {
   TrainingClass,

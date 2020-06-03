@@ -16,19 +16,17 @@ import { RootStoreContext } from "../../app/stores/RootStore";
 
 interface IProps {
   profile: IProfile;
-  //   loading: boolean;
-  //   follow: (username: string) => void;
-  //   unfollow: (username: string) => void;
 }
 
-const ProfileHeader: React.FC<IProps> = ({
-  profile,
-  //   loading,
-  //   follow,
-  //   unfollow,
-}) => {
+const ProfileHeader: React.FC<IProps> = ({ profile }) => {
   const RootStore = useContext(RootStoreContext);
-  const { deletePhoto } = RootStore.profileStore;
+  const {
+    deletePhoto,
+    loadingProfile,
+    unfollow,
+    follow,
+    isCurrentUser,
+  } = RootStore.profileStore;
   return (
     <Segment>
       <Grid>
@@ -48,25 +46,25 @@ const ProfileHeader: React.FC<IProps> = ({
         </Grid.Column>
         <Grid.Column width={4}>
           <Statistic.Group widths={2}>
-            <Statistic label="Like" value={140} />
-            <Statistic label="Dislike" value={100} />
+            <Statistic label="Followings" value={profile.followingCount} />
+            <Statistic label="Followers" value={profile.followersCount} />
           </Statistic.Group>
           <Divider />
 
-          <Reveal animated="move">
-            <Reveal.Content visible style={{ width: "100%" }}>
-              <Button fluid color="teal" content={false ? "Like" : "Unlike"} />
-            </Reveal.Content>
-            <Reveal.Content hidden>
+          {!isCurrentUser ? (
+            <>
               <Button
-                //   loading={loading}
                 fluid
-                basic
-                color={false ? "red" : "green"}
-                content={true ? "Like" : "Unlike"}
+                color={!profile.isFollowed ? "teal" : "red"}
+                content={profile.isFollowed ? "UnFollow" : "Follow"}
+                onClick={() =>
+                  profile.isFollowed
+                    ? unfollow(profile.username)
+                    : follow(profile.username)
+                }
               />
-            </Reveal.Content>
-          </Reveal>
+            </>
+          ) : null}
           {profile.image !== null ? (
             <Button
               style={{ marginTop: "1%" }}

@@ -135,6 +135,7 @@ export default class TrainingClassStore {
     this.loading = false;
   };
   @action editTrainingClass = async (trainingclass: ITrainingClass) => {
+    console.log("trainingclass", trainingclass);
     this.loading = true;
     try {
       await agent.TrainingClass.updateClass(trainingclass);

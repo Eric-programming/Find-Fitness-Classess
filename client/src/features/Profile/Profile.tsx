@@ -22,12 +22,7 @@ const Profile: React.FC<IProps> = ({ match }) => {
   return (
     <Grid>
       <Grid.Column width={16}>
-        <ProfileHeader
-          profile={profile!}
-          //   loading={loading}
-          //   follow={follow}
-          //   unfollow={unfollow}
-        />
+        <ProfileHeader profile={profile!} />
         <ProfileContent />
       </Grid.Column>
     </Grid>

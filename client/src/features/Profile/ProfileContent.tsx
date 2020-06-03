@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Tab } from "semantic-ui-react";
 import ProfilePhotos from "./ProfilePhotos";
 import ProfileDescription from "./ProfileDescription";
-import ProfileLikes from "./ProfileLikes";
+import ProfileFollowings from "./ProfileFollowings";
 import ProfileClassess from "./ProfileClassess";
 import { RootStoreContext } from "../../app/stores/RootStore";
 
@@ -14,33 +14,34 @@ const panes = [
     menuItem: "Activities",
     render: () => <ProfileClassess />,
   },
-  { menuItem: "Likes", render: () => <ProfileLikes /> },
-  { menuItem: "Unlikes", render: () => <ProfileLikes /> },
+  {
+    menuItem: "Followers",
+    render: () => <ProfileFollowings isFollowers={true} />,
+  },
+  {
+    menuItem: "Followings",
+    render: () => <ProfileFollowings isFollowers={false} />,
+  },
 ];
 
 // interface IProps {
 //     setActiveTab: (activeIndex: any) => void;
 // }
 
-const ProfileContent =
-  // : React.FC<IProps>
-  () =>
-    // { setActiveTab }
-    {
-      const rootStore = useContext(RootStoreContext);
-      const { isCurrentUser } = rootStore.profileStore;
-      return (
-        <Tab
-          menu={{ fluid: true, vertical: true }}
-          menuPosition="right"
-          panes={
-            !isCurrentUser
-              ? panes.filter((e) => e.menuItem !== EditPhoto)
-              : panes
-          }
-          // onTabChange={(e, data) => setActiveTab(data.activeIndex)}
-        />
-      );
-    };
+const ProfileContent = () => {
+  const rootStore = useContext(RootStoreContext);
+  const { isCurrentUser, setActiveTab } = rootStore.profileStore;
+  return (
+    <Tab
+      menu={{ fluid: true, vertical: true }}
+      menuPosition="right"
+      onTabChange={(e, data) => setActiveTab(data.activeIndex)}
+      panes={
+        !isCurrentUser ? panes.filter((e) => e.menuItem !== EditPhoto) : panes
+      }
+      // onTabChange={(e, data) => setActiveTab(data.activeIndex)}
+    />
+  );
+};
 
 export default ProfileContent;

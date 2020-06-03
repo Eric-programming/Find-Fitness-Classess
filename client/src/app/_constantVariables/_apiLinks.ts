@@ -6,3 +6,4 @@ export const _api_attend = "/attend";
 export const _api_profile = "/profile";
 export const _api_add_photo = "/upload-photo";
 export const _api_remove_photo = "/photo";
+export const _api_follow = "/follow";
