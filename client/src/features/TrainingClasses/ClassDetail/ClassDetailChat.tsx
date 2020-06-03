@@ -1,14 +1,11 @@
 import React, { Fragment, useContext, useEffect } from "react";
-import {
-  Segment,
-  Header,
-  Comment,
-  Form,
-  TextArea,
-  Button,
-} from "semantic-ui-react";
+import { Segment, Header, Form, Button, Comment } from "semantic-ui-react";
+import { Form as FinalForm, Field } from "react-final-form";
+import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import { formatDistance } from "date-fns";
 import { RootStoreContext } from "../../../app/stores/RootStore";
+import TextAreaInput from "../../../components/Form/TextAreaInput";
 
 const ClassDetailChat = () => {
   const rootStore = useContext(RootStoreContext);
@@ -38,26 +35,44 @@ const ClassDetailChat = () => {
       </Segment>
       <Segment attached>
         <Comment.Group>
-          <Comment>
-            <Comment.Avatar />
-            <Comment.Content>
-              <Comment.Author>adasdasd</Comment.Author>
-              <Comment.Metadata>
-                <div>asd/asasdasd/asdasdasd</div>
-              </Comment.Metadata>
-              <Comment.Text>asdasdasdasdasd</Comment.Text>
-            </Comment.Content>
-          </Comment>
+          {selectedClass &&
+            selectedClass.comments &&
+            selectedClass.comments.map((comment) => (
+              <Comment key={comment.id}>
+                <Comment.Avatar src={comment.image || "/assets/user.png"} />
+                <Comment.Content>
+                  <Comment.Author as={Link} to={`/profile/${comment.userName}`}>
+                    {comment.fullName}
+                  </Comment.Author>
+                  <Comment.Metadata>
+                    <div>{comment.createdAt}</div>
+                    {/* <div>{formatDistance(comment.createdAt, new Date())}</div> */}
+                  </Comment.Metadata>
+                  <Comment.Text>{comment.body}</Comment.Text>
+                </Comment.Content>
+              </Comment>
+            ))}
 
-          <Form>
-            <TextArea name="body" rows={2} placeholder="Add your comment" />
-            <Button
-              content="Add Reply"
-              labelPosition="left"
-              icon="edit"
-              primary
-            />
-          </Form>
+          <FinalForm
+            onSubmit={addComment}
+            render={({ handleSubmit, submitting, form }) => (
+              <Form onSubmit={() => handleSubmit()!.then(() => form.reset())}>
+                <Field
+                  name="body"
+                  component={TextAreaInput}
+                  rows={2}
+                  placeholder="Add your comment"
+                />
+                <Button
+                  loading={submitting}
+                  content="Add Reply"
+                  labelPosition="left"
+                  icon="edit"
+                  primary
+                />
+              </Form>
+            )}
+          />
         </Comment.Group>
       </Segment>
     </Fragment>

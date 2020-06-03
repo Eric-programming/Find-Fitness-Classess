@@ -36,18 +36,16 @@ namespace API {
             services.AddDbContext<DataContext> (optionsAction => {
                 optionsAction.UseSqlite (Configuration.GetConnectionString ("DefaultConnection"));
             });
-            // services.AddCors(options =>
-            // {
-            //     options.AddPolicy(name: MyAllowSpecificOrigins,
-            //         builder =>
-            //         {
-            //             builder.WithOrigins("http://localhost:3000").AllowAnyHeader()
-            //                 .AllowAnyMethod();
-            //         });
-            // });
-            services.AddCors (options => options.AddPolicy ("AllowAll", p => p.AllowAnyOrigin ()
-                .AllowAnyMethod ()
-                .AllowAnyHeader ().AllowCredentials ()));
+            services.AddCors (o => o.AddPolicy ("CorsPolicy", builder => {
+                builder
+                    .AllowAnyMethod ()
+                    .AllowAnyHeader ()
+                    .AllowCredentials ()
+                    .WithOrigins ("http://localhost:3000");
+            }));
+            // services.AddCors (options => options.AddPolicy ("AllowAll", p => p.AllowAnyOrigin ()
+            //     .AllowAnyMethod ()
+            //     .AllowAnyHeader ().AllowCredentials ()));
 
             services.AddMediatR (typeof (List.Handler).Assembly); //Just one handler is good
             services.AddAutoMapper (typeof (List.Handler).Assembly); //It will take a look at the application folder
@@ -98,8 +96,8 @@ namespace API {
             }
             // app.UseHttpsRedirection();
             app.UseRouting ();
-            app.UseCors ("AllowAll");
-
+            // app.UseCors ("AllowAll");
+            app.UseCors ("CorsPolicy");
             app.UseAuthentication ();
             app.UseAuthorization ();
             // app.UseCors (MyAllowSpecificOrigins);
