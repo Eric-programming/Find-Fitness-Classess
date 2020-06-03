@@ -24,7 +24,7 @@ export default class TrainingClassStore {
   @observable selectedClass: ITrainingClass | null = null;
   @observable.ref hubConnection: HubConnection | null | undefined; //Only after the training class is loaded
 
-  @action createHubConnection = () => {
+  @action createHubConnection = (tcId: string) => {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(chatUrl, {
         accessTokenFactory: () => this.rootStore.utilStore.token!,
@@ -35,6 +35,10 @@ export default class TrainingClassStore {
     this.hubConnection
       .start()
       .then(() => console.log(this.hubConnection!.state))
+      .then(() => {
+        console.log("Attemping to join group");
+        this.hubConnection!.invoke("AddToGroup", tcId);
+      })
       .catch((error) => console.log("Error establishing connection: ", error));
 
     this.hubConnection.on("ReceiveComment", (comment) => {
@@ -42,7 +46,11 @@ export default class TrainingClassStore {
     });
   };
   @action stopHubConnection = () => {
-    this.hubConnection!.stop();
+    this.hubConnection!.invoke("RemoveFromGroup", this.selectedClass?.id)
+      .then(() => {
+        this.hubConnection!.stop();
+      })
+      .catch((err) => console.log(err));
   };
   @action addComment = async (values: any) => {
     values.trainingClassesId = this.selectedClass!.id;
@@ -141,6 +149,7 @@ export default class TrainingClassStore {
     this.loading = false;
   };
   @action createTrainingClass = async (trainingclass: ITrainingClass) => {
+    console.log("trainingclass", trainingclass);
     this.loading = true;
     try {
       await agent.TrainingClass.createClass(trainingclass);
@@ -148,6 +157,7 @@ export default class TrainingClassStore {
       attendee.isHost = true;
       let attendees = [];
       attendees.push(attendee);
+      trainingclass.comments = [];
       trainingclass.userTrainingClasses = attendees;
       trainingclass.isHost = true;
 

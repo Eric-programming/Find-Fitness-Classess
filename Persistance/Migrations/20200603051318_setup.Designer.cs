@@ -9,7 +9,7 @@ using Persistance;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200601001556_setup")]
+    [Migration("20200603051318_setup")]
     partial class setup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,6 +17,33 @@ namespace Persistance.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.2");
+
+            modelBuilder.Entity("Domain.Comment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("TrainingClassId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("TrainingClassId");
+
+                    b.ToTable("Comments");
+                });
 
             modelBuilder.Entity("Domain.TrainingClass", b =>
                 {
@@ -316,6 +343,17 @@ namespace Persistance.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Domain.Comment", b =>
+                {
+                    b.HasOne("Domain.User", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId");
+
+                    b.HasOne("Domain.TrainingClass", "TrainingClass")
+                        .WithMany("Comments")
+                        .HasForeignKey("TrainingClassId");
                 });
 
             modelBuilder.Entity("Domain.UserTrainingClass", b =>

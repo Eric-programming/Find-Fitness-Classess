@@ -192,6 +192,33 @@ namespace Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Body = table.Column<string>(nullable: true),
+                    AuthorId = table.Column<string>(nullable: true),
+                    TrainingClassId = table.Column<Guid>(nullable: true),
+                    CreatedAt = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_AspNetUsers_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_TrainingClasses_TrainingClassId",
+                        column: x => x.TrainingClassId,
+                        principalTable: "TrainingClasses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserTrainingClasses",
                 columns: table => new
                 {
@@ -270,6 +297,16 @@ namespace Persistance.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_AuthorId",
+                table: "Comments",
+                column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_TrainingClassId",
+                table: "Comments",
+                column: "TrainingClassId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserTrainingClasses_TrainingClassId",
                 table: "UserTrainingClasses",
                 column: "TrainingClassId");
@@ -291,6 +328,9 @@ namespace Persistance.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "UserTrainingClasses");

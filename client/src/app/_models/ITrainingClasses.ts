@@ -19,7 +19,6 @@ export interface ITrainingClass {
   hostUserName: string;
   comments: IComment[];
 }
-
 export interface IComment {
   id: string;
   createdAt: Date;

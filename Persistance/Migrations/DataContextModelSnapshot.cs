@@ -22,9 +22,6 @@ namespace Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("ActivityId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("AuthorId")
                         .HasColumnType("TEXT");
 
@@ -34,11 +31,14 @@ namespace Persistance.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
+                    b.Property<Guid?>("TrainingClassId")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ActivityId");
-
                     b.HasIndex("AuthorId");
+
+                    b.HasIndex("TrainingClassId");
 
                     b.ToTable("Comments");
                 });
@@ -345,13 +345,13 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("Domain.Comment", b =>
                 {
-                    b.HasOne("Domain.TrainingClass", "Activity")
-                        .WithMany("Comments")
-                        .HasForeignKey("ActivityId");
-
                     b.HasOne("Domain.User", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");
+
+                    b.HasOne("Domain.TrainingClass", "TrainingClass")
+                        .WithMany("Comments")
+                        .HasForeignKey("TrainingClassId");
                 });
 
             modelBuilder.Entity("Domain.UserTrainingClass", b =>

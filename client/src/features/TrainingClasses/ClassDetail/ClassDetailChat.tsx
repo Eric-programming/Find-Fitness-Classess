@@ -3,10 +3,9 @@ import { Segment, Header, Form, Button, Comment } from "semantic-ui-react";
 import { Form as FinalForm, Field } from "react-final-form";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import { formatDistance } from "date-fns";
 import { RootStoreContext } from "../../../app/stores/RootStore";
 import TextAreaInput from "../../../components/Form/TextAreaInput";
-
+import { formatDistance } from "date-fns";
 const ClassDetailChat = () => {
   const rootStore = useContext(RootStoreContext);
   const {
@@ -17,7 +16,7 @@ const ClassDetailChat = () => {
   } = rootStore.trainingClassessStore;
 
   useEffect(() => {
-    createHubConnection();
+    createHubConnection(selectedClass!.id);
     return () => {
       stopHubConnection();
     };
@@ -39,14 +38,18 @@ const ClassDetailChat = () => {
             selectedClass.comments &&
             selectedClass.comments.map((comment) => (
               <Comment key={comment.id}>
-                <Comment.Avatar src={comment.image || "/assets/user.png"} />
+                <Comment.Avatar src={comment.image || "/assets/user.jpg"} />
                 <Comment.Content>
                   <Comment.Author as={Link} to={`/profile/${comment.userName}`}>
                     {comment.fullName}
                   </Comment.Author>
                   <Comment.Metadata>
-                    <div>{comment.createdAt}</div>
-                    {/* <div>{formatDistance(comment.createdAt, new Date())}</div> */}
+                    <div>
+                      {formatDistance(
+                        new Date(comment.createdAt.toString()),
+                        new Date()
+                      )}
+                    </div>
                   </Comment.Metadata>
                   <Comment.Text>{comment.body}</Comment.Text>
                 </Comment.Content>
