@@ -39,5 +39,6 @@ namespace API.Controllers {
         public async Task<ActionResult<PhotoUploadResult>> RemovePhoto (string UserName) {
             return await Mediator.Send (new DeletePhoto.Command { UserName = UserName });
         }
+
     }
 }
