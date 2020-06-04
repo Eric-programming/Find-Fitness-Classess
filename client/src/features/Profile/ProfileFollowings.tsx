@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { TabPane, Tab, Grid, Header, Card } from "semantic-ui-react";
+import { Tab, Grid, Header, Card } from "semantic-ui-react";
 import { RootStoreContext } from "../../app/stores/RootStore";
 import { observer } from "mobx-react-lite";
 import ProfileCard from "./ProfileCard";

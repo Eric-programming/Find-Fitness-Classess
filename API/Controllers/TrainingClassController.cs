@@ -7,6 +7,7 @@ using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static Application.TrainingClasses.List;
 
 namespace API.Controllers {
     [Authorize]
@@ -16,8 +17,8 @@ namespace API.Controllers {
         // GET api/trainingclass
         [HttpGet]
         // [AllowAnonymous]
-        public async Task<ActionResult<List<OutputTrainingClass>>> GetTrainingClassess () {
-            var trainingclasses = await Mediator.Send (new List.Query ());
+        public async Task<ActionResult<TrainingClassEnvelope>> GetTrainingClassess (int? skip, int? take) {
+            var trainingclasses = await Mediator.Send (new List.Query (skip, take));
 
             return Ok (trainingclasses);
         }

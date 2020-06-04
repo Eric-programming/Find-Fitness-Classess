@@ -14,18 +14,6 @@ export default class ProfileStore {
 
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
-
-    // reaction(
-    //   () => this.activeTab,
-    //   (activeTab) => {
-    //     if (activeTab === 3 || activeTab === 4) {
-    //       const predicate = activeTab === 3 ? "followers" : "following";
-    //       this.loadFollowings(predicate);
-    //     } else {
-    //       this.followings = [];
-    //     }
-    //   }
-    // );
   }
   @action uploadPhoto = async (file: Blob) => {
     this.uploadingPhoto = true;
@@ -81,29 +69,6 @@ export default class ProfileStore {
       console.log(error);
     }
   };
-
-  //   @action uploadPhoto = async (file: Blob) => {
-  //     this.uploadingPhoto = true;
-  //     try {
-  //       const photo = await agent.Profiles.uploadPhoto(file);
-  //       runInAction(() => {
-  //         if (this.profile) {
-  //           this.profile.photos.push(photo);
-  //           if (photo.isMain && this.rootStore.userStore.user) {
-  //             this.rootStore.userStore.user.image = photo.url;
-  //             this.profile.image = photo.url;
-  //           }
-  //         }
-  //         this.uploadingPhoto = false;
-  //       });
-  //     } catch (error) {
-  //       console.log(error);
-  //       toast.error("Problem uploading photo");
-  //       runInAction(() => {
-  //         this.uploadingPhoto = false;
-  //       });
-  //     }
-  //   };
 
   @action updateProfile = async (profile: IProfileEdit) => {
     try {

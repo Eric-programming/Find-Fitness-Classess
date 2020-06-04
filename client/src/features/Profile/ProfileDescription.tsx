@@ -5,7 +5,7 @@ import ProfileEditForm from "./ProfileEditForm";
 
 const ProfileDescription = () => {
   const rootStore = useContext(RootStoreContext);
-  const { isCurrentUser, profile, updateProfile } = rootStore.profileStore;
+  const { isCurrentUser, profile } = rootStore.profileStore;
   const [editMode, setEditMode] = useState(false);
   return (
     <Tab.Pane>

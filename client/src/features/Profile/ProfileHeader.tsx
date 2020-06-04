@@ -7,7 +7,6 @@ import {
   Grid,
   Statistic,
   Divider,
-  Reveal,
 } from "semantic-ui-react";
 
 import { observer } from "mobx-react-lite";
