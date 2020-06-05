@@ -42,6 +42,9 @@ export default class ProfileStore {
       await agent.Profile.deletePhoto(this.rootStore.userStore.user?.userName!);
       this.profile!.image = null;
       this.loadingProfile = false;
+      const { user } = this.rootStore.userStore;
+      this.rootStore.trainingClassessStore.changeImage(null, user!.userName!);
+      this.rootStore.userStore.changeImage(null);
     } catch (error) {
       console.log("error", error);
       alert("Problem deleting photo");

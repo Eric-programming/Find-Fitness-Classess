@@ -16,7 +16,7 @@ export default class UserStore {
   @computed get isLoggedIn() {
     return !!this.user;
   }
-  @action changeImage = (url: string) => {
+  @action changeImage = (url: string | null) => {
     if (this.user) {
       this.user.image = url;
     }

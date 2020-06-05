@@ -39,16 +39,17 @@ const validate = combineValidators({
 });
 const defaultInput = {
   id: "",
-  address: "16932 71 ave",
+  address: "720 Douglas St 71 ave",
   category: "bodybuilding",
-  city: "surrey",
+  city: "Victoria",
   country: "Canada",
   dayOfWeek: 0,
-  description: "Hello this is a group training class",
+  description:
+    "Work out in a happy, high-energy environment that will get you to meet your fitness goals.",
   time: "",
-  postalCode: "V4NDL3",
+  postalCode: "V8W 3M7",
   province: "BC",
-  title: "TITLE",
+  title: "Greek God Physique",
   totalSpots: 0,
 };
 const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({

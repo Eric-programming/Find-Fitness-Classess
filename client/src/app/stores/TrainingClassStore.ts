@@ -246,7 +246,7 @@ export default class TrainingClassStore {
       alert("Problem cancelling attendance");
     }
   };
-  @action changeImage = (imageUrl: string, userName: string) => {
+  @action changeImage = (imageUrl: string | null, userName: string) => {
     this.trainingClassess = this.trainingClassess.map((e) => {
       const ut = e.userTrainingClasses.map((y) => {
         if (y.userName === userName) {
