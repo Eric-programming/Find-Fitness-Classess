@@ -29,7 +29,7 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
             <Item.Image
               size="tiny"
               circular
-              src="/assets/user.jpg"
+              src={TrainingClass.hostImage ?? "/assets/user.jpg"}
               style={{ marginBottom: "5%" }}
             />
             <Item.Content>

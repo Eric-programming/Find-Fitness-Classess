@@ -22,6 +22,7 @@ export interface ITrainingClass {
   isHost: boolean;
   hostName: string;
   hostUserName: string;
+  hostImage: string | null;
   comments: IComment[];
 }
 export interface IComment {

@@ -5,10 +5,11 @@ export const _setTrainingClass = (tc: ITrainingClass, user: IUser) => {
   tc.isHost = tc.userTrainingClasses.some(
     (x) => x.isHost && x.userName === user.userName
   );
-  const { fullName, userName } = tc.userTrainingClasses.filter(
+  const { fullName, userName, image } = tc.userTrainingClasses.filter(
     (x) => x.isHost
   )[0];
   tc.hostName = fullName;
   tc.hostUserName = userName;
+  tc.hostImage = image;
   return tc;
 };
