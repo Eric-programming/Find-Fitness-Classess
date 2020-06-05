@@ -24,10 +24,6 @@ const panes = [
   },
 ];
 
-// interface IProps {
-//     setActiveTab: (activeIndex: any) => void;
-// }
-
 const ProfileContent = () => {
   const rootStore = useContext(RootStoreContext);
   const { isCurrentUser, setActiveTab } = rootStore.profileStore;
@@ -39,7 +35,6 @@ const ProfileContent = () => {
       panes={
         !isCurrentUser ? panes.filter((e) => e.menuItem !== EditPhoto) : panes
       }
-      // onTabChange={(e, data) => setActiveTab(data.activeIndex)}
     />
   );
 };

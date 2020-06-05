@@ -19,6 +19,7 @@ export default class ProfileStore {
   @action uploadPhoto = async (file: Blob) => {
     this.uploadingPhoto = true;
     try {
+      this.loadingProfile = true;
       const photo = await agent.Profile.addPhoto(file);
       if (this.profile) {
         this.profile.image = photo.url;
@@ -54,7 +55,6 @@ export default class ProfileStore {
   }
 
   @action setActiveTab = (activeIndex: any) => {
-    console.log("activeIndex", activeIndex);
     this.activeTab = activeIndex;
   };
 
@@ -62,7 +62,6 @@ export default class ProfileStore {
     this.loadingProfile = true;
     try {
       const profile = await agent.Profile.getProfile(username);
-      console.log("profile", profile);
       this.profile = profile;
       this.loadingProfile = false;
     } catch (error) {
@@ -110,7 +109,6 @@ export default class ProfileStore {
   };
 
   @action loadFollowings = async (isFollower: boolean) => {
-    // this.loadingProfile = true;
     try {
       const profiles = await agent.Profile.listFollowings(
         this.profile!.username,
@@ -127,7 +125,6 @@ export default class ProfileStore {
     username: string,
     isHost: boolean
   ) => {
-    // this.loadingProfile = true;
     try {
       const ut = await agent.Profile.getProfileTrainingClassess(
         username,

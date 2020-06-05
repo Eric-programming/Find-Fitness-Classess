@@ -25,6 +25,7 @@ import {
 import NotFound from "../features/NotFound";
 import { RootStoreContext } from "./stores/RootStore";
 import Profile from "../features/Profile/Profile";
+import PrivateRoute from "./layout/PrivateRoute";
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const RootStore = useContext(RootStoreContext);
   const { AccountLoaded, setAccountLoaded, token } = RootStore.utilStore;
@@ -47,20 +48,20 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <Navbar />
             <Container style={{ marginTop: "7em" }}>
               <Switch>
-                <Route
+                <PrivateRoute
                   exact={true}
                   path={trainingClassessLink}
                   component={TrainingClassesDashboard}
                 />
-                <Route
+                <PrivateRoute
                   path={trainingClassessLink + withIdLink}
                   component={ClassDetail}
                 />
-                <Route
+                <PrivateRoute
                   path={profileLink + withUserNameLink}
                   component={Profile}
                 />
-                <Route
+                <PrivateRoute
                   key={location.key}
                   path={[
                     createTrainingClassLink,

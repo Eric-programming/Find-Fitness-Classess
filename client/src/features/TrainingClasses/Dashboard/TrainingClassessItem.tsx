@@ -70,9 +70,8 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
       <Segment>
         {/* TrainingClass.dayOfWeek */}
         <Icon name="clock" /> Every{" "}
-        {getDayOfWeek(TrainingClass.dayOfWeek!).text} at
-        {TrainingClass.time}
-        <Icon name="marker" /> {TrainingClass.address} {TrainingClass.city},
+        {getDayOfWeek(TrainingClass.dayOfWeek!).text} at {TrainingClass.time}
+        <Icon name="marker" /> {TrainingClass.address} {TrainingClass.city},{" "}
         {TrainingClass.country} {TrainingClass.postalCode}
       </Segment>
       {TrainingClass.userTrainingClasses.length > 0 ? (

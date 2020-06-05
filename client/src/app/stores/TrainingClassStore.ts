@@ -97,7 +97,6 @@ export default class TrainingClassStore {
         this.axiosParams
       );
       const newTC = trainingClasses;
-      // console.log("newTC", newTC);
       this.totalItems = totalCount;
       this.trainingClassess.push(
         ...newTC.filter((e) => {

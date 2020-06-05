@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import { observer } from "mobx-react-lite";
 import { RootStoreContext } from "../../../app/stores/RootStore";
 import TrainingClassFilter from "./TrainingClassFilter";
+import ListItemsPlaceholder from "./ListItemsPlaceholder";
 
 //Functional Component Type
 const TrainingClassesDashboard = () => {
@@ -15,6 +16,7 @@ const TrainingClassesDashboard = () => {
     setCurrentPage,
     currentPage,
     totalPages,
+    loading,
   } = TrainingClassess;
   const [loadingNext, setLoadingNext] = useState(false);
   const handleGetNext = () => {
@@ -29,14 +31,18 @@ const TrainingClassesDashboard = () => {
   return (
     <Grid>
       <Grid.Column width={10}>
-        <InfiniteScroll
-          pageStart={0}
-          loadMore={handleGetNext}
-          hasMore={!loadingNext && currentPage + 1 < totalPages}
-          initialLoad={false}
-        >
-          <TrainingClassessList />
-        </InfiniteScroll>
+        {loading && currentPage === 0 ? (
+          <ListItemsPlaceholder />
+        ) : (
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={handleGetNext}
+            hasMore={!loadingNext && currentPage + 1 < totalPages}
+            initialLoad={false}
+          >
+            <TrainingClassessList />
+          </InfiniteScroll>
+        )}
       </Grid.Column>
       <Grid.Column width={6}>
         <TrainingClassFilter />

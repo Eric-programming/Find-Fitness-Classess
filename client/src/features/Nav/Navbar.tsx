@@ -19,9 +19,7 @@ const Navbar = () => {
             <i className="fas fa-hands-helping"></i>Find Trainer
           </h1>
         </Menu.Item>
-        <Menu.Item name="Trainers" />
         <Menu.Item name="Classes" as={NavLink} to={trainingClassessLink} />
-
         <Menu.Item>
           <Button
             positive
@@ -32,7 +30,11 @@ const Navbar = () => {
         </Menu.Item>
         {user && (
           <Menu.Item position="right">
-            <Image avatar spaced="right" src={"/assets/user.jpg"} />
+            <Image
+              avatar
+              spaced="right"
+              src={user.image || "/assets/user.jpg"}
+            />
             <Dropdown pointing="top left" text={user.fullName}>
               <Dropdown.Menu>
                 <Dropdown.Item
