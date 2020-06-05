@@ -96,9 +96,16 @@ export default class TrainingClassStore {
       const { trainingClasses, totalCount } = await agent.TrainingClass.list(
         this.axiosParams
       );
+      const newTC = trainingClasses;
+      // console.log("newTC", newTC);
       this.totalItems = totalCount;
       this.trainingClassess.push(
-        ...trainingClasses.map((e) => _setTrainingClass(e, user!))
+        ...newTC.filter((e) => {
+          const dup = this.trainingClassess.some((x) => x.id === e.id);
+          if (!dup || this.trainingClassess.length === 0) {
+            return _setTrainingClass(e, user!);
+          }
+        })
       );
       this.loading = false;
     } catch (error) {
