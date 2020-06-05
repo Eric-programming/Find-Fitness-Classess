@@ -6,7 +6,8 @@ import { RootStoreContext } from "../../app/stores/RootStore";
 import { IProfileTrainingClass } from "../../app/_models/IProfile";
 import { trainingClassessLink } from "../../app/_constantVariables/_Links";
 import _addHypthen from "../../app/_helper/_addHypthen";
-import { getDayOfWeek } from "../../app/_helper/_getDayOfWeekWords";
+import { _getDayOfWeek } from "../../app/_helper/_getDayOfWeekWords";
+import _getTime from "../../app/_helper/_getTimes";
 
 const panes = [
   { menuItem: "Going", pane: { key: "going" } },
@@ -67,7 +68,8 @@ const ProfileEvents = () => {
                   <Card.Header textAlign="center">{tc.title}</Card.Header>
                   <Card.Meta textAlign="center">
                     <div>
-                      Every {getDayOfWeek(tc.dayOfWeek!)} at {tc.time}
+                      Every {_getDayOfWeek(tc.dayOfWeek!)} at{" "}
+                      {tc.time + _getTime(tc.time).meridiem}
                     </div>
                   </Card.Meta>
                 </Card.Content>

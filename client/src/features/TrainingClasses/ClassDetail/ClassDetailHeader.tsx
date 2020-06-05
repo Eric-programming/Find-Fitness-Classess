@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import _addHypthen from "../../../app/_helper/_addHypthen";
 import { observer } from "mobx-react-lite";
 import { RootStoreContext } from "../../../app/stores/RootStore";
-import { getDayOfWeek } from "../../../app/_helper/_getDayOfWeekWords";
+import { _getDayOfWeek } from "../../../app/_helper/_getDayOfWeekWords";
+import _getTime from "../../../app/_helper/_getTimes";
 const trainingClassImageStyle = {
   filter: "brightness(30%)",
 };
@@ -23,6 +24,8 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
 }) => {
   const RootStore = useContext(RootStoreContext);
   const { attendActivity, cancelAttendance } = RootStore.trainingClassessStore;
+  const spotsLeft =
+    trainingClass.totalSpots - trainingClass.userTrainingClasses.length;
   return (
     <>
       <Segment.Group>
@@ -38,15 +41,14 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
                 <Item.Content>
                   <Header
                     size="huge"
-                    content={`${trainingClass.title} (${
-                      trainingClass.totalSpots -
-                      trainingClass.userTrainingClasses.length
-                    } Spots Left!)`}
+                    content={`${trainingClass.title} (${spotsLeft} ${
+                      spotsLeft > 1 ? "Spots" : "Spot"
+                    } Left!)`}
                     style={{ color: "white" }}
                   />
                   <p>
-                    Every {getDayOfWeek(trainingClass.dayOfWeek)} at{" "}
-                    {trainingClass.time}
+                    Every {_getDayOfWeek(trainingClass.dayOfWeek)} at{" "}
+                    {trainingClass.time + _getTime(trainingClass.time).meridiem}
                   </p>
                   <p>
                     Hosted By{" "}

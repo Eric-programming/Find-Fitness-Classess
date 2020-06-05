@@ -19,13 +19,15 @@ export default class ProfileStore {
   @action uploadPhoto = async (file: Blob) => {
     this.uploadingPhoto = true;
     try {
-      this.loadingProfile = true;
       const photo = await agent.Profile.addPhoto(file);
       if (this.profile) {
         this.profile.image = photo.url;
-        if (this.rootStore.userStore.user) {
-          this.rootStore.userStore.user.image = photo.url;
-        }
+        const { user } = this.rootStore.userStore;
+        this.rootStore.trainingClassessStore.changeImage(
+          photo.url,
+          user!.userName!
+        );
+        this.rootStore.userStore.changeImage(photo.url);
       }
       this.uploadingPhoto = false;
     } catch (error) {
@@ -42,8 +44,8 @@ export default class ProfileStore {
       this.loadingProfile = false;
     } catch (error) {
       console.log("error", error);
-      this.loadingProfile = false;
       alert("Problem deleting photo");
+      this.loadingProfile = false;
     }
   };
 
@@ -65,6 +67,7 @@ export default class ProfileStore {
       this.profile = profile;
       this.loadingProfile = false;
     } catch (error) {
+      alert("Fail load profile");
       this.loadingProfile = false;
       console.log(error);
     }
@@ -107,7 +110,6 @@ export default class ProfileStore {
       this.loadingProfile = false;
     }
   };
-
   @action loadFollowings = async (isFollower: boolean) => {
     try {
       const profiles = await agent.Profile.listFollowings(

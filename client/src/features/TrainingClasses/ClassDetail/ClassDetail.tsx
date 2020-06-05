@@ -18,7 +18,7 @@ const ClassDetail: React.FC<RouteComponentProps<DetailParams>> = ({
     getTrainingClass(match.params.id);
   }, [match, getTrainingClass]);
   if (selectedClass === null) {
-    return <h2>Class not found</h2>;
+    return null;
   }
   return (
     <Grid>

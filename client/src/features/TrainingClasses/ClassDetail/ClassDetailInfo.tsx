@@ -1,7 +1,8 @@
 import React from "react";
 import { ITrainingClass } from "../../../app/_models/ITrainingClasses";
 import { Segment, Grid, Icon } from "semantic-ui-react";
-import { getDayOfWeek } from "../../../app/_helper/_getDayOfWeekWords";
+import { _getDayOfWeek } from "../../../app/_helper/_getDayOfWeekWords";
+import _getTime from "../../../app/_helper/_getTimes";
 
 const ClassDetailInfo: React.FC<{ trainingClass: ITrainingClass }> = ({
   trainingClass,
@@ -25,8 +26,8 @@ const ClassDetailInfo: React.FC<{ trainingClass: ITrainingClass }> = ({
           </Grid.Column>
           <Grid.Column width={15}>
             <span>
-              Every {getDayOfWeek(trainingClass.dayOfWeek)} at{" "}
-              {trainingClass.time}
+              Every {_getDayOfWeek(trainingClass.dayOfWeek)} at{" "}
+              {trainingClass.time + _getTime(trainingClass.time).meridiem}
             </span>
           </Grid.Column>
         </Grid>

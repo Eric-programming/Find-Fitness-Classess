@@ -15,7 +15,6 @@ interface IProps extends RouteProps {
 const PrivateRoute: React.FC<IProps> = ({ component: Component, ...rest }) => {
   const rootStore = useContext(RootStoreContext);
   const { isLoggedIn } = rootStore.userStore;
-  console.log("isLoggedIn", isLoggedIn);
   return (
     <Route
       {...rest}

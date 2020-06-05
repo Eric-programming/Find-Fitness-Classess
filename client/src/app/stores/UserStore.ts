@@ -16,11 +16,14 @@ export default class UserStore {
   @computed get isLoggedIn() {
     return !!this.user;
   }
-
+  @action changeImage = (url: string) => {
+    if (this.user) {
+      this.user.image = url;
+    }
+  };
   @action login = async (values: IUserFormValues) => {
     try {
       const user = await agent.User.login(values);
-      console.log("user", user);
       this.user = user;
       if (user) {
         history.push(trainingClassessLink);

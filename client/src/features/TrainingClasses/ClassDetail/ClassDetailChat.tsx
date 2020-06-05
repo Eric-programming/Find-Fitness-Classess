@@ -71,7 +71,7 @@ const ClassDetailChat = () => {
                   content="Add Reply"
                   labelPosition="left"
                   icon="edit"
-                  primary
+                  primary={true}
                 />
               </Form>
             )}

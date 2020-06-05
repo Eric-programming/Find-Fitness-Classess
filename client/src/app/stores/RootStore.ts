@@ -4,8 +4,6 @@ import { createContext } from "react";
 import UtilStore from "./utilStore";
 import ProfileStore from "./ProfileStore";
 
-// configure({ enforceActions: "always" });
-
 export class RootStore {
   trainingClassessStore: TrainingClassStore;
   userStore: UserStore;

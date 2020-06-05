@@ -3,7 +3,6 @@ import { chatUrl } from "./../_constantVariables/_base";
 import { _createAttendee } from "./../_helper/_createAttendee";
 import { _setTrainingClass } from "./../_helper/_setTrainingClass";
 import { observable, action, computed } from "mobx";
-import { ITrainingClass } from "../_models/ITrainingClasses";
 import agent from "../api/agent";
 import _getTime from "../_helper/_getTimes";
 import { RootStore } from "./RootStore";
@@ -12,6 +11,7 @@ import {
   HubConnectionBuilder,
   LogLevel,
 } from "@microsoft/signalr";
+import { ITrainingClass } from "../_models/ITrainingClasses";
 
 export default class TrainingClassStore {
   rootStore: RootStore;
@@ -108,6 +108,7 @@ export default class TrainingClassStore {
       );
       this.loading = false;
     } catch (error) {
+      alert("Fail loadin the training class");
       console.log("Error loading training classes::::", error);
       this.loading = false;
     }
@@ -159,13 +160,14 @@ export default class TrainingClassStore {
       await agent.TrainingClass.deleteClass(id);
       this.trainingClassess = this.trainingClassess.filter((x) => x.id !== id);
       this.selectedClass = null;
+      this.loading = false;
     } catch (error) {
+      alert("Fail Delete Edit Training Class");
       console.log("error for deleting training class", error);
+      this.loading = false;
     }
-    this.loading = false;
   };
   @action editTrainingClass = async (trainingclass: ITrainingClass) => {
-    console.log("trainingclass", trainingclass);
     const { user } = this.rootStore.userStore;
     this.loading = true;
     try {
@@ -175,10 +177,12 @@ export default class TrainingClassStore {
       );
       this.trainingClassess.unshift(_setTrainingClass(trainingclass, user!));
       this.editSelectClass(trainingclass.id);
+      this.loading = false;
     } catch (error) {
+      alert("Fail Edit Training Class");
       console.log("error", error);
+      this.loading = false;
     }
-    this.loading = false;
   };
   @action createTrainingClass = async (trainingclass: ITrainingClass) => {
     console.log("trainingclass", trainingclass);
@@ -195,10 +199,12 @@ export default class TrainingClassStore {
       trainingclass.isHost = true;
       this.trainingClassess.unshift(_setTrainingClass(trainingclass, user!));
       this.editSelectClass(trainingclass.id);
+      this.loading = false;
     } catch (error) {
+      alert("Fail to create training class");
       console.log("error for creating training class", error);
+      this.loading = false;
     }
-    this.loading = false;
   };
   @action reset = () => {
     this.selectedClass = null;
@@ -235,8 +241,21 @@ export default class TrainingClassStore {
         this.loading = false;
       }
     } catch (error) {
+      console.log("error", error);
       this.loading = false;
       alert("Problem cancelling attendance");
     }
+  };
+  @action changeImage = (imageUrl: string, userName: string) => {
+    this.trainingClassess = this.trainingClassess.map((e) => {
+      const ut = e.userTrainingClasses.map((y) => {
+        if (y.userName === userName) {
+          y.image = imageUrl;
+        }
+        return y;
+      });
+      e.userTrainingClasses = ut;
+      return e;
+    });
   };
 }

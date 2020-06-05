@@ -12,7 +12,8 @@ import {
 import { trainingClassessLink } from "../../../app/_constantVariables/_Links";
 import { RootStoreContext } from "../../../app/stores/RootStore";
 import ListAttendee from "./ListAttendees";
-import { getDayOfWeek } from "../../../app/_helper/_getDayOfWeekWords";
+import { _getDayOfWeek } from "../../../app/_helper/_getDayOfWeekWords";
+import _getTime from "../../../app/_helper/_getTimes";
 
 const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
   TrainingClass,
@@ -66,8 +67,8 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
       </Segment>
       <Segment>
         {/* TrainingClass.dayOfWeek */}
-        <Icon name="clock" /> Every {getDayOfWeek(TrainingClass.dayOfWeek!)} at{" "}
-        {TrainingClass.time}
+        <Icon name="clock" /> Every {_getDayOfWeek(TrainingClass.dayOfWeek!)} at{" "}
+        {TrainingClass.time + _getTime(TrainingClass.time).meridiem}
         <Icon name="marker" /> {TrainingClass.address} {TrainingClass.city},{" "}
         {TrainingClass.country} {TrainingClass.postalCode}
       </Segment>
