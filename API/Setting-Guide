@@ -2,3 +2,8 @@ All Keys are in dotnet user-secrets.
 Please do:
 1. cd api
 2. dotnet user-secrets list
+//////////////////////
+dotnet user-secrets set "TokenKey" "thisisverysecret"
+dotnet user-secrets set "CloudinarySetting:CloudName" "dwxrkenav"
+dotnet user-secrets set "CloudinarySetting:ApiKey" "599524144928375"
+dotnet user-secrets set "CloudinarySetting:ApiSecret" "ooSFgebM7V1GaJqW9s-mQCrgdsY"

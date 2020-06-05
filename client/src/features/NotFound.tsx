@@ -12,7 +12,7 @@ const NotFound = () => {
       </Header>
       <Segment.Inline>
         <Button as={Link} to={trainingClassessLink} primary>
-          Return to Activities page
+          Return to Dashboard page
         </Button>
       </Segment.Inline>
     </Segment>

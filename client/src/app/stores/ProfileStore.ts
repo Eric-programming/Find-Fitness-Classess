@@ -16,6 +16,12 @@ export default class ProfileStore {
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
   }
+  @action resetProfile = () => {
+    this.uploadingPhoto = false;
+    this.profile = null;
+    this.follows = [];
+    this.userTrainingClassess = [];
+  };
   @action uploadPhoto = async (file: Blob) => {
     this.uploadingPhoto = true;
     try {
@@ -138,7 +144,7 @@ export default class ProfileStore {
       this.userTrainingClassess = ut;
       this.loadingProfile = false;
     } catch (error) {
-      alert("Problem loading activities");
+      alert("Problem loading classess");
       this.loadingProfile = false;
     }
   };

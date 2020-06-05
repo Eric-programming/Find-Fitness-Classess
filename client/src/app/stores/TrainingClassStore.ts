@@ -28,6 +28,13 @@ export default class TrainingClassStore {
   @computed get totalPages() {
     return Math.ceil(this.totalItems / _store_take);
   }
+  @action resetTC = () => {
+    this.trainingClassess = [];
+    this.selectedClass = null;
+    this.loading = false;
+    this.totalItems = 0;
+    this.currentPage = 0;
+  };
   @action setPredicate = (predicate: string, value: string | Date) => {
     this.predicate.clear();
     if (predicate !== "all") {
@@ -96,6 +103,7 @@ export default class TrainingClassStore {
       const { trainingClasses, totalCount } = await agent.TrainingClass.list(
         this.axiosParams
       );
+      console.log("trainingClasses", trainingClasses);
       const newTC = trainingClasses;
       this.totalItems = totalCount;
       this.trainingClassess.push(
@@ -225,7 +233,7 @@ export default class TrainingClassStore {
       }
     } catch (error) {
       this.loading = false;
-      alert("Problem signing up to activity");
+      alert("Problem signing up to classess");
     }
   };
 

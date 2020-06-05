@@ -23,6 +23,7 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
   trainingClass,
 }) => {
   const RootStore = useContext(RootStoreContext);
+  const { user } = RootStore.userStore;
   const { attendActivity, cancelAttendance } = RootStore.trainingClassessStore;
   const spotsLeft =
     trainingClass.totalSpots - trainingClass.userTrainingClasses.length;
@@ -69,7 +70,7 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
               color="orange"
               floated="right"
             >
-              Manage Event
+              Manage Class
             </Button>
           ) : trainingClass.isGoing ? (
             <Button onClick={() => cancelAttendance()}>
@@ -77,7 +78,7 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
             </Button>
           ) : (
             <Button color="teal" onClick={() => attendActivity()}>
-              Join trainingClass
+              Join Class
             </Button>
           )}
         </Segment>

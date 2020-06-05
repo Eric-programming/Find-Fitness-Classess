@@ -48,7 +48,7 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
                   <Label
                     basic
                     color="orange"
-                    content="You are hosting this activity"
+                    content="You are hosting this Class"
                   />
                 </Item.Description>
               )}
@@ -57,7 +57,7 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
                   <Label
                     basic
                     color="green"
-                    content="You are going to this activity"
+                    content="You are going to this Class"
                   />
                 </Item.Description>
               )}

@@ -14,8 +14,6 @@ namespace Application.TrainingClasses {
         public class Command : IRequest {
             public Guid Id { get; set; }
             public string Title { get; set; }
-
-            [StringLength (80)]
             public string Description { get; set; }
             public string Category { get; set; }
             public string Time { get; set; }

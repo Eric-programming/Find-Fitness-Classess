@@ -35,12 +35,7 @@ namespace Application.TrainingClasses {
                 if (TrainingClass == null)
                     throw new ErrorException (HttpStatusCode.NotFound, new { TrainingClasses = "Not found" });
                 var ListDetail = _mapper.Map<TrainingClass, OutputTrainingClass> (TrainingClass);
-                // foreach (var item in ListDetail.UserTrainingClasses) {
-                //     if (item.userName == _userAccessor.GetCurrentUsername()){
-                //         ListDetail.UserTrainingClasses = true;
-                //     }
-                // }
-                // ListDetail.ToList()
+
                 return ListDetail;
             }
         }
