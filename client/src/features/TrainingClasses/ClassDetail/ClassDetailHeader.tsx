@@ -42,9 +42,13 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
                 <Item.Content>
                   <Header
                     size="huge"
-                    content={`${trainingClass.title} (${spotsLeft} ${
-                      spotsLeft > 1 ? "Spots" : "Spot"
-                    } Left!)`}
+                    content={`${trainingClass.title} ${
+                      spotsLeft > 0
+                        ? `(${spotsLeft} ${
+                            spotsLeft > 1 ? "Spots Left" : "Spot Left!"
+                          } )`
+                        : "(Full)"
+                    }`}
                     style={{ color: "white" }}
                   />
                   <p>

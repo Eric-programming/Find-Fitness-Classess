@@ -22,7 +22,7 @@ namespace Application.TrainingClasses {
         public class Query : IRequest<TrainingClassEnvelope> {
 
             public Query (int? skip, int? take, bool isGoing, bool isHost, string? startTime) {
-                StartTime = startTime == null ? TimeConverter.TimeNowToMins () : TimeConverter.TimeToMins (startTime);
+                StartTime = startTime == null ? 0 : TimeConverter.TimeToMins (startTime);
                 IsHost = isHost;
                 IsGoing = isGoing;
                 Skip = skip;
@@ -49,8 +49,11 @@ namespace Application.TrainingClasses {
                     throw new ErrorException (HttpStatusCode.BadRequest, new { TrainingClasses = "Invalid Time" });
                 }
                 var queryable = _context.TrainingClasses.Include (x => x.UserTrainingClasses).Include ("UserTrainingClasses.User")
-                    .OrderBy (x => x.Time).Where (x => x.Time >= request.StartTime).AsQueryable ();
+                    .OrderBy (x => x.Time).AsQueryable ();
                 var userName = _userAccessor.GetCurrentUsername ();
+                if (request.StartTime != null) {
+                    queryable = queryable.Where (x => x.Time >= request.StartTime);
+                }
                 if (request.IsGoing && !request.IsHost) {
                     queryable = queryable.Where (x => x.UserTrainingClasses.Any (y => y.User.UserName == userName && y.IsHost == false));
                 }

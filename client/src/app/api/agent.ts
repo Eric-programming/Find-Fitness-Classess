@@ -57,7 +57,7 @@ axios.interceptors.response.use(undefined, (err) => {
   if (status === 401) {
     window.localStorage.removeItem(_name_tokenName);
     history.push("/");
-    alert("Your session has expired, please login again");
+    alert("You are Unauthorized.");
   }
   if (config.url === _api_user + _api_signup && status === 400) {
     for (let [key, value] of Object.entries(data.errors)) {

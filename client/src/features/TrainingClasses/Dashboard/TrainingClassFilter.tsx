@@ -18,7 +18,7 @@ const TrainingClassFilter = () => {
           onClick={() => setPredicate("all", "true")}
           color={"blue"}
           name={"all"}
-          content={"All Activities"}
+          content={"All Classess"}
         />
         <Menu.Item
           active={predicate.has("isGoing")}
