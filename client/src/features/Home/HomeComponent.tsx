@@ -28,7 +28,7 @@ const HomeComponent = () => {
               content={`Welcome back ${user?.fullName}`}
             />
             <Button as={Link} to={trainingClassessLink} size="huge" inverted>
-              Go to activities!
+              Go to Training Classess!
             </Button>
           </Fragment>
         ) : (

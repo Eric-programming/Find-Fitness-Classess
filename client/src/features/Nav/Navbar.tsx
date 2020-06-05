@@ -16,7 +16,7 @@ const Navbar = () => {
       <Container>
         <Menu.Item header as={Link} exact={true} to={homeLink}>
           <h1>
-            <i className="fas fa-hands-helping"></i>Find Trainer
+            <i>Find Fitness Classess</i>
           </h1>
         </Menu.Item>
         <Menu.Item name="Classes" as={NavLink} to={trainingClassessLink} />

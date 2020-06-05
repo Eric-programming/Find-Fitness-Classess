@@ -68,7 +68,6 @@ const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({
     if (match.params.id && form.id.length === 0) {
       getTrainingClass(match.params.id).then(
         (res: ITrainingClass | undefined) => {
-          console.log("res", res);
           setForm(res ? res : defaultInput);
         }
       );
@@ -78,6 +77,7 @@ const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({
     };
   }, [reset, getTrainingClass, match.params.id, form.id]);
   const handleFinalFormSubmit = async (value: any) => {
+    value.totalSpots = parseInt(value.totalSpots);
     if (value.id.length === 0) {
       const newId = uuidv4();
       createTrainingClass({
@@ -171,6 +171,7 @@ const ClassForm: React.FC<RouteComponentProps<DetailParams>> = ({
                   placeholder="Total Spots"
                   name="totalSpots"
                   component={TextInput}
+                  type="number"
                   value={form?.totalSpots.toString()}
                 />
                 <Button

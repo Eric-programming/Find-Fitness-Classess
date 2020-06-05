@@ -63,7 +63,7 @@ const ProfileHeader: React.FC<IProps> = ({ profile }) => {
               />
             </>
           ) : null}
-          {profile.image !== null ? (
+          {profile.image !== null && isCurrentUser ? (
             <Button
               style={{ marginTop: "1%" }}
               onClick={() => deletePhoto()}

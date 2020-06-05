@@ -165,6 +165,7 @@ export default class TrainingClassStore {
     this.loading = false;
   };
   @action editTrainingClass = async (trainingclass: ITrainingClass) => {
+    console.log("trainingclass", trainingclass);
     const { user } = this.rootStore.userStore;
     this.loading = true;
     try {
@@ -180,6 +181,7 @@ export default class TrainingClassStore {
     this.loading = false;
   };
   @action createTrainingClass = async (trainingclass: ITrainingClass) => {
+    console.log("trainingclass", trainingclass);
     const { user } = this.rootStore.userStore;
     this.loading = true;
     try {

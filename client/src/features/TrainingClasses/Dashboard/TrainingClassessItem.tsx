@@ -12,7 +12,7 @@ import {
 import { trainingClassessLink } from "../../../app/_constantVariables/_Links";
 import { RootStoreContext } from "../../../app/stores/RootStore";
 import ListAttendee from "./ListAttendees";
-import { dayOfWeekOptions } from "../../../options/dayOfWeekOptions";
+import { getDayOfWeek } from "../../../app/_helper/_getDayOfWeekWords";
 
 const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
   TrainingClass,
@@ -20,9 +20,6 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
   const root = useContext(RootStoreContext);
   const { user } = root.userStore;
   const { editSelectClass, deleteTrainingClass } = root.trainingClassessStore;
-  const getDayOfWeek = (dayOfWeek: number) => {
-    return dayOfWeekOptions.filter((x) => x.value === dayOfWeek)[0];
-  };
   return (
     <Segment.Group>
       <Segment>
@@ -69,8 +66,8 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
       </Segment>
       <Segment>
         {/* TrainingClass.dayOfWeek */}
-        <Icon name="clock" /> Every{" "}
-        {getDayOfWeek(TrainingClass.dayOfWeek!).text} at {TrainingClass.time}
+        <Icon name="clock" /> Every {getDayOfWeek(TrainingClass.dayOfWeek!)} at{" "}
+        {TrainingClass.time}
         <Icon name="marker" /> {TrainingClass.address} {TrainingClass.city},{" "}
         {TrainingClass.country} {TrainingClass.postalCode}
       </Segment>
@@ -90,7 +87,7 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
           to={trainingClassessLink + `/${TrainingClass.id}`}
           onClick={() => editSelectClass(TrainingClass.id)}
         />
-        {user?.userName == TrainingClass.hostUserName ? (
+        {user?.userName === TrainingClass.hostUserName ? (
           <Button
             floated="right"
             content="Delete"

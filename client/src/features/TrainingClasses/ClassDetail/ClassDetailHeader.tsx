@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import _addHypthen from "../../../app/_helper/_addHypthen";
 import { observer } from "mobx-react-lite";
 import { RootStoreContext } from "../../../app/stores/RootStore";
+import { getDayOfWeek } from "../../../app/_helper/_getDayOfWeekWords";
 const trainingClassImageStyle = {
   filter: "brightness(30%)",
 };
@@ -37,10 +38,16 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
                 <Item.Content>
                   <Header
                     size="huge"
-                    content={trainingClass.title}
+                    content={`${trainingClass.title} (${
+                      trainingClass.totalSpots -
+                      trainingClass.userTrainingClasses.length
+                    } Spots Left!)`}
                     style={{ color: "white" }}
                   />
-                  <p>{trainingClass.time}</p>
+                  <p>
+                    Every {getDayOfWeek(trainingClass.dayOfWeek)} at{" "}
+                    {trainingClass.time}
+                  </p>
                   <p>
                     Hosted By{" "}
                     <Link to={`/profile/${trainingClass.hostUserName}`}>
