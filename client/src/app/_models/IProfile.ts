@@ -11,3 +11,10 @@ export interface IProfileEdit {
   fullName: string;
   bio: string;
 }
+export interface IProfileTrainingClass {
+  id: string;
+  title: string;
+  category: string;
+  time: string;
+  dayOfWeek: number;
+}

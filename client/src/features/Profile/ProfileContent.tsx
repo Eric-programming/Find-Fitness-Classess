@@ -3,16 +3,16 @@ import { Tab } from "semantic-ui-react";
 import ProfilePhotos from "./ProfilePhotos";
 import ProfileDescription from "./ProfileDescription";
 import ProfileFollowings from "./ProfileFollowings";
-import ProfileClassess from "./ProfileClassess";
 import { RootStoreContext } from "../../app/stores/RootStore";
+import ProfileTrainingClassess from "./ProfileTrainingClassess";
 
 const EditPhoto = "Edit Photo";
 const panes = [
   { menuItem: "About", render: () => <ProfileDescription /> },
   { menuItem: EditPhoto, render: () => <ProfilePhotos /> },
   {
-    menuItem: "Activities",
-    render: () => <ProfileClassess />,
+    menuItem: "Training Classess",
+    render: () => <ProfileTrainingClassess />,
   },
   {
     menuItem: "Followers",

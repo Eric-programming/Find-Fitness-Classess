@@ -1,4 +1,4 @@
-import { IProfileEdit } from "./../_models/IProfile";
+import { IProfileEdit, IProfileTrainingClass } from "./../_models/IProfile";
 import { RootStore } from "./RootStore";
 import { observable, action, computed } from "mobx";
 import agent from "../api/agent";
@@ -11,6 +11,7 @@ export default class ProfileStore {
   @observable loadingProfile: boolean = true;
   @observable follows: IProfile[] = [];
   @observable activeTab: number = 0;
+  @observable userTrainingClassess: IProfileTrainingClass[] = [];
 
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
@@ -119,6 +120,23 @@ export default class ProfileStore {
       this.loadingProfile = false;
     } catch (error) {
       alert("Problem loading followings");
+      this.loadingProfile = false;
+    }
+  };
+  @action loadProfileTrainingClassess = async (
+    username: string,
+    isHost: boolean
+  ) => {
+    // this.loadingProfile = true;
+    try {
+      const ut = await agent.Profile.getProfileTrainingClassess(
+        username,
+        isHost
+      );
+      this.userTrainingClassess = ut;
+      this.loadingProfile = false;
+    } catch (error) {
+      alert("Problem loading activities");
       this.loadingProfile = false;
     }
   };

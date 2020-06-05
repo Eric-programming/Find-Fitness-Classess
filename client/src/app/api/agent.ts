@@ -1,3 +1,4 @@
+import { IProfileTrainingClass } from "./../_models/IProfile";
 import { ITrainingClassEnvelope } from "./../_models/ITrainingClasses";
 import { _name_tokenName } from "./../_constantVariables/_names";
 import { IUserFormValues } from "./../_models/IUser";
@@ -108,6 +109,13 @@ const User = {
 const Profile = {
   getProfile: (username: string): Promise<IProfile> =>
     requests.get(`${_api_profile}/${username}`),
+  getProfileTrainingClassess: (
+    username: string,
+    isHost: boolean
+  ): Promise<IProfileTrainingClass[]> =>
+    requests.get(
+      `${_api_profile}/${username}${_api_trainingClassess}?isHost=${isHost}`
+    ),
   addPhoto: (photo: Blob): Promise<IPhoto> =>
     requests.postForm(_api_user + _api_add_photo, photo),
   deletePhoto: (userName: string): Promise<IPhoto> =>
