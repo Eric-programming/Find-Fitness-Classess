@@ -22,3 +22,24 @@ Add all projects to solution file like
 =========================================
 Add References
 dotnet add ref ...
+
+
+///////////////////////////App Setting
+{
+  "ConnectionStrings": {
+    "DefaultCOnnection": "Data source=find-trainer.db"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "CloudinarySettings": {
+    "CloudName": "df4wo0lfq",
+    "ApiKey": "557275171173912",
+    "ApiSecret": "LEY_5Tk4iA56YYyv_d1X6FCFvdg"
+  }
+}
