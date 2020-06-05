@@ -1,3 +1,4 @@
+import { ITrainingClassEnvelope } from "./../_models/ITrainingClasses";
 import { _name_tokenName } from "./../_constantVariables/_names";
 import { IUserFormValues } from "./../_models/IUser";
 import {
@@ -82,7 +83,10 @@ const requests = {
   },
 };
 const TrainingClass = {
-  list: (): Promise<ITrainingClass[]> => requests.get(_api_trainingClassess),
+  list: (axiosParams: URLSearchParams): Promise<ITrainingClassEnvelope> =>
+    axios
+      .get(_api_trainingClassess, { params: axiosParams })
+      .then(responseBody),
   details: (id: string) => requests.get(`${_api_trainingClassess}/${id}`),
   createClass: (trainingClass: ITrainingClass) =>
     requests.post(`${_api_trainingClassess}`, trainingClass),

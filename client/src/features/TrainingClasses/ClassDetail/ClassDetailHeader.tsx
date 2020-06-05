@@ -25,6 +25,7 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
   return (
     <>
       <Segment.Group>
+        {/* {JSON.stringify(trainingClass)} */}
         <Segment basic attached="top" style={{ padding: "0" }}>
           <Image
             src={`/assets/${_addHypthen(trainingClass.category)}.jpeg`}

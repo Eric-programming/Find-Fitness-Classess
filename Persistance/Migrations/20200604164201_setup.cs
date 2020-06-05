@@ -58,7 +58,7 @@ namespace Persistance.Migrations
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Category = table.Column<string>(nullable: true),
-                    Time = table.Column<string>(nullable: true),
+                    Time = table.Column<int>(nullable: false),
                     DayOfWeek = table.Column<int>(nullable: false),
                     City = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),

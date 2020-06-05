@@ -12,7 +12,6 @@ import { trainingClassessLink } from "../../app/_constantVariables/_Links";
 import { RootStoreContext } from "../../app/stores/RootStore";
 import LoginForm from "../User/loginForm";
 import RegisterForm from "../User/RegisterForm";
-import { _api_trainingClassess } from "../../app/_constantVariables/_apiLinks";
 
 const HomeComponent = () => {
   const rootStore = useContext(RootStoreContext);

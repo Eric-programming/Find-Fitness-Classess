@@ -73,8 +73,8 @@ namespace Persistance.Migrations
                     b.Property<string>("Province")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Time")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Time")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");

@@ -14,26 +14,22 @@ const TrainingClassessList = () => {
   } else {
     return (
       <>
-        {GroupClassess(trainingClassess, false).map(
-          (trainingClassess, index) => {
-            const { hr, meridiem } = _getTime(trainingClassess[0].time);
-            return (
-              <Fragment key={index}>
-                <Label size="large" color="blue">
-                  {hr} {meridiem}
-                </Label>
-                <Item.Group divided>
-                  {trainingClassess &&
-                    trainingClassess.map((e: ITrainingClass) => {
-                      return (
-                        <TrainingClassessItem TrainingClass={e} key={e.id} />
-                      );
-                    })}
-                </Item.Group>
-              </Fragment>
-            );
-          }
-        )}
+        {GroupClassess(trainingClassess).map((trainingClassess, index) => {
+          const { hr, meridiem } = _getTime(trainingClassess[0].time);
+          return (
+            <Fragment key={index}>
+              <Label size="large" color="blue">
+                {hr} {meridiem}
+              </Label>
+              <Item.Group divided>
+                {trainingClassess &&
+                  trainingClassess.map((e: ITrainingClass, i: number) => {
+                    return <TrainingClassessItem TrainingClass={e} key={i} />;
+                  })}
+              </Item.Group>
+            </Fragment>
+          );
+        })}
       </>
     );
   }

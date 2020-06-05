@@ -1,7 +1,8 @@
+import { _store_take } from "./../_constantVariables/_store";
 import { chatUrl } from "./../_constantVariables/_base";
 import { _createAttendee } from "./../_helper/_createAttendee";
 import { _setTrainingClass } from "./../_helper/_setTrainingClass";
-import { observable, action } from "mobx";
+import { observable, action, computed } from "mobx";
 import { ITrainingClass } from "../_models/ITrainingClasses";
 import agent from "../api/agent";
 import _getTime from "../_helper/_getTimes";
@@ -12,7 +13,6 @@ import {
   HubConnectionBuilder,
   LogLevel,
 } from "@microsoft/signalr";
-import { base } from "../_constantVariables/_base";
 
 export default class TrainingClassStore {
   rootStore: RootStore;
@@ -23,7 +23,37 @@ export default class TrainingClassStore {
   @observable loading: boolean = false;
   @observable selectedClass: ITrainingClass | null = null;
   @observable.ref hubConnection: HubConnection | null | undefined; //Only after the training class is loaded
-
+  @observable totalItems: number = 0;
+  @observable currentPage: number = 0;
+  @observable predicate = new Map();
+  @computed get totalPages() {
+    return Math.ceil(this.totalItems / _store_take);
+  }
+  @action setPredicate = (predicate: string, value: string | Date) => {
+    this.predicate.clear();
+    if (predicate !== "all") {
+      this.predicate.set(predicate, value);
+    }
+    this.resetFilter();
+  };
+  @computed get axiosParams() {
+    const params = new URLSearchParams();
+    params.append("take", String(_store_take));
+    params.append(
+      "skip",
+      `${this.currentPage ? this.currentPage * _store_take : 0}`
+    );
+    this.predicate.forEach((value, key) => {
+      params.append(key, value);
+    });
+    return params;
+  }
+  @action resetFilter = () => {
+    this.currentPage = 0;
+    this.trainingClassess = [];
+    this.loadingTrainingClassess();
+  };
+  @action setCurrentPage = (page: number) => (this.currentPage = page);
   @action createHubConnection = (tcId: string) => {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(chatUrl, {
@@ -64,8 +94,13 @@ export default class TrainingClassStore {
     this.loading = true;
     const { user } = this.rootStore.userStore;
     try {
-      const tc = await agent.TrainingClass.list();
-      this.trainingClassess = tc.map((e) => _setTrainingClass(e, user!));
+      const { trainingClasses, totalCount } = await agent.TrainingClass.list(
+        this.axiosParams
+      );
+      this.totalItems = totalCount;
+      this.trainingClassess.push(
+        ...trainingClasses.map((e) => _setTrainingClass(e, user!))
+      );
       this.loading = false;
     } catch (error) {
       console.log("Error loading training classes::::", error);
@@ -73,17 +108,7 @@ export default class TrainingClassStore {
     }
   };
 
-  @action GroupClassess(
-    trainingClassess: ITrainingClass[],
-    isDescending: boolean
-  ) {
-    trainingClassess = trainingClassess.sort(
-      (a: ITrainingClass, b: ITrainingClass) => {
-        const ahms = _getSeconds(_getTime(a.time).hr, _getTime(a.time).min);
-        const bhms = _getSeconds(_getTime(b.time).hr, _getTime(b.time).min);
-        return isDescending ? bhms - ahms : ahms - bhms;
-      }
-    );
+  @action GroupClassess(trainingClassess: ITrainingClass[]) {
     let finalArr = [];
     let tempArr = [];
     for (let index = 0; index < trainingClassess.length; index++) {
@@ -135,14 +160,14 @@ export default class TrainingClassStore {
     this.loading = false;
   };
   @action editTrainingClass = async (trainingclass: ITrainingClass) => {
-    console.log("trainingclass", trainingclass);
+    const { user } = this.rootStore.userStore;
     this.loading = true;
     try {
       await agent.TrainingClass.updateClass(trainingclass);
       this.trainingClassess = this.trainingClassess.filter(
         (x) => x.id !== trainingclass.id
       );
-      this.trainingClassess.unshift(trainingclass);
+      this.trainingClassess.unshift(_setTrainingClass(trainingclass, user!));
       this.editSelectClass(trainingclass.id);
     } catch (error) {
       console.log("error", error);
@@ -150,7 +175,7 @@ export default class TrainingClassStore {
     this.loading = false;
   };
   @action createTrainingClass = async (trainingclass: ITrainingClass) => {
-    console.log("trainingclass", trainingclass);
+    const { user } = this.rootStore.userStore;
     this.loading = true;
     try {
       await agent.TrainingClass.createClass(trainingclass);
@@ -161,8 +186,7 @@ export default class TrainingClassStore {
       trainingclass.comments = [];
       trainingclass.userTrainingClasses = attendees;
       trainingclass.isHost = true;
-
-      this.trainingClassess.unshift(trainingclass);
+      this.trainingClassess.unshift(_setTrainingClass(trainingclass, user!));
       this.editSelectClass(trainingclass.id);
     } catch (error) {
       console.log("error for creating training class", error);

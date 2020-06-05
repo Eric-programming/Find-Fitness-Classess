@@ -1,4 +1,9 @@
 import { IUserTrainingClass } from "./IUserTrainingClasses";
+export interface ITrainingClassEnvelope {
+  trainingClasses: ITrainingClass[];
+  totalCount: number;
+}
+
 export interface ITrainingClass {
   address: string;
   category: string;

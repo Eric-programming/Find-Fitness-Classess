@@ -44,7 +44,7 @@ namespace Persistance
                 var trainingClasses = new List<TrainingClass> {
                     new TrainingClass {
                         Title = "Get Fit",
-                            Time="12:00",
+                            Time=750,
                             Description = "This is a great group training class for lose weight and get fit over all",
                             Category = "weight-loss",
                             DayOfWeek = 5,
@@ -66,7 +66,7 @@ namespace Persistance
                     },
                     new TrainingClass {
                         Title = "Cross Fit",
-                           Time="13:00",
+                           Time=902,
                             Description = "Amazing Cross fit training for the age 18 - 35.",
                             Category = "general",
                             DayOfWeek = 2,

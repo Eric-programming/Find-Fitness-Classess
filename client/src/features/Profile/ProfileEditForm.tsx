@@ -44,7 +44,6 @@ const ProfileEditForm: React.FC<IProps> = ({ setEditMode }) => {
             component={TextAreaInput}
             placeholder="Bio"
           />
-          {console.log(invalid)}
           <Button
             disabled={invalid || pristine}
             loading={submitting}
