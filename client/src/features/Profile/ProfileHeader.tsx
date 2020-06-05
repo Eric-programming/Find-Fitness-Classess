@@ -44,8 +44,8 @@ const ProfileHeader: React.FC<IProps> = ({ profile }) => {
         </Grid.Column>
         <Grid.Column width={4}>
           <Statistic.Group widths={2}>
-            <Statistic label="Followings" value={profile.followingCount} />
-            <Statistic label="Followers" value={profile.followersCount} />
+            <Statistic label="Followings" value={profile?.followingCount} />
+            <Statistic label="Followers" value={profile?.followersCount} />
           </Statistic.Group>
           <Divider />
 
@@ -53,17 +53,17 @@ const ProfileHeader: React.FC<IProps> = ({ profile }) => {
             <>
               <Button
                 fluid
-                color={!profile.isFollowed ? "teal" : "red"}
-                content={profile.isFollowed ? "UnFollow" : "Follow"}
+                color={!profile?.isFollowed ? "teal" : "red"}
+                content={profile?.isFollowed ? "UnFollow" : "Follow"}
                 onClick={() =>
-                  profile.isFollowed
-                    ? unfollow(profile.username)
-                    : follow(profile.username)
+                  profile?.isFollowed
+                    ? unfollow(profile?.username)
+                    : follow(profile?.username)
                 }
               />
             </>
           ) : null}
-          {profile.image !== null && isCurrentUser ? (
+          {profile?.image !== null && isCurrentUser ? (
             <Button
               style={{ marginTop: "1%" }}
               onClick={() => deletePhoto()}
