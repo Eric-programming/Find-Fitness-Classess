@@ -12,13 +12,17 @@ import {
 import { trainingClassessLink } from "../../../app/_constantVariables/_Links";
 import { RootStoreContext } from "../../../app/stores/RootStore";
 import ListAttendee from "./ListAttendees";
+import { dayOfWeekOptions } from "../../../options/dayOfWeekOptions";
 
 const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
   TrainingClass,
 }) => {
-  const TrainingClassess = useContext(RootStoreContext).trainingClassessStore;
-  const { editSelectClass, deleteTrainingClass } = TrainingClassess;
-
+  const root = useContext(RootStoreContext);
+  const { user } = root.userStore;
+  const { editSelectClass, deleteTrainingClass } = root.trainingClassessStore;
+  const getDayOfWeek = (dayOfWeek: number) => {
+    return dayOfWeekOptions.filter((x) => x.value === dayOfWeek)[0];
+  };
   return (
     <Segment.Group>
       <Segment>
@@ -64,7 +68,9 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
         </ItemGroup>
       </Segment>
       <Segment>
-        <Icon name="clock" /> Every {TrainingClass.dayOfWeek} at
+        {/* TrainingClass.dayOfWeek */}
+        <Icon name="clock" /> Every{" "}
+        {getDayOfWeek(TrainingClass.dayOfWeek!).text} at
         {TrainingClass.time}
         <Icon name="marker" /> {TrainingClass.address} {TrainingClass.city},
         {TrainingClass.country} {TrainingClass.postalCode}
@@ -85,12 +91,14 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
           to={trainingClassessLink + `/${TrainingClass.id}`}
           onClick={() => editSelectClass(TrainingClass.id)}
         />
-        <Button
-          floated="right"
-          content="Delete"
-          color="red"
-          onClick={() => deleteTrainingClass(TrainingClass.id)}
-        />
+        {user?.userName == TrainingClass.hostUserName ? (
+          <Button
+            floated="right"
+            content="Delete"
+            color="red"
+            onClick={() => deleteTrainingClass(TrainingClass.id)}
+          />
+        ) : null}
       </Segment>
     </Segment.Group>
   );

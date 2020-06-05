@@ -21,7 +21,6 @@ const ProfileHeader: React.FC<IProps> = ({ profile }) => {
   const RootStore = useContext(RootStoreContext);
   const {
     deletePhoto,
-    loadingProfile,
     unfollow,
     follow,
     isCurrentUser,

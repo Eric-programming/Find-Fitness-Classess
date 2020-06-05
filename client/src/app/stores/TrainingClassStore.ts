@@ -6,7 +6,6 @@ import { observable, action, computed } from "mobx";
 import { ITrainingClass } from "../_models/ITrainingClasses";
 import agent from "../api/agent";
 import _getTime from "../_helper/_getTimes";
-import _getSeconds from "../_helper/_getSeconds";
 import { RootStore } from "./RootStore";
 import {
   HubConnection,

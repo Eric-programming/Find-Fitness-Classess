@@ -20,7 +20,7 @@ const ClassDetailChat = () => {
     return () => {
       stopHubConnection();
     };
-  }, [createHubConnection, stopHubConnection]);
+  }, [createHubConnection, stopHubConnection, selectedClass]);
   return (
     <Fragment>
       <Segment

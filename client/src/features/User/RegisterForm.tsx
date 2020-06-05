@@ -10,7 +10,6 @@ import {
 import { RootStoreContext } from "../../app/stores/RootStore";
 import { IUserFormValues } from "../../app/_models/IUser";
 import TextInput from "../../components/Form/TextInput";
-//
 const validate = combineValidators({
   userName: isRequired("userName"),
   fullName: isRequired("fullName"),
