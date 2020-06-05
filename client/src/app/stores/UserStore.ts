@@ -4,6 +4,7 @@ import agent from "../api/agent";
 import { history } from "../..";
 import { IUserFormValues, IUser } from "../_models/IUser";
 import { RootStore } from "./RootStore";
+import { _printError } from "../_helper/_printError";
 
 export default class UserStore {
   rootStore: RootStore;
@@ -43,7 +44,7 @@ export default class UserStore {
         this.rootStore.utilStore.setToken(user.token);
       }
     } catch (error) {
-      console.log(error);
+      _printError(error, "register user");
     }
   };
 
@@ -51,7 +52,7 @@ export default class UserStore {
     try {
       this.user = await agent.User.current();
     } catch (error) {
-      console.log(error);
+      _printError(error, "load user");
     }
   };
 

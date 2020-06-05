@@ -55,8 +55,9 @@ axios.interceptors.response.use(undefined, (err) => {
     );
   }
   if (status === 401) {
-    alert("You are unauthorized");
+    window.localStorage.removeItem(_name_tokenName);
     history.push("/");
+    alert("Your session has expired, please login again");
   }
   if (config.url === _api_user + _api_signup && status === 400) {
     for (let [key, value] of Object.entries(data.errors)) {
@@ -76,7 +77,6 @@ const requests = {
   postForm: (url: string, file: Blob) => {
     let formData = new FormData();
     formData.append("File", file);
-    console.log("formData", formData);
     return axios
       .post(url, formData, {
         headers: { "Content-type": "multipart/form-data" },

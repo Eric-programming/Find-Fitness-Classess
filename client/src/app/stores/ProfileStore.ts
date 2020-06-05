@@ -3,6 +3,7 @@ import { RootStore } from "./RootStore";
 import { observable, action, computed } from "mobx";
 import agent from "../api/agent";
 import { IProfile } from "../_models/IProfile";
+import { _printError } from "../_helper/_printError";
 
 export default class ProfileStore {
   rootStore: RootStore;
@@ -37,8 +38,7 @@ export default class ProfileStore {
       }
       this.uploadingPhoto = false;
     } catch (error) {
-      console.log(error);
-      alert(error);
+      _printError(error, "Upload Image");
       this.uploadingPhoto = false;
     }
   };
@@ -52,8 +52,7 @@ export default class ProfileStore {
       this.rootStore.trainingClassessStore.changeImage(null, user!.userName!);
       this.rootStore.userStore.changeImage(null);
     } catch (error) {
-      console.log("error", error);
-      alert("Problem deleting photo");
+      _printError(error, "Delete Image");
       this.loadingProfile = false;
     }
   };
@@ -76,9 +75,8 @@ export default class ProfileStore {
       this.profile = profile;
       this.loadingProfile = false;
     } catch (error) {
-      alert("Fail load profile");
+      _printError(error, "Load Profile");
       this.loadingProfile = false;
-      console.log(error);
     }
   };
 
@@ -90,7 +88,7 @@ export default class ProfileStore {
       }
       this.profile = { ...this.profile!, ...updatedProfile };
     } catch (error) {
-      alert("Problem updating profile");
+      _printError(error, "Update Profile");
     }
   };
 
@@ -102,7 +100,7 @@ export default class ProfileStore {
       this.profile!.followersCount++;
       this.loadingProfile = false;
     } catch (error) {
-      alert("Problem following user");
+      _printError(error, "follow user");
       this.loadingProfile = false;
     }
   };
@@ -115,7 +113,7 @@ export default class ProfileStore {
       this.profile!.followersCount--;
       this.loadingProfile = false;
     } catch (error) {
-      alert("Problem unfollowing user");
+      _printError(error, "unfollow user");
       this.loadingProfile = false;
     }
   };
@@ -128,7 +126,7 @@ export default class ProfileStore {
       this.follows = profiles;
       this.loadingProfile = false;
     } catch (error) {
-      alert("Problem loading followings");
+      _printError(error, "load following or followers");
       this.loadingProfile = false;
     }
   };
@@ -144,7 +142,7 @@ export default class ProfileStore {
       this.userTrainingClassess = ut;
       this.loadingProfile = false;
     } catch (error) {
-      alert("Problem loading classess");
+      _printError(error, "load user's training classess");
       this.loadingProfile = false;
     }
   };

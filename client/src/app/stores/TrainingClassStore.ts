@@ -1,3 +1,4 @@
+import { _printError } from "./../_helper/_printError";
 import { _store_take } from "./../_constantVariables/_store";
 import { chatUrl } from "./../_constantVariables/_base";
 import { _createAttendee } from "./../_helper/_createAttendee";
@@ -93,7 +94,7 @@ export default class TrainingClassStore {
     try {
       await this.hubConnection!.invoke("SendComment", values); //Call the method direct to the Chat Hub
     } catch (error) {
-      console.log(error);
+      _printError(error, "Add Comment");
     }
   };
   @action loadingTrainingClassess = async () => {
@@ -103,7 +104,6 @@ export default class TrainingClassStore {
       const { trainingClasses, totalCount } = await agent.TrainingClass.list(
         this.axiosParams
       );
-      console.log("trainingClasses", trainingClasses);
       const newTC = trainingClasses;
       this.totalItems = totalCount;
       this.trainingClassess.push(
@@ -116,8 +116,7 @@ export default class TrainingClassStore {
       );
       this.loading = false;
     } catch (error) {
-      alert("Fail loadin the training class");
-      console.log("Error loading training classes::::", error);
+      _printError(error, "Loading Training Classess");
       this.loading = false;
     }
   };
@@ -157,7 +156,7 @@ export default class TrainingClassStore {
         return trainingclass;
       } catch (error) {
         this.loading = false;
-        console.log(error);
+        _printError(error, "Get Training Classess");
         this.selectedClass = null;
       }
     }
@@ -170,8 +169,7 @@ export default class TrainingClassStore {
       this.selectedClass = null;
       this.loading = false;
     } catch (error) {
-      alert("Fail Delete Edit Training Class");
-      console.log("error for deleting training class", error);
+      _printError(error, "Delete Training Classess");
       this.loading = false;
     }
   };
@@ -187,13 +185,11 @@ export default class TrainingClassStore {
       this.editSelectClass(trainingclass.id);
       this.loading = false;
     } catch (error) {
-      alert("Fail Edit Training Class");
-      console.log("error", error);
+      _printError(error, "Edit Training Classess");
       this.loading = false;
     }
   };
   @action createTrainingClass = async (trainingclass: ITrainingClass) => {
-    console.log("trainingclass", trainingclass);
     const { user } = this.rootStore.userStore;
     this.loading = true;
     try {
@@ -209,8 +205,7 @@ export default class TrainingClassStore {
       this.editSelectClass(trainingclass.id);
       this.loading = false;
     } catch (error) {
-      alert("Fail to create training class");
-      console.log("error for creating training class", error);
+      _printError(error, "Create Training Classess");
       this.loading = false;
     }
   };
@@ -222,7 +217,6 @@ export default class TrainingClassStore {
 
   @action attendActivity = async () => {
     this.loading = true;
-
     try {
       await agent.TrainingClass.attend(this.selectedClass!.id);
       if (this.selectedClass) {
@@ -233,7 +227,7 @@ export default class TrainingClassStore {
       }
     } catch (error) {
       this.loading = false;
-      alert("Problem signing up to classess");
+      _printError(error, "Attend Training Classess");
     }
   };
 
@@ -249,9 +243,8 @@ export default class TrainingClassStore {
         this.loading = false;
       }
     } catch (error) {
-      console.log("error", error);
       this.loading = false;
-      alert("Problem cancelling attendance");
+      _printError(error, "Cancel attending Training Classess");
     }
   };
   @action changeImage = (imageUrl: string | null, userName: string) => {
