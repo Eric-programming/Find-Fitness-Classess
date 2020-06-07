@@ -79,7 +79,11 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
       ) : null}
 
       <Segment clearing>
-        <span>{TrainingClass.description}</span>
+        <span>
+          {TrainingClass.description.length > 30
+            ? TrainingClass.description.substring(0, 30) + "..."
+            : TrainingClass.description}
+        </span>
         <Button
           floated="right"
           content="View"
