@@ -29,7 +29,7 @@ const ListAttendee: React.FC<IProps> = ({ attendees }) => {
                   bordered
                   as={Link}
                   to={profileLink + "/" + attendee.userName}
-                  primary={true}
+                  // primary={true}
                   // style={attendee.following ? styles : null}
                 />
               }

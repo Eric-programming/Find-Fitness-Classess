@@ -19,7 +19,6 @@ const ProfileEvents = () => {
   const {
     profile,
     loadProfileTrainingClassess,
-    loadingProfile,
     userTrainingClassess,
   } = rootStore.profileStore!;
 

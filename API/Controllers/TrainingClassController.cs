@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.DTO;
 using Application.TrainingClasses;
-using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +14,9 @@ namespace API.Controllers
     {
         // GET api/trainingclass
         [HttpGet]
-        public async Task<ActionResult<TrainingClassEnvelope>> GetTrainingClassess(int? skip, int? take, bool isGoing, bool isHost, string? StartTime)
+        public async Task<ActionResult<TrainingClassEnvelope>> GetTrainingClassess([FromQuery] OutputTrainingClassessQueryParams p)
         {
-            var trainingclasses = await Mediator.Send(new List.Query(skip, take, isGoing, isHost, StartTime));
+            var trainingclasses = await Mediator.Send(new List.Query(p));
             return Ok(trainingclasses);
         }
 

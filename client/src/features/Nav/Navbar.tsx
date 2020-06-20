@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <Menu fixed="top" inverted>
       <Container>
-        <Menu.Item header as={Link} exact={true} to={homeLink}>
+        <Menu.Item header as={Link} to={homeLink}>
           <h1>
             <i>Find Fitness Classess</i>
           </h1>

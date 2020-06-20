@@ -40,7 +40,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
   if (!AccountLoaded) return <LoadingComponent />;
   return (
     <>
-      <Route exact={true} path={homeLink} component={HomeComponent} />
+      <Route exact path={homeLink} component={HomeComponent} />
       <Route
         path={"/(.+)"}
         render={() => (
@@ -49,7 +49,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <Container style={{ marginTop: "7em" }}>
               <Switch>
                 <PrivateRoute
-                  exact={true}
+                  exact
                   path={trainingClassessLink}
                   component={TrainingClassesDashboard}
                 />

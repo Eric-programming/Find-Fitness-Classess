@@ -1,3 +1,5 @@
+import { IUserTrainingClass } from "./../_models/IUserTrainingClasses";
+import { ITrainingClass } from "./../_models/ITrainingClasses";
 import { _printError } from "./../_helper/_printError";
 import { _store_take } from "./../_constantVariables/_store";
 import { chatUrl } from "./../_constantVariables/_base";
@@ -12,7 +14,6 @@ import {
   HubConnectionBuilder,
   LogLevel,
 } from "@microsoft/signalr";
-import { ITrainingClass } from "../_models/ITrainingClasses";
 
 export default class TrainingClassStore {
   rootStore: RootStore;
@@ -248,14 +249,21 @@ export default class TrainingClassStore {
     }
   };
   @action changeImage = (imageUrl: string | null, userName: string) => {
-    this.trainingClassess = this.trainingClassess.map((e) => {
-      const ut = e.userTrainingClasses.map((y) => {
+    this.trainingClassess = this.trainingClassess.map((e: ITrainingClass) => {
+      let isHost = false;
+      const ut = e.userTrainingClasses.map((y: IUserTrainingClass) => {
         if (y.userName === userName) {
           y.image = imageUrl;
+          if (y.isHost) {
+            isHost = true;
+          }
         }
         return y;
       });
       e.userTrainingClasses = ut;
+      if (isHost) {
+        e.hostImage = imageUrl;
+      }
       return e;
     });
   };

@@ -23,7 +23,6 @@ const ClassDetailHeader: React.FC<{ trainingClass: ITrainingClass }> = ({
   trainingClass,
 }) => {
   const RootStore = useContext(RootStoreContext);
-  const { user } = RootStore.userStore;
   const { attendActivity, cancelAttendance } = RootStore.trainingClassessStore;
   const spotsLeft =
     trainingClass.totalSpots - trainingClass.userTrainingClasses.length;

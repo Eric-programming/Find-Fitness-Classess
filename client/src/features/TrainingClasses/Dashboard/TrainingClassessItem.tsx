@@ -26,6 +26,7 @@ const TrainingClassessItem: React.FC<{ TrainingClass: ITrainingClass }> = ({
       <Segment>
         <ItemGroup>
           <Item>
+            {/* {JSON.stringify(TrainingClass)} */}
             <Item.Image
               size="tiny"
               circular
