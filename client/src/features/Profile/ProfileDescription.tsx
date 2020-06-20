@@ -14,7 +14,7 @@ const ProfileDescription = () => {
           <Header
             floated="left"
             icon="user"
-            content={`About ${profile!.fullName}`}
+            content={`About ${profile?.fullName}`}
           />
           {isCurrentUser && (
             <Button
@@ -29,7 +29,7 @@ const ProfileDescription = () => {
           {editMode ? (
             <ProfileEditForm setEditMode={setEditMode} />
           ) : (
-            <span>{profile!.bio}</span>
+            <span>{profile?.bio}</span>
           )}
         </Grid.Column>
       </Grid>
