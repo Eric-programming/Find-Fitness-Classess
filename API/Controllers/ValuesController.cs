@@ -1,15 +1,14 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistance;
-
+//Testing Purpose ONLY
 namespace API.Controllers
 {
-   [Route("api/[controller]")]
-   [ApiController]
+    [Route("api/[controller]")]
+    [ApiController]
     public class ValuesController : ControllerBase
     {
         private readonly DataContext _context;
@@ -30,7 +29,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<string>> Get(int id)
         {
-            return Ok(await _context.Values.FirstOrDefaultAsync(x=> x.Id == id));
+            return Ok(await _context.Values.FirstOrDefaultAsync(x => x.Id == id));
         }
 
         // POST api/values

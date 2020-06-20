@@ -37,7 +37,7 @@ axios.interceptors.response.use(undefined, (err) => {
   const { response, message } = err;
   if (message === "Network Error" && !response) {
     alert(
-      "Sorry! Our server is down. Don't worry, your data won't be lost. Eric is currently working to resolve this issue."
+      "Sorry! Our server is down. Don't worry, your data won't be lost. Please come back later."
     );
   }
   const { status, data, config } = response;
