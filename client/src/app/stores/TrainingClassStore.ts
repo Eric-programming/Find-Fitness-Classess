@@ -195,14 +195,21 @@ export default class TrainingClassStore {
     this.loading = true;
     try {
       await agent.TrainingClass.createClass(trainingclass);
+      //Create Attendee
       const attendee = _createAttendee(this.rootStore.userStore.user!);
       attendee.isHost = true;
       let attendees = [];
       attendees.push(attendee);
+      //Create Comments
       trainingclass.comments = [];
       trainingclass.userTrainingClasses = attendees;
       trainingclass.isHost = true;
+
       this.trainingClassess.unshift(_setTrainingClass(trainingclass, user!));
+      // this.trainingClassess.sort((a,b)=>_getTime(a.time).hr - _getTime(b.time).hr)
+      this.trainingClassess = this.trainingClassess.sort(
+        (a, b) => _getTime(a.time).hr - _getTime(b.time).hr
+      );
       this.editSelectClass(trainingclass.id);
       this.loading = false;
     } catch (error) {
