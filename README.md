@@ -10,7 +10,7 @@
 1.Add Appsetting.json
 {
   "ConnectionStrings": {
-    "DefaultCOnnection": "Data source=find-trainer.db"
+    "DefaultCOnnection": "Data source=find-classess.db"
   },
   "Logging": {
     "LogLevel": {
