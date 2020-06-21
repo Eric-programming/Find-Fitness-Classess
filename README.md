@@ -36,9 +36,7 @@
 2. cd api && dotnet watch run or dotnet run
 ```
 ## Data Model
-```
 ![Data Modeling](https://user-images.githubusercontent.com/54079742/85230083-8a06d980-b3a2-11ea-979f-4d50fae5ddad.PNG)
-```
 - Version: 1.0.0
 - License: MIT
 - Author: Eric
