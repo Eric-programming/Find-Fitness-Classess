@@ -1,7 +1,8 @@
 # Find Fitness Classess
 > App for people to find their ideal fitness classess.
 ## Tools
-C# ASP.NET Core & Angular TS
+- C# ASP.NET Core 
+- Angular TS
 
 ## Setups
 
