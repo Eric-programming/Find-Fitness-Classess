@@ -20,9 +20,9 @@ C# ASP.NET Core & Angular TS
   },
   "AllowedHosts": "*",
   "CloudinarySettings": {
-    "CloudName": "df4wo0lfq",
-    "ApiKey": "557275171173912",
-    "ApiSecret": "LEY_5Tk4iA56YYyv_d1X6FCFvdg"
+    "CloudName": "YOUR-CLOUDNAME",
+    "ApiKey": "YOUR-APIKEY",
+    "ApiSecret": "YOUR-APISECRET"
   }
 }
 
