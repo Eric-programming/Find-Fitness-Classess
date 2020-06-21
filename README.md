@@ -37,7 +37,7 @@
 ```
 ## Data Model
 ```
-![alt text](https://github.com/Eric-programming/find-fitness-classess/blob/master/Data%20Modeling.PNG)
+![Data Modeling](https://user-images.githubusercontent.com/54079742/85230083-8a06d980-b3a2-11ea-979f-4d50fae5ddad.PNG)
 ```
 - Version: 1.0.0
 - License: MIT
