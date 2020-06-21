@@ -31,10 +31,14 @@
 3. cd client && npm i
 ```
 ## Run App
+```
 1. cd client && npm start
 2. cd api && dotnet watch run or dotnet run
 ```
-
+## Data Model
+```
+![alt text](https://github.com/Eric-programming/find-fitness-classess/blob/master/Data%20Modeling.PNG)
+```
 - Version: 1.0.0
 - License: MIT
 - Author: Eric
