@@ -49,6 +49,7 @@ namespace API
                 builder
                     .AllowAnyMethod()
                     .AllowAnyHeader()
+                    .WithExposedHeaders("WWW-Authenticate")//For expire token purpose
                     .AllowCredentials()
                     .WithOrigins("http://localhost:3000");
             }));
@@ -62,7 +63,8 @@ namespace API
             identityBuilder.AddEntityFrameworkStores<DataContext>();
             identityBuilder.AddSignInManager<SignInManager<User>>();
             //Add JWT
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:Key"]));
+            // var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
             {
                 opt.TokenValidationParameters = new TokenValidationParameters
@@ -71,6 +73,8 @@ namespace API
                     IssuerSigningKey = key,
                     ValidateAudience = false,
                     ValidateIssuer = false,
+                    ValidateLifetime = true,//validate the expire token
+                    ClockSkew = TimeSpan.Zero //401 after the time is passed
                 };
                 opt.Events = new JwtBearerEvents
                 {

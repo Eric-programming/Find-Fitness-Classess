@@ -40,7 +40,7 @@ axios.interceptors.response.use(undefined, (err) => {
       "Sorry! Our server is down. Don't worry, your data won't be lost. Please come back later."
     );
   }
-  const { status, data, config } = response;
+  const { status, data, config, headers } = response;
   if (
     status === 404 ||
     (status === 400 &&
@@ -54,10 +54,10 @@ axios.interceptors.response.use(undefined, (err) => {
       "Something wrong with our server, please come back to this later. Thanks!"
     );
   }
-  if (status === 401) {
+  if (status === 401 && headers["www-authenticate"]) {
     window.localStorage.removeItem(_name_tokenName);
+    alert("Your session has expired, please login again.");
     history.push("/");
-    alert("You are Unauthorized.");
   }
   if (config.url === _api_user + _api_signup && status === 400) {
     for (let [key, value] of Object.entries(data.errors)) {

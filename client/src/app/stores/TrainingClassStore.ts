@@ -107,14 +107,15 @@ export default class TrainingClassStore {
       );
       const newTC = trainingClasses;
       this.totalItems = totalCount;
-      this.trainingClassess.push(
-        ...newTC.filter((e) => {
-          const dup = this.trainingClassess.some((x) => x.id === e.id);
-          if (!dup || this.trainingClassess.length === 0) {
-            return _setTrainingClass(e, user!);
-          }
-        })
-      );
+      this.trainingClassess = newTC.map((e) => _setTrainingClass(e, user!));
+      // this.trainingClassess.push(
+      //   ...newTC.filter((e) => {
+      //     const dup = this.trainingClassess.some((x) => x.id === e.id);
+      //     if (!dup || this.trainingClassess.length === 0) {
+      //       return _setTrainingClass(e, user!);
+      //     }
+      //   })
+      // );
       this.loading = false;
     } catch (error) {
       _printError(error, "Loading Training Classess");

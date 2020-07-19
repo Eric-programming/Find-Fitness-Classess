@@ -15,11 +15,12 @@ interface IProps extends RouteProps {
 const PrivateRoute: React.FC<IProps> = ({ component: Component, ...rest }) => {
   const rootStore = useContext(RootStoreContext);
   const { isLoggedIn } = rootStore.userStore;
+  const token = localStorage.getItem("token");
   return (
     <Route
       {...rest}
       render={(props) =>
-        isLoggedIn ? <Component {...props} /> : <Redirect to="/" />
+        isLoggedIn && token ? <Component {...props} /> : <Redirect to="/" />
       }
     />
   );

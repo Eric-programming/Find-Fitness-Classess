@@ -15,7 +15,7 @@ const validate = combineValidators({
   fullName: isRequired("fullName"),
   email: composeValidators(
     isRequired({ message: "Please enter the email" }),
-    matchesPattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)({
+    matchesPattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)({
       message: "Please enter a valid email",
     })
   )(),

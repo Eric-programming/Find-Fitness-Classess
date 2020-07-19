@@ -15,12 +15,13 @@ import RegisterForm from "../User/RegisterForm";
 
 const HomeComponent = () => {
   const rootStore = useContext(RootStoreContext);
+  const token = localStorage.getItem("token");
   const { user, isLoggedIn } = rootStore.userStore;
   const [toLogin, setToLogin] = useState(true);
   return (
     <Segment inverted textAlign="center" vertical className="masthead">
       <Container text>
-        {isLoggedIn ? (
+        {isLoggedIn && token ? (
           <Fragment>
             <Header
               as="h2"
