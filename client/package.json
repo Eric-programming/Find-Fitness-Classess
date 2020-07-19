@@ -37,6 +37,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postpublish": "move build ../API/wwwroot",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "backend": "cd .. && cd api && dotnet watch run",

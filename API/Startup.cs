@@ -106,6 +106,10 @@ namespace API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseMiddleware<ErrorHandlingMiddleware>();
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseRouting();
             app.UseCors("CorsPolicy");
             app.UseAuthentication();
@@ -116,6 +120,7 @@ namespace API
                 //Signal R ⬇️
                 endpoints.MapHub<ChatHub>("/chat"); //Redirect this request to the chatHub
                 //Signal R⬆️
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }

@@ -11,14 +11,38 @@
 - C# ASP.NET Core
 - Angular TS
 
-## Setups
+## Setups & Run the app
 
 ```
-1.Update Appsettings.json
+1. Update Appsettings.json Cloudinary
 
 2. Dotnet restore
 
-3. cd client && npm i
+3. cd api && dotnet watch run
+
+4. cd.. && cd client && npm i
+
+5. npm start
+
+```
+
+## Setup for Production
+
+```
+1. cd client && npm run build
+
+2. npm run postpublish
+
+3. cd .. && cd api && dotnet watch run
+
+4. make sure app is functional on http://localhost:4000/
+
+5. Change DB to a preferred data management system (MySQL, Postgres, SQL, etc.)
+
+6. Optional: configure apache to use https ssl certification
+
+7. Publish to Cloud or Linux server
+
 ```
 
 ## Run App
