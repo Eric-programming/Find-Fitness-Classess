@@ -9,7 +9,8 @@
 ## Tools
 
 - C# ASP.NET Core
-- Angular TS
+- React TS
+- Sqlite
 
 ## Setups & Run the app
 
