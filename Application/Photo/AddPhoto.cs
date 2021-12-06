@@ -14,13 +14,13 @@ namespace Application.Photo
 {
     public class AddPhoto
     {
-        public class Command : IRequest<PhotoUploadResult>
+        public class AddPhotoCommand : IRequest<PhotoUploadResult>
         {
             [Required]
             public IFormFile File { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command, PhotoUploadResult>
+        public class Handler : IRequestHandler<AddPhotoCommand, PhotoUploadResult>
         {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
@@ -31,7 +31,7 @@ namespace Application.Photo
                 _userAccessor = userAccessor;
                 _context = context;
             }
-            public async Task<PhotoUploadResult> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<PhotoUploadResult> Handle(AddPhotoCommand request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
                 if (user == null)

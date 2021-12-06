@@ -1,4 +1,4 @@
-import { _name_tokenName } from "./../_constantVariables/_names";
+import { _name_tokenName } from "../_constantVariables/_names";
 import { observable, action } from "mobx";
 import { RootStore } from "./RootStore";
 

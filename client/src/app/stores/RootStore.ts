@@ -1,7 +1,7 @@
 import TrainingClassStore from "./TrainingClassStore";
 import UserStore from "./UserStore";
 import { createContext } from "react";
-import UtilStore from "./utilStore";
+import UtilStore from "./UtilStore";
 import ProfileStore from "./ProfileStore";
 
 export class RootStore {

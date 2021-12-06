@@ -16,7 +16,7 @@ namespace Application.User
 {
     public class Register
     {
-        public class Command : IRequest<OutputUser>
+        public class RegisterCommand : IRequest<OutputUser>
         {
             [Required]
             [EmailAddress]
@@ -35,7 +35,7 @@ namespace Application.User
             public string Username { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command, OutputUser>
+        public class Handler : IRequestHandler<RegisterCommand, OutputUser>
         {
             private readonly DataContext _context;
             private readonly UserManager<Domain.User> _userManager;
@@ -47,7 +47,7 @@ namespace Application.User
                 _context = context;
             }
 
-            public async Task<OutputUser> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<OutputUser> Handle(RegisterCommand request, CancellationToken cancellationToken)
             {
                 if (await _context.Users.Where(x => x.Email.ToLower() == request.Email.ToLower()).AnyAsync())
                     throw new ErrorException(HttpStatusCode.BadRequest, new { Email = "Email already exists" });

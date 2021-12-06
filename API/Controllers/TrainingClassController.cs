@@ -30,13 +30,13 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Unit>> CreateTrainingClass(Create.Command command)
+        public async Task<ActionResult<Unit>> CreateTrainingClass(Create.CreateCommand command)
         {
             return await Mediator.Send(command);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Unit>> EditTrainingClass(Guid id, Edit.Command command)
+        public async Task<ActionResult<Unit>> EditTrainingClass(Guid id, Edit.EditCommand command)
         {
             command.Id = id;
             return await Mediator.Send(command);

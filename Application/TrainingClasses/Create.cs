@@ -15,7 +15,7 @@ namespace Application.TrainingClasses
     public class Create
     {
 
-        public class Command : IRequest
+        public class CreateCommand : IRequest
         {
             [Required]
             public Guid Id { get; set; }
@@ -55,7 +55,7 @@ namespace Application.TrainingClasses
             [Required]
             public int TotalSpots { get; set; }
         }
-        public class Handler : IRequestHandler<Command>
+        public class Handler : IRequestHandler<CreateCommand>
         {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
@@ -66,7 +66,7 @@ namespace Application.TrainingClasses
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(CreateCommand request, CancellationToken cancellationToken)
             {
 
                 var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());

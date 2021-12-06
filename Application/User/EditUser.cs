@@ -12,9 +12,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Persistance;
 
-namespace Application.User {
-    public class EditUser {
-        public class Command : IRequest<OutputEditUser> {
+namespace Application.User
+{
+    public class EditUser
+    {
+        public class EditUserCommand : IRequest<OutputEditUser>
+        {
             [Required]
             public string FullName { get; set; }
 
@@ -22,26 +25,30 @@ namespace Application.User {
             public string Bio { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command, OutputEditUser> {
+        public class Handler : IRequestHandler<EditUserCommand, OutputEditUser>
+        {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
-            public Handler (DataContext context, IUserAccessor userAccessor) {
+            public Handler(DataContext context, IUserAccessor userAccessor)
+            {
                 _userAccessor = userAccessor;
                 _context = context;
             }
 
-            public async Task<OutputEditUser> Handle (Command request, CancellationToken cancellationToken) {
-                var user = await _context.Users.FirstOrDefaultAsync (x => x.UserName == _userAccessor.GetCurrentUsername ());
+            public async Task<OutputEditUser> Handle(EditUserCommand request, CancellationToken cancellationToken)
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
                 if (user == null)
-                    throw new ErrorException (HttpStatusCode.Unauthorized);
+                    throw new ErrorException(HttpStatusCode.Unauthorized);
                 user.FullName = request.FullName;
                 user.Bio = request.Bio;
-                if (await _context.SaveChangesAsync () > 0)
-                    return new OutputEditUser {
+                if (await _context.SaveChangesAsync() > 0)
+                    return new OutputEditUser
+                    {
                         fullName = user.FullName,
-                            bio = user.Bio
+                        bio = user.Bio
                     };
-                throw new Exception ("Problem edit user");
+                throw new Exception("Problem edit user");
             }
         }
     }

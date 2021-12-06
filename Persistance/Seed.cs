@@ -11,23 +11,20 @@ namespace Persistance
     {
         public static async Task SeedData(DataContext context, UserManager<User> userManager)
         {
-            if (!userManager.Users.Any())
+            if (!userManager.Users.Any() && !context.TrainingClasses.Any())
             {
                 var users = new List<User>{
                     new User{
-                        Id="a",
                         FullName="Eric Wu",
                         UserName = "ericwu",
                         Email="eric@email.com"
                     },
                      new User{
-                         Id="b",
                         FullName="Kevin Wu",
                         UserName = "kevinwu",
                         Email="kevin@email.com"
                     },
                     new User{
-                        Id="c",
                         FullName="Oliver Wu",
                         UserName = "oliverwu",
                         Email="oliver@email.com"
@@ -37,13 +34,10 @@ namespace Persistance
                 {
                     await userManager.CreateAsync(item, "Password123@");
                 }
-                context.SaveChanges();
-            }
-            if (!context.TrainingClasses.Any())
-            {
+
                 var trainingClasses = new List<TrainingClass> {
                     new TrainingClass {
-                        Title = "Get Fit",
+                            Title = "Get Fit",
                             Time=750,
                             Description = "This is a great group training class for lose weight and get fit over all",
                             Category = "weight-loss",
@@ -58,7 +52,7 @@ namespace Persistance
                         {
                             new UserTrainingClass
                             {
-                                UserId = "a",
+                                UserId = users[0].Id,
                                 IsHost = true,
                                 DateJoined = DateTime.Now.AddMonths(-2)
                             }
@@ -66,21 +60,21 @@ namespace Persistance
                     },
                     new TrainingClass {
                         Title = "Cross Fit",
-                           Time=902,
-                            Description = "Amazing Cross fit training for the age 18 - 35.",
-                            Category = "general",
-                            DayOfWeek = 2,
-                            City = "Surrey",
-                            Address = "200-1938 152 St",
-                            PostalCode = "V4A 4N6",
-                            Province = "BC",
-                            Country = "Canada",
-                            TotalSpots = 3,
-                            UserTrainingClasses = new List<UserTrainingClass>
+                        Time=902,
+                        Description = "Amazing Cross fit training for the age 18 - 35.",
+                        Category = "general",
+                        DayOfWeek = 2,
+                        City = "Surrey",
+                        Address = "200-1938 152 St",
+                        PostalCode = "V4A 4N6",
+                        Province = "BC",
+                        Country = "Canada",
+                        TotalSpots = 3,
+                        UserTrainingClasses = new List<UserTrainingClass>
                         {
                             new UserTrainingClass
                             {
-                                UserId = "a",
+                                UserId = users[0].Id,
                                 IsHost = true,
                                 DateJoined = DateTime.Now.AddMonths(-4)
                             }
@@ -88,7 +82,7 @@ namespace Persistance
                     },
                 };
                 context.TrainingClasses.AddRange(trainingClasses);
-                context.SaveChanges(); //no need for async because there is no request when starts up
+                context.SaveChanges();
             }
 
         }
